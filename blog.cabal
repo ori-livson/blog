@@ -1,0 +1,70 @@
+cabal-version:      2.4
+name:               blog
+version:            0.1.0.0
+
+-- A short (one-line) description of the package.
+-- synopsis:
+
+-- A longer description of the package.
+-- description:
+
+-- A URL where users can report bugs.
+-- bug-reports:
+
+-- The license under which the package is released.
+-- license:
+author:             Ori Livson
+maintainer:         ori.livson@gmail.com
+
+-- A copyright notice.
+-- copyright:
+-- category:
+extra-source-files: CHANGELOG.md
+
+executable blog
+    main-is:          Main.hs
+
+    -- Modules included in this executable, other than Main.
+    -- other-modules: Blog Blog Blog Web Example Spec ServantUtils Home Tags Posts Contact About Contact Handlers DocReader PageSpecs
+
+    build-depends:
+        base ^>=4.16.4.0,
+        binary,
+        bytestring,
+        cheapskate,
+        cheapskate-lucid,
+        containers,
+        directory,
+        dir-traverse,
+        filepath,
+        lucid,
+        lucid-svg,
+        text,
+        time,
+        wai,
+        warp,
+        wai-extra
+
+    default-extensions:
+        DataKinds
+        OverloadedStrings
+        DeriveGeneric
+        GADTs
+        TypeOperators
+        FlexibleInstances
+        MultiParamTypeClasses
+        InstanceSigs
+        RankNTypes
+        RecordWildCards
+        NamedFieldPuns
+        OverloadedLists
+
+    other-modules: Templates Page PageSpecs
+
+    ghc-options:
+        -Wall
+
+    -- LANGUAGE extensions used by modules in this package.
+    -- other-extensions:
+    hs-source-dirs:   app
+    default-language: Haskell2010

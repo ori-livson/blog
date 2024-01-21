@@ -1,0 +1,13 @@
+cradle:
+  cabal:
+    - path: "app/Main.hs"
+      component: "blog:exe:blog"
+
+    - path: "app/Templates.hs"
+      component: "blog:exe:blog"
+
+    - path: "app/Page.hs"
+      component: "blog:exe:blog"
+
+    - path: "app/PageSpecs.hs"
+      component: "blog:exe:blog"
