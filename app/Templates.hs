@@ -1,4 +1,4 @@
-module Templates (homeHtml, tagsHtml, contactHtml, postHtml) where
+module Templates (homeHtml, tagsHtml, contactHtml, postHtml, commentToHtml) where
 
 import Data.List (sortBy)
 import Data.Map (toList)
@@ -7,9 +7,13 @@ import qualified Data.Map as Map
 import Data.Maybe (fromMaybe)
 import Data.Text (Text, pack)
 import Data.Time.Format (defaultTimeLocale, formatTime)
+import GitHub
+  ( Comment (Comment, body, createdAt, user),
+    User (User, login, userHtmlUrl),
+  )
 import Lucid
 import Lucid.Svg (d_, fill_, fill_rule_, path_, stroke_, viewBox_)
-import Page (LucidHtml, Page (Page, body, date, footnotes, subtitle, tags, title), Pages)
+import Page (LucidHtml, Page (..), Pages)
 
 defaultTheme :: String
 defaultTheme = "dark"
@@ -49,25 +53,23 @@ postHtml pages endpoint = do
     _ -> notFound
 
 assemblePost :: Page -> LucidHtml
-assemblePost Page {title, subtitle, tags, body, footnotes} = do
+assemblePost Page {title, subtitle, tags, body, footnotes, comments} = do
   siteHead title
   blogBody $ do
     mainHeading title subtitle
     tagsBar tags
     sequence_ body
     footnotesSection footnotes
+    commentSection comments
 
 tagsBar :: [String] -> LucidHtml
 tagsBar values = ul_ [class_ "tags"] $ do
   mapM_ (\s -> li_ $ url ("/tags/" ++ s) s) values
 
-url :: String -> String -> LucidHtml
-url path label = a_ [href_ (pack path)] $ toHtml label
-
 footnotesSection :: [LucidHtml] -> LucidHtml
 footnotesSection values = div_ [class_ "footnotes"] $ do
   h2_ "Footnotes"
-  hr_ [class_ "footnotes-separatator"]
+  hr_ []
   div_ [class_ "footnote-definitions"] $ do
     mapM_ (uncurry footnote) (zip [1 ..] values)
 
@@ -84,6 +86,26 @@ notFound = do
   siteHead "Not Found"
   blogBody $ do
     mainHeading "Blog not found" Nothing
+
+commentSection :: [LucidHtml] -> LucidHtml
+commentSection comments = do
+  div_ $ do
+    h2_ "Comments"
+    p_ [class_ "tagline"] $ em_ "Loaded from GitHub Issues - new comments are reviewed before the site is rebuilt."
+    form_ [action_ "https://github.com/ori-livson/blog/issues/1"] $ do
+      button_ [formtarget_ "_blank", class_ "button-primary"] "Post a Comment"
+    sequence_ comments
+
+commentToHtml :: Comment -> LucidHtml
+commentToHtml Comment {user, createdAt, body} = do
+  let User {login, userHtmlUrl} = user
+  let dateStr = formatTime defaultTimeLocale "%Y.%m.%d %H:%M:%S (UTC)" createdAt
+  div_ [class_ "comment"] $ do
+    p_ [class_ "comment-info"] $ do
+      url userHtmlUrl login
+      em_ [class_ "post-time"] $ toHtml (" posted at " ++ dateStr)
+    hr_ [class_ "comment-divider"]
+    body
 
 ----------------------------------------------------------------------------------------------------
 -- /Contact
@@ -144,9 +166,6 @@ faviconLink =
       type_ "image/x-icon"
     ]
 
-emptyText :: Text
-emptyText = pack ""
-
 ---------------------------------------------------------------------------
 -- <Body>
 ---------------------------------------------------------------------------
@@ -198,7 +217,7 @@ mainHeading :: String -> Maybe String -> LucidHtml
 mainHeading title subtitle = h1_ [class_ "title"] $ do
   toHtml title
   br_ []
-  span_ [class_ "subtitle"] $ toHtml (fromMaybe "" subtitle)
+  h4_ [class_ "tagline"] $ toHtml (fromMaybe "" subtitle)
 
 -- Blog Body
 
@@ -215,14 +234,23 @@ postEntries specs = ul_ [class_ "posts"] $ do
 
 postEntry :: String -> Page -> LucidHtml
 postEntry endpoint Page {title, date} = do
+  let dateStr = formatTime defaultTimeLocale "%Y.%m.%d" date
   li_ [class_ "post"] $ a_ [href_ (pack $ "/posts/" ++ endpoint)] $ do
-    time_ [datetime_ (pack formattedDate)] $ toHtml formattedDate
+    span_ [class_ "post-time"] $ toHtml dateStr
     span_ $ toHtml title
-  where
-    formattedDate = formatTime defaultTimeLocale "%Y.%m.%d" date
 
 sortPages :: Pages -> [(String, Page)]
 sortPages pages = sortBy comparePages $ toList pages
   where
     comparePages p1 p2 = compare (pageDate p1) (pageDate p2)
     pageDate (_, Page {date}) = date
+
+----------------------------------------------------------------------------------------------------
+-- General Helpers
+----------------------------------------------------------------------------------------------------
+
+url :: String -> String -> LucidHtml
+url path label = a_ [href_ (pack path)] $ toHtml label
+
+emptyText :: Text
+emptyText = pack ""

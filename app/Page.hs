@@ -1,4 +1,4 @@
-module Page (Page (..), Pages, loadPathsOrdered, expandPath, LucidHtml) where
+module Page (Page (..), Pages, textToLucid, loadPathsOrdered, expandPath, LucidHtml) where
 
 import Cheapskate (def, markdown)
 import Cheapskate.Lucid (renderDoc)
@@ -23,7 +23,8 @@ data Page = Page
     date :: Day,
     tags :: [String],
     body :: [LucidHtml],
-    footnotes :: [LucidHtml]
+    footnotes :: [LucidHtml],
+    comments :: [LucidHtml]
   }
 
 type Pages = Map String Page
@@ -49,13 +50,16 @@ pathToLucid :: FilePath -> IO LucidHtml
 pathToLucid path = do
   text <- pack <$> readFile path
   case takeExtension path of
-    ".md" -> do
-      builder <- apply mempty . fst <$> runHtmlT (textToLucid text)
-      return $ toHtmlRaw $ toLazyByteString builder
+    ".md" -> textToLucid text
     unknown -> error $ "Missing implementation for " ++ unknown ++ " to HTML"
 
-textToLucid :: Text -> HtmlT IO ()
+textToLucid :: Text -> IO LucidHtml
 textToLucid text = do
+  builder <- apply mempty . fst <$> runHtmlT (textToLucidT text)
+  return $ toHtmlRaw $ toLazyByteString builder
+
+textToLucidT :: Text -> HtmlT IO ()
+textToLucidT text = do
   let doc = markdown def text
   renderDoc doc
 

@@ -1,46 +1,59 @@
-/** https://www.codemzy.com/blog/dark-mode-to-static-site */
+/** Inspired by:
+ * https://www.codemzy.com/blog/dark-mode-to-static-site */
 
-function setTheme(dark, preference) {
-  if (dark) {
-    preference !== "dark"
-      ? localStorage.setItem("theme", "dark")
-      : localStorage.removeItem("theme");
-    document.documentElement.classList.add("dark");
-    updateThemeCSS();
-  } else if (!dark) {
-    preference !== "light"
-      ? localStorage.setItem("theme", "light")
-      : localStorage.removeItem("theme");
-    document.documentElement.classList.remove("dark");
-    updateThemeCSS();
-  }
-}
+// If the user's preference isn't dark, but they set Dark Mode, we will store that in local storage. So we know to give them darkness next time they load another page.
+const darkPreferred = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-const preference = window.matchMedia("(prefers-color-scheme: dark)").matches
-  ? "dark"
-  : "light";
+const dark = "dark";
+const light = "light";
+
 if (
-  localStorage.getItem("theme") === "dark" ||
-  (!("theme" in localStorage) && preference === "dark")
+  localStorage.getItem("theme") === dark ||
+  (!("theme" in localStorage) && darkPreferred === dark)
 ) {
-  setTheme(true, preference);
+  toggleToDark(true);
 }
+
+/**
+ * #button-dark-mode uses .dark class on html
+ */
 window.onload = function () {
   document
     .getElementById("button-dark-mode")
-    .addEventListener("click", updateTheme);
+    .addEventListener("click", function () {
+      toggleToDark(!document.documentElement.classList.contains(dark));
+    });
 };
 
-function updateTheme() {
-  setTheme(!document.documentElement.classList.contains("dark"), preference);
+function toggleToDark(setToDark) {
+  if (setToDark) {
+    document.documentElement.classList.add(dark);
+  } else {
+    document.documentElement.classList.remove(dark);
+  }
+
+  if (darkPreferred) {
+    localStorage.setItem("theme", setToDark ? dark : light);
+  } else {
+    localStorage.removeItem("theme");
+  }
+
+  toggleAllCSS();
 }
 
-function updateThemeCSS() {
-  toggleCSS("theme");
-  toggleCSS("code-block-theme");
+/** Switch href for link tags to css like
+ * light.min.css <-> dark.min.css
+ * light-theme.css <-> dark-theme.css
+ * etc.
+ * See: app/Templates.hs
+ */
+
+function toggleAllCSS() {
+  toggleCSSHref("theme");
+  toggleCSSHref("code-block-theme");
 }
 
-function toggleCSS(id) {
+function toggleCSSHref(id) {
   var currentTheme = document.getElementById(id).getAttribute("href");
   var newTheme = currentTheme.includes("light")
     ? currentTheme.replace("light", "dark")
