@@ -1,4 +1,4 @@
-module Page (Page (..), Pages, textToLucid, loadPathsOrdered, expandPath, LucidHtml) where
+module Page (Page (..), Pages, textToLucid, loadPathsOrdered, expandPath, LucidHtml, loadPath) where
 
 import Cheapskate (def, markdown)
 import Cheapskate.Lucid (renderDoc)
@@ -22,9 +22,10 @@ data Page = Page
     subtitle :: Maybe String,
     date :: Day,
     tags :: [String],
-    body :: [LucidHtml],
+    body :: [(Maybe String, LucidHtml)],
     footnotes :: [LucidHtml],
-    comments :: [LucidHtml]
+    comments :: [LucidHtml],
+    issueId :: Int
   }
 
 type Pages = Map String Page
@@ -33,7 +34,7 @@ loadPathsOrdered :: FilePath -> IO [LucidHtml]
 loadPathsOrdered = pathsToHtml <=< expandPathSorted
   where
     expandPathSorted = (return . sort) <=< expandPath
-    pathsToHtml = mapM pathToLucid
+    pathsToHtml = mapM loadPath
 
 expandPath :: FilePath -> IO [FilePath]
 expandPath path =
@@ -46,8 +47,8 @@ expandPath path =
     )
     (error $ path ++ " Does not exist!")
 
-pathToLucid :: FilePath -> IO LucidHtml
-pathToLucid path = do
+loadPath :: FilePath -> IO LucidHtml
+loadPath path = do
   text <- pack <$> readFile path
   case takeExtension path of
     ".md" -> textToLucid text

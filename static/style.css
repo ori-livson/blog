@@ -1,23 +1,36 @@
-/* Body */
+/*-------------------------------------------------------------------------------------------------
+-- All Pages
+-------------------------------------------------------------------------------------------------*/
 
 body {
   background-color: var(--bg-color);
 }
 
-.content {
-  padding-top: 5rem;
+/* Banner */
+
+.banner {
+  margin-top: 2.5em;
+  text-align: center;
 }
 
-.content li {
-  padding-left: 1rem;
+.banner a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+.banner a:hover,
+.banner a:focus,
+.banner a:active {
+  text-decoration: none;
+  color: var(--primary-color);
 }
 
-code {
-  max-height: 70vh;
-  background-color: var(--bg-secondary-color) !important;
+.banner p {
+  letter-spacing: 4px;
+  color: var(--text-secondary-color);
+  font-size: 90%;
 }
 
-/* Header */
+/* Sticky Navbar */
 
 .navbar,
 .navbar-spacer {
@@ -59,6 +72,11 @@ code {
   line-height: 6.5rem;
   color: var(--text-color);
 }
+
+.expander {
+  flex-grow: 1;
+}
+
 .navbar-link.active {
   color: var(--primary-button);
 }
@@ -74,11 +92,41 @@ code {
   width: 80%;
 }
 
-/* Titles */
+/* Theme Switching */
 
-.title {
-  margin-top: 1em;
+#button-dark-mode {
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
 }
+
+html.dark #button-dark-mode #light-mode-icon {
+  display: none;
+}
+html:not(.dark) #button-dark-mode #dark-mode-icon {
+  display: none;
+}
+
+/*------------------------------------------------------------------------
+-- /Posts
+------------------------------------------------------------------------*/
+
+/* Post Body */
+
+.content {
+  padding-top: 5rem;
+}
+
+.content li {
+  padding-left: 1rem;
+}
+
+code {
+  max-height: 70vh;
+  background-color: var(--bg-secondary-color) !important;
+}
+
+/* Titles */
 
 .tagline {
   font-weight: normal;
@@ -136,6 +184,10 @@ code {
   margin-bottom: 1.5rem;
 }
 
+/*------------------------------------------------------------------------
+-- /Home and /Tags
+------------------------------------------------------------------------*/
+
 /* Post List */
 
 .posts {
@@ -161,19 +213,4 @@ code {
   vertical-align: middle;
   padding-right: 2rem;
   color: var(--text-secondary-color);
-}
-
-/* Theme Switching */
-/* show correct dark mode icon */
-#button-dark-mode {
-  padding: 0 0.5rem;
-  display: flex;
-  align-items: center;
-}
-
-html.dark #button-dark-mode #light-mode-icon {
-  display: none;
-}
-html:not(.dark) #button-dark-mode #dark-mode-icon {
-  display: none;
 }

@@ -1,74 +1,92 @@
-module Templates (homeHtml, tagsHtml, contactHtml, postHtml, commentToHtml) where
+{-# OPTIONS_GHC -Wno-missing-signatures #-}
 
-import Data.List (sortBy)
+module Templates (homeHtml, tagMatchHtml, contactHtml, postHtml, commentToHtml, allTagsHtml) where
+
+import Data.List (nub, sort, sortBy)
 import Data.Map (toList)
 import qualified Data.Map as M
 import qualified Data.Map as Map
-import Data.Maybe (fromMaybe)
 import Data.Text (Text, pack)
 import Data.Time.Format (defaultTimeLocale, formatTime)
 import GitHub
   ( Comment (Comment, body, createdAt, user),
     User (User, login, userHtmlUrl),
+    issuesUrl,
   )
 import Lucid
 import Lucid.Svg (d_, fill_, fill_rule_, path_, stroke_, viewBox_)
 import Page (LucidHtml, Page (..), Pages)
 
-defaultTheme :: String
-defaultTheme = "dark"
-
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 -- /Home
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 
 homeHtml :: Pages -> LucidHtml
 homeHtml pages = do
-  siteHead "Ori's Doo-Das"
-  blogBody $ do
-    mainHeading "Ori Livson's" $ Just "Doo-Das"
+  standardHead "Ori Livson's Blog"
+  standardBody $ do
+    standardBanner
     postEntries pages
 
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 -- /Tags
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 
-tagsHtml :: Pages -> String -> LucidHtml
-tagsHtml pages value = do
-  siteHead value
-  blogBody $ do
-    mainHeading value Nothing
+allTagsHtml :: Pages -> LucidHtml
+allTagsHtml pages = do
+  standardHead "All Tags"
+  standardBody $ do
+    standardBanner
+    standardTitle "All Tags" Nothing
+    ul_ $ mapM_ (\s -> li_ $ url ("/tags/" ++ s) s) distinctTags
+  where
+    distinctTags = sort . nub . concatMap tags $ pages
+
+tagMatchHtml :: Pages -> String -> LucidHtml
+tagMatchHtml pages value = do
+  standardHead value
+  standardBody $ do
+    standardBanner
+    standardTitle value Nothing
     postEntries $ Map.filter matchesTag pages
   where
     matchesTag Page {tags} = value `elem` tags
 
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 -- /Posts
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 
 postHtml :: Pages -> String -> LucidHtml
 postHtml pages endpoint = do
   case M.lookup endpoint pages of
-    Just spec -> assemblePost spec
+    Just page -> assemblePost page
     _ -> notFound
 
 assemblePost :: Page -> LucidHtml
-assemblePost Page {title, subtitle, tags, body, footnotes, comments} = do
-  siteHead title
-  blogBody $ do
-    mainHeading title subtitle
+assemblePost Page {title, subtitle, tags, body, footnotes, comments, issueId} = do
+  standardHead title
+  standardBody $ do
+    standardBanner
+    standardTitle title subtitle
     tagsBar tags
-    sequence_ body
+    mapM_ renderSection body
     footnotesSection footnotes
-    commentSection comments
+    commentSection issueId comments
 
 tagsBar :: [String] -> LucidHtml
 tagsBar values = ul_ [class_ "tags"] $ do
   mapM_ (\s -> li_ $ url ("/tags/" ++ s) s) values
 
+renderSection :: (Maybe String, LucidHtml) -> LucidHtml
+renderSection (heading, content) = do
+  case heading of
+    Just s -> sectionH $ toHtml s
+    Nothing -> mempty
+  content
+
 footnotesSection :: [LucidHtml] -> LucidHtml
 footnotesSection values = div_ [class_ "footnotes"] $ do
-  h2_ "Footnotes"
+  sectionH "Footnotes"
   hr_ []
   div_ [class_ "footnote-definitions"] $ do
     mapM_ (uncurry footnote) (zip [1 ..] values)
@@ -81,18 +99,12 @@ footnote idx html = do
   where
     footnoteId = pack $ "footnote-" ++ show idx
 
-notFound :: LucidHtml
-notFound = do
-  siteHead "Not Found"
-  blogBody $ do
-    mainHeading "Blog not found" Nothing
-
-commentSection :: [LucidHtml] -> LucidHtml
-commentSection comments = do
+commentSection :: Int -> [LucidHtml] -> LucidHtml
+commentSection issueId comments = do
   div_ $ do
-    h2_ "Comments"
-    p_ [class_ "tagline"] $ em_ "Loaded from GitHub Issues - new comments are reviewed before the site is rebuilt."
-    form_ [action_ "https://github.com/ori-livson/blog/issues/1"] $ do
+    sectionH "Comments"
+    p_ [class_ "tagline"] $ em_ "Comments are a static snapshot of a GitHub Issue. Please leave a comment and after reviewing it, I'll rebuild the site with it."
+    form_ [action_ . pack $ issuesUrl ++ show issueId] $ do
       button_ [formtarget_ "_blank", class_ "button-primary"] "Post a Comment"
     sequence_ comments
 
@@ -107,26 +119,34 @@ commentToHtml Comment {user, createdAt, body} = do
     hr_ [class_ "comment-divider"]
     body
 
-----------------------------------------------------------------------------------------------------
+notFound :: LucidHtml
+notFound = do
+  standardHead "Not Found"
+  standardBody $ do
+    standardBanner
+    standardTitle "Blog not found" Nothing
+
+---------------------------------------------------------------------------------------------------
 -- /Contact
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 
 contactHtml :: LucidHtml
 contactHtml = do
-  siteHead "Contact"
-  blogBody $ do
-    mainHeading "Contact" Nothing
+  standardHead "Contact"
+  standardBody $ do
+    standardBanner
+    standardTitle "Contact" Nothing
 
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 -- Shared Templates
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 
----------------------------------------------------------------------------
+--------------------------------------------------------------------------
 -- <Head>
----------------------------------------------------------------------------
+--------------------------------------------------------------------------
 
-siteHead :: String -> LucidHtml
-siteHead t = doctypehtml_ $ do
+standardHead :: String -> LucidHtml
+standardHead t = doctypehtml_ $ do
   head_ $ do
     title_ $ toHtml t
     meta_ [httpEquiv_ "Content-Type", content_ "text/html; charset=UTF-8"]
@@ -166,9 +186,9 @@ faviconLink =
       type_ "image/x-icon"
     ]
 
----------------------------------------------------------------------------
+--------------------------------------------------------------------------
 -- <Body>
----------------------------------------------------------------------------
+--------------------------------------------------------------------------
 
 navBar :: LucidHtml
 navBar = do
@@ -176,12 +196,17 @@ navBar = do
   nav_ [class_ "navbar"] $ do
     div_ [class_ "container"] $ do
       ul_ [class_ "navbar-list"] $ do
-        li_ [class_ "navbar-item"] $ do
-          a_ [class_ "navbar-link", href_ "/"] "home"
-        li_ [class_ "navbar-item"] $ do
-          a_ [class_ "navbar-link", href_ "/contact"] "contact"
+        navLink "/" "home"
+        navLink "/tags" "tags"
+        navLink "/contact" "contact"
+        div_ [class_ "expander"] ""
         li_ [class_ "navbar-item"] $ do
           themeButton
+
+navLink :: String -> String -> LucidHtml
+navLink path text = do
+  li_ [class_ "navbar-item"] $ do
+    a_ [class_ "navbar-link", href_ . pack $ path] $ toHtml text
 
 themeButton :: LucidHtml
 themeButton = button_
@@ -213,16 +238,20 @@ themeButton = button_
       $ do
         path_ [d_ "M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"]
 
-mainHeading :: String -> Maybe String -> LucidHtml
-mainHeading title subtitle = h1_ [class_ "title"] $ do
-  toHtml title
-  br_ []
-  h4_ [class_ "tagline"] $ toHtml (fromMaybe "" subtitle)
+standardBanner :: LucidHtml
+standardBanner = header_ [class_ "banner"] $ do
+  a_ [href_ "/"] $ bannerH "Ori Livson's Blog"
+  p_ "Something / Something Else / And That Too"
 
--- Blog Body
+standardTitle :: String -> Maybe String -> LucidHtml
+standardTitle title subtitle = do
+  sectionH $ toHtml title
+  case subtitle of
+    Just s -> taglineH $ toHtml s
+    Nothing -> mempty
 
-blogBody :: LucidHtml -> LucidHtml
-blogBody h = body_ [class_ "container has-docked-nav"] $ do
+standardBody :: LucidHtml -> LucidHtml
+standardBody h = body_ [class_ "container has-docked-nav"] $ do
   navBar
   div_ [class_ "content"] h
 
@@ -245,9 +274,22 @@ sortPages pages = sortBy comparePages $ toList pages
     comparePages p1 p2 = compare (pageDate p1) (pageDate p2)
     pageDate (_, Page {date}) = date
 
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+-- Config
+---------------------------------------------------------------------------------------------------
+
+defaultTheme :: String
+defaultTheme = "dark"
+
+bannerH = h3_ []
+
+sectionH = h4_ []
+
+taglineH = h5_ [class_ "tagline"]
+
+---------------------------------------------------------------------------------------------------
 -- General Helpers
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 
 url :: String -> String -> LucidHtml
 url path label = a_ [href_ (pack path)] $ toHtml label

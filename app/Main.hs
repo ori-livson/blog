@@ -8,7 +8,7 @@ import Page (LucidHtml, Page (tags), Pages, expandPath)
 import PageSpecs (loadPages)
 import System.Directory (copyFile, createDirectoryIfMissing)
 import System.FilePath ((</>))
-import Templates (contactHtml, homeHtml, postHtml, tagsHtml)
+import Templates (allTagsHtml, contactHtml, homeHtml, postHtml, tagMatchHtml)
 
 main :: IO ()
 main = do
@@ -21,12 +21,13 @@ generateStaticSite pages = do
   safeCreateDir $ staticRoot </> "tags"
   safeCreateDir $ staticRoot </> "posts"
   copyDir "static" staticRoot
+  htmlToFile (allTagsHtml pages) $ staticRoot </> "tags"
   htmlToFile (homeHtml pages) staticRoot
   htmlToFile contactHtml $ staticRoot </> "contact"
   mapM_ postToFile $ Map.keys pages
   mapM_ tagToFile $ distinctTags pages
   where
-    tagToFile tag = htmlToFile (tagsHtml pages tag) $ staticRoot </> "tags" </> tag
+    tagToFile tag = htmlToFile (tagMatchHtml pages tag) $ staticRoot </> "tags" </> tag
     postToFile endpoint = htmlToFile (postHtml pages endpoint) $ staticRoot </> "posts" </> endpoint
     staticRoot = "html"
 

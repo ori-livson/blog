@@ -1,4 +1,4 @@
-module GitHub (loadCommentsFromIssue, Comment (..), User (..)) where
+module GitHub (loadCommentsFromIssue, Comment (..), User (..), issuesApiUrl, issuesUrl) where
 
 import Data.Aeson (FromJSON (parseJSON), decode, withObject, (.:))
 import Data.Aeson.Types (Parser)
@@ -12,6 +12,12 @@ import Network.HTTP.Simple
     setRequestHeaders,
   )
 import Page (LucidHtml, textToLucid)
+
+issuesUrl :: String
+issuesUrl = "https://github.com/ori-livson/blog/issues/"
+
+issuesApiUrl :: String
+issuesApiUrl = "https://api.github.com/repos/ori-livson/blog/issues/"
 
 -- Define a data type to represent each object in the list
 data PreComment = PreComment
@@ -61,7 +67,7 @@ instance FromJSON User where
       .: "avatar_url"
 
 instance FromJSON PreComment where
-  parseJSON = withObject "Issue" $ \v ->
+  parseJSON = withObject "PreComment" $ \v ->
     PreComment
       <$> v
       .: "html_url"
@@ -94,7 +100,7 @@ fetchAndParseJSON url = do
 
 loadCommentsFromIssue :: Int -> IO [Comment]
 loadCommentsFromIssue issueId = do
-  let apiUrl = "https://api.github.com/repos/ori-livson/blog/issues/" ++ show issueId ++ "/comments"
+  let apiUrl = issuesApiUrl ++ show issueId ++ "/comments"
   maybeIssues <- fetchAndParseJSON apiUrl
   case maybeIssues of
     Just issues -> return issues
