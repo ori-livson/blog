@@ -1,23 +1,19 @@
-module GitHub (loadCommentsFromIssue, Comment (..), User (..), issuesApiUrl, issuesUrl) where
+module GitHub (loadCommentsFromIssue, Comment (..), User (..), issuesApiUrl) where
 
+import Config (issuesApiUrl)
 import Data.Aeson (FromJSON (parseJSON), decode, withObject, (.:))
 import Data.Aeson.Types (Parser)
+-- import qualified Data.ByteString.Lazy.Char8 as BL
 import Data.Text (pack)
 import Data.Time.Clock (UTCTime)
 import Data.Time.Format (defaultTimeLocale, parseTimeM)
+import LucidUtils (LucidHtml, markdownToLucid)
 import Network.HTTP.Conduit (parseRequest)
 import Network.HTTP.Simple
   ( getResponseBody,
     httpLBS,
     setRequestHeaders,
   )
-import Page (LucidHtml, textToLucid)
-
-issuesUrl :: String
-issuesUrl = "https://github.com/ori-livson/blog/issues/"
-
-issuesApiUrl :: String
-issuesApiUrl = "https://api.github.com/repos/ori-livson/blog/issues/"
 
 -- Define a data type to represent each object in the list
 data PreComment = PreComment
@@ -38,7 +34,7 @@ data Comment = Comment
 
 resolveComment :: PreComment -> IO Comment
 resolveComment PreComment {htmlUrl_, user_, createdAt_, body_} = do
-  resolvedBody <- textToLucid . pack $ body_
+  resolvedBody <- markdownToLucid . pack $ body_
   return
     Comment
       { htmlUrl = htmlUrl_,
@@ -60,22 +56,22 @@ instance FromJSON User where
   parseJSON = withObject "User" $ \v ->
     User
       <$> v
-      .: "login"
+        .: "login"
       <*> v
-      .: "html_url"
+        .: "html_url"
       <*> v
-      .: "avatar_url"
+        .: "avatar_url"
 
 instance FromJSON PreComment where
   parseJSON = withObject "PreComment" $ \v ->
     PreComment
       <$> v
-      .: "html_url"
+        .: "html_url"
       <*> v
-      .: "user"
+        .: "user"
       <*> (parseUTCTime =<< v .: "created_at")
       <*> v
-      .: "body"
+        .: "body"
 
 parseUTCTime :: String -> Parser UTCTime
 parseUTCTime timeStr = case parseTimeM True defaultTimeLocale "%FT%XZ" timeStr of
@@ -95,6 +91,7 @@ fetchAndParseJSON url = do
   let requestWithHeader = setRequestHeaders headers request
   response <- httpLBS requestWithHeader
   let responseBody = getResponseBody response
+  -- BL.putStrLn responseBody
   let maybeParsedData = decode responseBody :: Maybe [PreComment]
   mapM (traverse resolveComment) maybeParsedData
 

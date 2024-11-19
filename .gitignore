@@ -1,9 +1,12 @@
 dist-newstyle
 .DS_Store
-.gitone
+.gitignore
+.vscode
 
-html
-misc
-markdown
+bk
+favicon
 
 app/PageSpecs.hs
+app/Config.hs
+markdown
+html

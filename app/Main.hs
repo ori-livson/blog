@@ -1,46 +1,72 @@
+{-# LANGUAGE CPP #-}
 module Main (main) where
 
+import Config (staticSrc, targetDir)
 import Data.List (nub)
 import Data.Map as Map (elems, keys)
 import Data.Text.Lazy.IO as TLIO (writeFile)
 import Lucid (renderText)
-import Page (LucidHtml, Page (tags), Pages, expandPath)
-import PageSpecs (loadPages)
+import LucidUtils (LucidHtml, expandPath)
 import System.Directory (copyFile, createDirectoryIfMissing)
 import System.FilePath ((</>))
-import Templates (allTagsHtml, contactHtml, homeHtml, postHtml, tagMatchHtml)
+import Templates (aboutHtml, allTagsHtml, Blog(..), contactHtml, homeHtml, postsHtml, postHtml, publicationsHtml, tagMatchHtml, Post (tags), Posts)
+import PageSpecs (loadBlog)
+
 
 main :: IO ()
 main = do
-  pages <- loadPages
-  generateStaticSite pages
+#ifdef DEV_MODE
+  -- -fdev flag see: .cabal file
+  putStrLn "Running in Development Mode"
+  let devMode = True
+#else
+  putStrLn "Running in Production Mode"
+  let devMode = False
+#endif
+#ifdef NO_COMMENTS
+  -- -fdev flag see: .cabal file
+  putStrLn "Without Comments"
+  let noComments = True
+#else
+  putStrLn "With Comments"
+  let noComments = False
+#endif
+  blog <- loadBlog devMode noComments
+  generateStaticSite blog
 
-generateStaticSite :: Pages -> IO ()
-generateStaticSite pages = do
-  safeCreateDir staticRoot
-  safeCreateDir $ staticRoot </> "tags"
-  safeCreateDir $ staticRoot </> "posts"
-  copyDir "static" staticRoot
-  htmlToFile (allTagsHtml pages) $ staticRoot </> "tags"
-  htmlToFile (homeHtml pages) staticRoot
-  htmlToFile contactHtml $ staticRoot </> "contact"
-  mapM_ postToFile $ Map.keys pages
-  mapM_ tagToFile $ distinctTags pages
+generateStaticSite :: Blog -> IO ()
+generateStaticSite Blog {home, about, contact, publications, posts} = do
+  safeCreateDir targetDir
+  safeCreateDir $ targetDir </> "tags"
+  safeCreateDir $ targetDir </> "posts"
+  -- Copy existing static resources (e.g. .css, .js files)
+  copyDir staticSrc targetDir
+  -- Generate new static resources
+  htmlToFile (homeHtml home posts) targetDir
+  htmlToFile (postsHtml posts) $ targetDir </> "posts"
+  htmlToFile (allTagsHtml posts) $ targetDir </> "tags"
+  htmlToFile (aboutHtml about) $ targetDir </> "about"
+  htmlToFile (contactHtml contact) $ targetDir </> "contact"
+  htmlToFile (publicationsHtml publications) $ targetDir </> "publications"
+  mapM_ postToFile $ Map.keys posts
+  mapM_ tagToFile $ distinctTags posts -- page per tag listing posts with that tag
   where
-    tagToFile tag = htmlToFile (tagMatchHtml pages tag) $ staticRoot </> "tags" </> tag
-    postToFile endpoint = htmlToFile (postHtml pages endpoint) $ staticRoot </> "posts" </> endpoint
-    staticRoot = "html"
+    tagToFile tag = htmlToFile (tagMatchHtml posts tag) $ targetDir </> "tags" </> tag
+    postToFile endpoint = htmlToFile (postHtml posts endpoint) $ targetDir </> "posts" </> endpoint
 
 htmlToFile :: LucidHtml -> FilePath -> IO ()
 htmlToFile html htmlDir = do
   safeCreateDir htmlDir
   TLIO.writeFile (htmlDir </> "index.html") (renderText html)
+  safeCreateDir $ htmlDir </> "static"
+  copyFile (staticSrc </> "favicon.ico") (htmlDir </> "static" </> "favicon.ico")
 
-distinctTags :: Pages -> [String]
-distinctTags pages = concat . nub $ tagLists
+
+distinctTags :: Posts -> [String]
+distinctTags posts = nub . concat $ tagLists  -- merge tag lists and dedupe
   where
-    values = Map.elems pages
-    tagLists = map tags values
+    values = Map.elems posts
+    tagLists = map tags values -- list of tags per page
 
 copyDir :: FilePath -> FilePath -> IO ()
 copyDir src target = do

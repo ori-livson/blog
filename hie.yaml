@@ -3,9 +3,6 @@ cradle:
     - path: "app/Main.hs"
       component: "blog:exe:blog"
 
-    - path: "app/Page.hs"
-      component: "blog:exe:blog"
-
     - path: "app/PageSpecs.hs"
       component: "blog:exe:blog"
 
@@ -13,4 +10,10 @@ cradle:
       component: "blog:exe:blog"
 
     - path: "app/GitHub.hs"
+      component: "blog:exe:blog"
+
+    - path: "app/Config.hs"
+      component: "blog:exe:blog"
+
+    - path: "app/LucidUtils.hs"
       component: "blog:exe:blog"

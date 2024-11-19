@@ -1,9 +1,14 @@
-/*-------------------------------------------------------------------------------------------------
--- All Pages
--------------------------------------------------------------------------------------------------*/
-
 body {
   background-color: var(--bg-color);
+}
+
+strong {
+  color: var(--strong-color);
+}
+
+em {
+  color: var(--strong-color);
+  font-weight: bold;
 }
 
 /* Banner */
@@ -28,6 +33,11 @@ body {
   letter-spacing: 4px;
   color: var(--text-secondary-color);
   font-size: 90%;
+}
+
+.bannerH,
+.sectionH {
+  text-align: center;
 }
 
 /* Sticky Navbar */
@@ -100,21 +110,78 @@ body {
   align-items: center;
 }
 
-html.dark #button-dark-mode #light-mode-icon {
+html.dark #dark-mode-icon {
   display: none;
 }
-html:not(.dark) #button-dark-mode #dark-mode-icon {
+html:not(.dark) #light-mode-icon {
   display: none;
 }
 
-/*------------------------------------------------------------------------
--- /Posts
-------------------------------------------------------------------------*/
+html:not(.overridden) #revert-dark-mode {
+  display: none;
+}
+
+#revert-dark-mode {
+  margin-left: 1em;
+}
+
+/* Titles */
+
+.tagline {
+  font-weight: normal;
+  color: var(--text-secondary-color);
+  font-style: italic;
+}
+
+/* Tags */
+
+.tags li {
+  display: inline;
+  margin-right: 0.5em;
+}
+
+ul.all-tags {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+li.all-tags {
+  flex-shrink: 0;
+}
 
 /* Post Body */
 
 .content {
   padding-top: 5rem;
+}
+
+.content p,
+.content pre,
+.content iframe {
+  margin-bottom: 1em;
+}
+
+.content p {
+  text-align: left;
+  width: 100%;
+}
+
+.content blockquote,
+.content ul:not(.tags) {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+
+p:has(+ blockquote) {
+  margin-bottom: 0.5em !important;
+}
+
+.centered {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .content li {
@@ -126,26 +193,19 @@ code {
   background-color: var(--bg-secondary-color) !important;
 }
 
-/* Titles */
+/* Code Blocks and Footnotes*/
 
-.tagline {
-  font-weight: normal;
-  color: var(--text-secondary-color);
-}
-
-/* Tags */
-
-.tags {
-  margin-top: -1.5rem;
-}
-.tags li {
-  display: inline;
-  margin-right: 0.5em;
+div.sourceCode,
+pre,
+.footnotes,
+.comments {
+  width: 100%;
 }
 
 /* Footnotes */
 
 .footnote-definition sup {
+  margin-top: 1em;
   margin-left: -1.5em;
   float: left;
 }
@@ -183,10 +243,6 @@ code {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
-
-/*------------------------------------------------------------------------
--- /Home and /Tags
-------------------------------------------------------------------------*/
 
 /* Post List */
 

@@ -1,44 +1,77 @@
 /** Inspired by:
  * https://www.codemzy.com/blog/dark-mode-to-static-site */
 
-// If the user's preference isn't dark, but they set Dark Mode, we will store that in local storage. So we know to give them darkness next time they load another page.
-const darkPreferred = window.matchMedia("(prefers-color-scheme: dark)").matches;
+/**
+ * Elements:
+ * 1. Toggle Theme Button
+ * 2. Revert to OS Theme Button (hidden by default)
+ *
+ * 3. OS Theme
+ * 4. Browser Local Storage
+ *
+ * NB: The theme is dictated by "dark" or "light" class given to the root <html> tag
+ *
+ * Strategy:
+ * Use the theme from 4. otherwise use 3.
+ * If the user clicks 1. then we set 4. and add "overriden" class to <html> and reveal 2.
+ * If the user clicks 2. then we clear 4. and refresh.
+ */
 
 const dark = "dark";
 const light = "light";
 
-if (
-  localStorage.getItem("theme") === dark ||
-  (!("theme" in localStorage) && darkPreferred === dark)
-) {
-  toggleToDark(true);
-}
+toggle(netPreference(), false);
 
-/**
- * #button-dark-mode uses .dark class on html
- */
 window.onload = function () {
+  function syncTheme() {
+    console.log("Watcher!");
+    toggle(netPreference(), false);
+  }
+
   document
     .getElementById("button-dark-mode")
     .addEventListener("click", function () {
-      toggleToDark(!document.documentElement.classList.contains(dark));
+      toggle(!netPreference(), true);
     });
+  document
+    .getElementById("revert-dark-mode")
+    .addEventListener("click", function () {
+      localStorage.removeItem("theme");
+      toggle(netPreference(), false);
+    });
+
+  setInterval(syncTheme, 1000);
 };
 
-function toggleToDark(setToDark) {
-  if (setToDark) {
+function netPreference() {
+  const storagePreference = localStorage.getItem("theme");
+  if (storagePreference !== null) {
+    return storagePreference === dark;
+  }
+  const osPreference = window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? dark
+    : light;
+  return osPreference === dark;
+}
+
+function toggle(toDark, overriding) {
+  if (toDark) {
     document.documentElement.classList.add(dark);
   } else {
     document.documentElement.classList.remove(dark);
   }
 
-  if (darkPreferred) {
-    localStorage.setItem("theme", setToDark ? dark : light);
-  } else {
-    localStorage.removeItem("theme");
+  if (overriding) {
+    localStorage.setItem("theme", toDark ? dark : light);
   }
 
-  toggleAllCSS();
+  if (localStorage.getItem("theme") === null) {
+    document.documentElement.classList.remove("overridden");
+  } else {
+    document.documentElement.classList.add("overridden");
+  }
+
+  toggleAllCSS(toDark);
 }
 
 /** Switch href for link tags to css like
@@ -48,15 +81,16 @@ function toggleToDark(setToDark) {
  * See: app/Templates.hs
  */
 
-function toggleAllCSS() {
-  toggleCSSHref("theme");
-  toggleCSSHref("code-block-theme");
+function toggleAllCSS(toDark) {
+  toggleCSSHref("theme", toDark);
+  toggleCSSHref("code-block-theme", toDark);
 }
 
-function toggleCSSHref(id) {
-  var currentTheme = document.getElementById(id).getAttribute("href");
-  var newTheme = currentTheme.includes("light")
-    ? currentTheme.replace("light", "dark")
-    : currentTheme.replace("dark", "light");
+function toggleCSSHref(id, toDark) {
+  const currentTheme = document.getElementById(id).getAttribute("href");
+  const newTheme = toDark
+    ? currentTheme.replace(light, dark)
+    : currentTheme.replace(dark, light);
+
   document.getElementById(id).setAttribute("href", newTheme);
 }
