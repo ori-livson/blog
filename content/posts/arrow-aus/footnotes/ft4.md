@@ -1,0 +1,3 @@
+We can actually do better here: because a social decision-making process with a dictator automatically satisfies unanimity and unrestricted domain, Arrow's Impossibility Theorem is equivalent to the statement that:
+
+> If a social decision-making process satisfies the Unanimity and Independence of Irrelevant Alternatives axioms then the Non-Dictatorship and Unrestricted Domain axioms are mutually exclusive.

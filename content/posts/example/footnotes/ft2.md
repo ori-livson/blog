@@ -1,0 +1,2 @@
+- http://artequalswork.com/posts/fluid-type/
+- http://madebymike.com.au/writing/fluid-type-calc-examples

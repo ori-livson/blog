@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="77.885 42.568 747.631 224.755"
+    xmlns:bx="https://boxy-svg.com">
+    <g id="group-1" transform="matrix(0.799217, 0, 0, 0.77842, 519.160217, 63.770397)" style="">
+        <rect transform="translate(0 0)" width="362" height="48" fill="#ffffff"/>
+        <rect transform="translate(0 0)" width="362" height="1" fill="#e0e0e0"/>
+        <rect transform="translate(0 48)" width="362" height="48" fill="#ffffff"/>
+        <rect transform="translate(0 48)" width="362" height="1" fill="#e0e0e0"/>
+        <rect transform="translate(0 96)" width="362" height="48" fill="#ffffff"/>
+        <rect transform="translate(0 96)" width="362" height="1" fill="#e0e0e0"/>
+        <g>
+            <text transform="translate(60 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0" style="font-weight:bold;">Candidate</tspan>
+            </text>
+            <text transform="translate(69 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">Greens</tspan>
+            </text>
+            <text transform="translate(73 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">Labor</tspan>
+            </text>
+        </g>
+        <g>
+            <text transform="translate(235 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0" style="font-weight:bold;">Vote Share</tspan>
+            </text>
+            <text transform="translate(249 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">47.50%</tspan>
+            </text>
+            <text transform="translate(249 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">52.50%</tspan>
+            </text>
+        </g>
+        <rect transform="translate(181 0)" width="1" height="144" fill="#e0e0e0"/>
+        <rect transform="translate(0 0)" width="1" height="144" fill="#e0e0e0"/>
+        <rect transform="translate(361 0)" width="1" height="144" fill="#e0e0e0"/>
+    </g>
+    <rect width="287.171" height="1.004" fill="#e0e0e0" x="521.043" y="173.854" style=""/>
+    <path d="M 378.324 345.726 H 457.098 L 457.098 339.562 L 474.146 346.754 L 457.098 353.945 L 457.098 347.782 H 378.324 V 345.726 Z" bx:shape="arrow 378.324 339.562 95.822 14.383 2.056 17.048 0 1@85de1041" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" transform="matrix(0.999989, -0.004765, -0.008948, 1.000054, 36.200161, -222.082687)"/>
+    <g id="table" transform="matrix(0.840745, 0, 0, 0.776928, 97.176437, 63.655773)" style="">
+        <rect transform="translate(0 0)" width="362" height="48" fill="#ffffff"/>
+        <rect transform="translate(0 0)" width="362" height="1" fill="#e0e0e0"/>
+        <rect transform="translate(0 48)" width="362" height="48" fill="#ffffff"/>
+        <rect transform="translate(0 48)" width="362" height="1" fill="#e0e0e0"/>
+        <rect transform="translate(0 96)" width="362" height="48" fill="#ffffff"/>
+        <rect transform="translate(0 96)" width="362" height="1" fill="#e0e0e0"/>
+        <rect transform="translate(0 144)" width="362" height="48" fill="#ffffff"/>
+        <rect transform="translate(0 144)" width="362" height="1" fill="#e0e0e0"/>
+        <rect transform="translate(0 192)" width="362" height="48" fill="#ffffff"/>
+        <rect transform="translate(0 192)" width="362" height="1" fill="#e0e0e0"/>
+        <g>
+            <text transform="translate(60 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0" style="font-weight:bold;">Candidate</tspan>
+            </text>
+            <text transform="translate(69 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">Greens</tspan>
+            </text>
+            <text transform="translate(73 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">Labor</tspan>
+            </text>
+            <text transform="translate(70 173)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">Liberal</tspan>
+            </text>
+            <text transform="translate(75 221)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">Other</tspan>
+            </text>
+        </g>
+        <g>
+            <text transform="translate(235 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0" style="font-weight:bold;">Vote Share</tspan>
+            </text>
+            <text transform="translate(249 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">40.00%</tspan>
+            </text>
+            <text transform="translate(249 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">31.50%</tspan>
+            </text>
+            <text transform="translate(249 173)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">19.30%</tspan>
+            </text>
+            <text transform="translate(253 221)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">9.20%</tspan>
+            </text>
+        </g>
+        <rect transform="translate(181 0)" width="1" height="240" fill="#e0e0e0"/>
+        <rect transform="translate(0 0)" width="1" height="240" fill="#e0e0e0"/>
+        <rect transform="translate(361 0)" width="1" height="240" fill="#e0e0e0"/>
+    </g>
+    <rect width="304.349" height="0.777" fill="#e0e0e0" x="94.682" y="248.915" style=""/>
+</svg>

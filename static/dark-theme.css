@@ -1,0 +1,15 @@
+:root {
+  --bg-color: #181a1b;
+  --bg-secondary-color: #131313;
+  --bg-navbar-color: #000;
+  --text-color: #fff;
+  --text-secondary-color: #dddddd;
+  --primary-color: #ef69a3;
+  --primary-button: #c2477c;
+  --border-color: #d1719b;
+  --strong-color: #cf4d85;
+}
+
+svg {
+  filter: invert(1) hue-rotate(180deg);
+}

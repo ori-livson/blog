@@ -1,0 +1,5 @@
+I don't believe as some do that Arrow's Impossibility Theorem is dooms the project of fair voting itself. The way I see it is: voting represents a highly expressive facet of humanity in that an election outcome can result in preferences that no individual necessarily holds. **However, expressivity means trade-offs are inevitable**. In other words, **if one desires voting without trade-offs** (i.e., one where IIA holds), **only a very dull system is feasible** (i.e., one with a dictator).
+
+This principle can be seen in other domains. For example, if one wanted English to be unambiguous, or free from Self-Referential Paradoxes such as the statement *"This sentence is false"*, one would have to remove a vast amount of words and grammatical forms, to the point English would also become very dull.
+
+In fact, in the aforementioned 2025 [paper](https://arxiv.org/abs/2504.06589) I wrote with Mihkail Prokopenko, I formally demonstrate links of this sort by relating trade-offs of Arrow's Impossibility Theorem and the trade-offs of Gödel's First Incompleteness Theorem of logic. A post outlining the formal argument is coming soon.

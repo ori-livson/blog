@@ -1,0 +1,1 @@
+A Greens vs Labor count was not conducted, but because Liberal preferences at that time typically flowed to Labor rather than Greens in Victoria, it is assumed that Labor would have been preferred to the Greens in that electorate in 2014.

@@ -1,0 +1,105 @@
+cabal-version:      2.4
+name:               blog
+version:            0.1.0.0
+author:             Ori Livson
+maintainer:         ori.livson@gmail.com
+
+flag dev
+  description: Enable development mode
+  default: False
+
+flag no-comments
+  description: Enable development mode
+  default: False
+
+executable blog
+    main-is:          Main.hs
+    build-depends:
+        aeson,
+        base,
+        binary,
+        commonmark,
+        commonmark-extensions,
+        containers,
+        directory,
+        dir-traverse,
+        filepath,
+        http-conduit,
+        lucid,
+        lucid-svg,
+        pandoc,
+        text,
+        time
+
+    default-extensions:
+        DataKinds
+        OverloadedStrings
+        DeriveGeneric
+        GADTs
+        TypeOperators
+        FlexibleInstances
+        MultiParamTypeClasses
+        InstanceSigs
+        RankNTypes
+        RecordWildCards
+        NamedFieldPuns
+        OverloadedLists
+
+    other-modules: PageSpecs Templates GitHub Config LucidUtils
+
+    ghc-options:
+        -Wall
+
+    hs-source-dirs:   app
+    default-language: Haskell2010
+
+    if flag(dev)
+        cpp-options: -DDEV_MODE
+    else
+        cpp-options: -DPROD_MODE
+
+    if flag(no-comments)
+        cpp-options: -DNO_COMMENTS
+    else
+        cpp-options: -DCOMMENTS
+
+executable adhoc
+    main-is:        AdHoc.hs
+    build-depends:
+        aeson,
+        base,
+        binary,
+        commonmark,
+        commonmark-extensions,
+        containers,
+        directory,
+        dir-traverse,
+        filepath,
+        http-conduit,
+        lucid,
+        lucid-svg,
+        pandoc,
+        text,
+        time
+
+    default-extensions:
+        DataKinds
+        OverloadedStrings
+        DeriveGeneric
+        GADTs
+        TypeOperators
+        FlexibleInstances
+        MultiParamTypeClasses
+        InstanceSigs
+        RankNTypes
+        RecordWildCards
+        NamedFieldPuns
+        OverloadedLists
+
+    other-modules: PageSpecs Templates GitHub Config LucidUtils
+
+    hs-source-dirs:   app
+    default-language: Haskell2010
+
+    ghc-options:
+        -Wall

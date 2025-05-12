@@ -1,0 +1,7 @@
+There are many ways to hold elections - the [Wikipedia page on Electoral Systems](https://en.wikipedia.org/wiki/Electoral_system) is full of colour-coded world maps of different ways to do so, including 24 types just for lower house / unicameral elections (see Figure 1).
+
+>**The one thing all electoral systems have in common is that they all have trade-offs.**
+
+By trade-off, I mean some seemingly desirable guarantee about the *behaviour* of elections doesn't necessarily hold, e.g., that "a candidate always benefits from receiving more votes". The study of these trade-offs in social decision-making processes such as elections, trial by jury, budget allocation, etc. is a major theme of the field of Economics known as **Social Choice Theory**.
+
+The purpose of this post is to introduce Social Choice Theory's most famous result: **Arrow's Impossibility Theorem** in terms of an interesting phenomenon of the 2025 Australian Federal Election. In particular, how candidates often lost their seats because of who came 3<sup>rd</sup> in that race. The story of what trade-off that corresponds to nicely illustrates Arrow's Impossibility Theorem, and also provokes an interesting question of whether that trade-off is a bug or a feature of Australia's electoral system.

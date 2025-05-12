@@ -1,0 +1,5 @@
+- http://practicaltypography.com/typography-in-ten-minutes.html
+- http://practicaltypography.com/summary-of-key-rules.html
+- http://bettermotherfuckingwebsite.com/
+- https://www.smashingmagazine.com/2009/08/typographic-design-survey
+- https://ia.net/topics/responsive-typography-the-basics

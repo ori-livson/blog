@@ -1,0 +1,1 @@
+Arrow's Impossibility Theorem allows for voters to be indifferent to pairs of candidates, e.g., allowing voters to preference Labor first, and Greens and Liberals tied second. A voter "always getting their way" means that when a voter strictly prefers candidate A to candidate B, then A necessarily beats B.

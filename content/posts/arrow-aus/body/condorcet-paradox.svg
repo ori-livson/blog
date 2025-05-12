@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1012.136 243.464">
+  <g id="table" transform="matrix(1, 0, 0, 1, 24.975899, 23.414024)">
+    <rect transform="translate(0 0)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 0)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 48)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 48)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 96)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 96)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 144)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 144)" width="500" height="1" fill="#e0e0e0"/>
+    <g>
+      <text transform="translate(44 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+        <tspan x="0" y="0" style="font-weight:bold;">Voter</tspan>
+      </text>
+      <text transform="translate(58 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+        <tspan x="0" y="0">1</tspan>
+      </text>
+      <text transform="translate(58 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+        <tspan x="0" y="0">2</tspan>
+      </text>
+      <text transform="translate(58 173)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+        <tspan x="0" y="0">3</tspan>
+      </text>
+    </g>
+    <g>
+      <text transform="translate(140 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+        <tspan x="0" y="0" style="font-weight:bold;">1st Preference</tspan>
+      </text>
+      <text transform="translate(166 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+        <tspan x="0" y="0">Liberals</tspan>
+      </text>
+      <text transform="translate(170 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+        <tspan x="0" y="0">Labor</tspan>
+      </text>
+      <text transform="translate(167 173)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+        <tspan x="0" y="0">Greens</tspan>
+      </text>
+    </g>
+    <rect transform="translate(125 0)" width="1" height="192" fill="#e0e0e0"/>
+    <g>
+      <text transform="translate(262 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+        <tspan x="0" y="0" style="font-weight:bold;">2nd Preference</tspan>
+      </text>
+      <text transform="translate(295 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+        <tspan x="0" y="0">Labor</tspan>
+      </text>
+      <text transform="translate(292 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+        <tspan x="0" y="0">Greens</tspan>
+      </text>
+      <text transform="translate(291 173)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+        <tspan x="0" y="0">Liberals</tspan>
+      </text>
+    </g>
+    <rect transform="translate(250 0)" width="1" height="192" fill="#e0e0e0"/>
+    <g>
+      <text transform="translate(389 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+        <tspan x="0" y="0" style="font-weight:bold;">3rd Preference</tspan>
+      </text>
+      <text transform="translate(417 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+        <tspan x="0" y="0">Greens</tspan>
+      </text>
+      <text transform="translate(416 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+        <tspan x="0" y="0">Liberals</tspan>
+      </text>
+      <text transform="translate(420 173)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+        <tspan x="0" y="0">Labor</tspan>
+      </text>
+    </g>
+    <rect transform="translate(375 0)" width="1" height="192" fill="#e0e0e0"/>
+    <rect transform="translate(0 0)" width="1" height="192" fill="#e0e0e0"/>
+    <rect transform="translate(499 0)" width="1" height="192" fill="#e0e0e0"/>
+  </g>
+  <rect width="500" height="1" fill="#e0e0e0" x="24.975" y="215.414" style="stroke-width: 1;"/>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 28px;" x="568.012" y="94.675" transform="matrix(0.651094, 0, 0, 0.643326, 185.051788, 43.930328)">Liberals win vs. Greens</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 28px;" x="568.012" y="94.675" transform="matrix(0.651094, 0, 0, 0.643326, 184.704391, 91.690491)">Greens win vs. Liberals</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 28px;" x="568.012" y="94.675" transform="matrix(0.651094, 0, 0, 0.643326, 184.129944, 138.080688)">Greens win vs. Liberals</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 28px;" x="568.012" y="94.675" transform="matrix(0.651094, 0, 0, 0.643326, 429.519928, 88.717361)">Greens win vs. Liberals</text>
+  <path style="stroke: rgb(0, 0, 0); fill: none;" d="M 736.533 72.008 C 740.426 71.795 744.488 71.584 748.392 71.823 C 771.501 73.239 760.047 103.611 764.165 117.446 C 766.278 124.542 771.993 131.288 777.305 136.111 C 778.63 137.315 780.545 139.202 782.321 139.771 C 783.529 140.158 787.333 140.449 786.064 140.449 C 774.086 140.449 776.695 160.345 778.115 166.355 C 781.219 179.491 785.414 203.991 772.597 213.443 C 767.72 217.04 760.85 215.985 755.187 215.985"/>
+</svg>

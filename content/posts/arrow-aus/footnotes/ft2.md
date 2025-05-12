@@ -1,0 +1,1 @@
+Arrow, K.J. (1951). Social Choice and Individual Values. New York, NY, USA: Wiley: New York.

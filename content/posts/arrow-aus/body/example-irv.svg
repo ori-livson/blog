@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -16.658 539.752 349.299" xmlns:bx="https://boxy-svg.com">
+  <g id="table" transform="matrix(0.4, 0, 0, 0.416667, 12.453994, 21.147482)" style="pointer-events: none;">
+    <rect transform="translate(0 0)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 0)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 48)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 48)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 96)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 96)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 144)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 144)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 192)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 192)" width="500" height="1" fill="#e0e0e0"/>
+    <g>
+      <text transform="translate(92 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0" style="font-weight:bold;">Candidate</tspan>
+            </text>
+      <text transform="translate(121 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">A</tspan>
+            </text>
+      <text transform="translate(121 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">B</tspan>
+            </text>
+      <text transform="translate(121 173)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">C</tspan>
+            </text>
+      <text transform="translate(120 221)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">D</tspan>
+            </text>
+    </g>
+    <g>
+      <text transform="translate(353 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0" style="font-weight:bold;">Ballots</tspan>
+            </text>
+      <text transform="translate(368 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">10</tspan>
+            </text>
+      <text transform="translate(368 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">13</tspan>
+            </text>
+      <text transform="translate(368 173)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">13</tspan>
+            </text>
+      <text transform="translate(371 221)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">2</tspan>
+            </text>
+    </g>
+    <rect transform="translate(250 0)" width="1" height="240" fill="#e0e0e0"/>
+    <rect transform="translate(0 0)" width="1" height="240" fill="#e0e0e0"/>
+    <rect transform="translate(499 0)" width="1" height="240" fill="#e0e0e0"/>
+  </g>
+  <rect width="200" height="1" fill="#e0e0e0" x="12.243" y="120.712" style="pointer-events: none;"/>
+  <line style="fill: rgb(216, 216, 216); stroke: rgb(255, 0, 0); pointer-events: none;" x1="5.851" y1="111.172" x2="220.89" y2="111.163"/>
+  <g id="group-1" transform="matrix(0.336241, 0, 0, 0.354727, 26.952589, 133.569595)" style="">
+    <rect transform="translate(0 0)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 0)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 48)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 48)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 96)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 96)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 144)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 144)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 192)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 192)" width="500" height="1" fill="#e0e0e0"/>
+    <g>
+      <text transform="translate(92 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0" style="font-weight:bold;">Candidate</tspan>
+            </text>
+      <text transform="translate(121 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">A</tspan>
+            </text>
+      <text transform="translate(121 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">B</tspan>
+            </text>
+      <text transform="translate(121 173)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">C</tspan>
+            </text>
+      <text transform="translate(120 221)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">D</tspan>
+            </text>
+    </g>
+    <g>
+      <text transform="translate(340 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0" style="font-weight:bold;">Preference</tspan>
+            </text>
+      <text transform="translate(371 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">4</tspan>
+            </text>
+      <text transform="translate(371 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">2</tspan>
+            </text>
+      <text transform="translate(371 173)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">3</tspan>
+            </text>
+      <text transform="translate(371 221)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">1</tspan>
+            </text>
+    </g>
+    <rect transform="translate(250 0)" width="1" height="240" fill="#e0e0e0"/>
+    <rect transform="translate(0 0)" width="1" height="240" fill="#e0e0e0"/>
+    <rect transform="translate(499 0)" width="1" height="240" fill="#e0e0e0"/>
+  </g>
+  <rect width="157.624" height="0.34" fill="#e0e0e0" x="31.728" y="215.93" style=""/>
+  <g id="group-2" transform="matrix(0.336242, 0, 0, 0.354734, 27.049532, 229.060364)" style="">
+    <rect transform="translate(0 0)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 0)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 48)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 48)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 96)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 96)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 144)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 144)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 192)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 192)" width="500" height="1" fill="#e0e0e0"/>
+    <g>
+      <text transform="translate(92 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0" style="font-weight:bold;">Candidate</tspan>
+            </text>
+      <text transform="translate(121 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">A</tspan>
+            </text>
+      <text transform="translate(121 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">B</tspan>
+            </text>
+      <text transform="translate(121 173)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">C</tspan>
+            </text>
+      <text transform="translate(120 221)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">D</tspan>
+            </text>
+    </g>
+    <g>
+      <text transform="translate(340 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0" style="font-weight:bold;">Preference</tspan>
+            </text>
+      <text transform="translate(371 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">2</tspan>
+            </text>
+      <text transform="translate(371 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">3</tspan>
+            </text>
+      <text transform="translate(371 173)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">4</tspan>
+            </text>
+      <text transform="translate(371 221)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">1</tspan>
+            </text>
+    </g>
+    <rect transform="translate(250 0)" width="1" height="240" fill="#e0e0e0"/>
+    <rect transform="translate(0 0)" width="1" height="240" fill="#e0e0e0"/>
+    <rect transform="translate(499 0)" width="1" height="240" fill="#e0e0e0"/>
+  </g>
+  <rect width="157.624" height="0.339" fill="#e0e0e0" x="31.819" y="307.132" style=""/>
+  <path d="M 210.459 183.185 H 254.28 L 254.28 179.919 L 263.764 183.73 L 254.28 187.54 L 254.28 184.274 H 210.459 V 183.185 Z" bx:shape="arrow 210.459 179.919 53.305 7.621 1.089 9.484 0 1@280309d8" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" transform="matrix(0.999989, -0.004765, -0.008948, 1.000054, 27.265255, -5.891248)"/>
+  <path d="M 210.459 183.185 H 254.28 L 254.28 179.919 L 263.764 183.73 L 254.28 187.54 L 254.28 184.274 H 210.459 V 183.185 Z" bx:shape="arrow 210.459 179.919 53.305 7.621 1.089 9.484 0 1@280309d8" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" transform="matrix(0.999989, -0.004765, -0.008948, 1.000054, 26.184685, 83.427536)"/>
+  <g id="group-3" transform="matrix(0.399999, 0, 0, 0.414508, 286.816254, 26.93256)">
+    <rect transform="translate(0 0)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 0)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 48)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 48)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 96)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 96)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 144)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 144)" width="500" height="1" fill="#e0e0e0"/>
+    <g>
+      <text transform="translate(92 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0" style="font-weight:bold;">Candidate</tspan>
+            </text>
+      <text transform="translate(121 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">A</tspan>
+            </text>
+      <text transform="translate(121 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">B</tspan>
+            </text>
+      <text transform="translate(121 173)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">C</tspan>
+            </text>
+    </g>
+    <g>
+      <text transform="translate(353 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0" style="font-weight:bold;">Ballots</tspan>
+            </text>
+      <text transform="translate(368 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">11</tspan>
+            </text>
+      <text transform="translate(368 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">14</tspan>
+            </text>
+      <text transform="translate(368 173)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">13</tspan>
+            </text>
+    </g>
+    <rect transform="translate(250 0)" width="1" height="192" fill="#e0e0e0"/>
+    <rect transform="translate(0 0)" width="1" height="192" fill="#e0e0e0"/>
+    <rect transform="translate(499 0)" width="1" height="192" fill="#e0e0e0"/>
+  </g>
+  <rect width="200" height="0.415" fill="#e0e0e0" x="286.813" y="106.698"/>
+  <g id="group-4" transform="matrix(0.315249, 0, 0, 0.340212, 316.546478, 142.387695)" style="">
+    <rect transform="translate(0 0)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 0)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 48)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 48)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 96)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 96)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 144)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 144)" width="500" height="1" fill="#e0e0e0"/>
+    <g>
+      <text transform="translate(92 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0" style="font-weight:bold;">Candidate</tspan>
+            </text>
+      <text transform="translate(121 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">A</tspan>
+            </text>
+      <text transform="translate(121 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">B</tspan>
+            </text>
+      <text transform="translate(121 173)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">C</tspan>
+            </text>
+    </g>
+    <g>
+      <text transform="translate(340 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0" style="font-weight:bold;">Preference</tspan>
+            </text>
+      <text transform="translate(371 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">3</tspan>
+            </text>
+      <text transform="translate(371 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">1</tspan>
+            </text>
+      <text transform="translate(371 173)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">2</tspan>
+            </text>
+    </g>
+    <rect transform="translate(250 0)" width="1" height="192" fill="#e0e0e0"/>
+    <rect transform="translate(0 0)" width="1" height="192" fill="#e0e0e0"/>
+    <rect transform="translate(499 0)" width="1" height="192" fill="#e0e0e0"/>
+  </g>
+  <rect width="156.586" height="0.716" fill="#e0e0e0" x="317.627" y="207.742" style=""/>
+  <g id="group-5" transform="matrix(0.315249, 0, 0, 0.338449, 317.490051, 232.830536)" style="">
+    <rect transform="translate(0 0)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 0)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 48)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 48)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 96)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 96)" width="500" height="1" fill="#e0e0e0"/>
+    <rect transform="translate(0 144)" width="500" height="48" fill="#ffffff"/>
+    <rect transform="translate(0 144)" width="500" height="1" fill="#e0e0e0"/>
+    <g>
+      <text transform="translate(92 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0" style="font-weight:bold;">Candidate</tspan>
+            </text>
+      <text transform="translate(121 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">A</tspan>
+            </text>
+      <text transform="translate(121 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">B</tspan>
+            </text>
+      <text transform="translate(121 173)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">C</tspan>
+            </text>
+    </g>
+    <g>
+      <text transform="translate(340 29)" font-size="14" font-family="Roboto-Bold,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0" style="font-weight:bold;">Preference</tspan>
+            </text>
+      <text transform="translate(371 77)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">1</tspan>
+            </text>
+      <text transform="translate(371 125)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">2</tspan>
+            </text>
+      <text transform="translate(371 173)" fill="#212121" font-size="14" font-family="Roboto-Regular,Roboto" style="white-space: pre;">
+                <tspan x="0" y="0">3</tspan>
+            </text>
+    </g>
+    <rect transform="translate(250 0)" width="1" height="192" fill="#e0e0e0"/>
+    <rect transform="translate(0 0)" width="1" height="192" fill="#e0e0e0"/>
+    <rect transform="translate(499 0)" width="1" height="192" fill="#e0e0e0"/>
+  </g>
+  <rect width="157.624" height="0.339" fill="#e0e0e0" x="317.489" y="297.812" style=""/>
+  <text style="fill: rgb(255, 0, 0); font-family: Arial, sans-serif; font-size: 28px; white-space: pre;" x="489.098" y="153.423" transform="matrix(0.36783, 0, 0, 0.340292, 301.84259, 134.861099)">+1 for B</text>
+  <text style="fill: rgb(255, 0, 0); font-family: Arial, sans-serif; font-size: 28px; white-space: pre;" x="489.098" y="153.423" transform="matrix(0.359484, 0, 0, 0.377758, 307.392944, 201.614777)">+1 for A</text>
+  <line style="fill: rgb(255, 0, 0); stroke: rgb(255, 0, 0);" x1="18.35" y1="210.738" x2="218.862" y2="210.544"/>
+  <line style="fill: rgb(216, 216, 216); stroke: rgb(255, 0, 0);" x1="17.258" y1="305.972" x2="217.771" y2="305.779"/>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 28px;" x="301.222" y="16.857" transform="matrix(0.444485, 0, 0, 0.461905, 153.689514, 6.673217)">Round 2 Totals</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 28px;" x="301.222" y="16.857" transform="matrix(0.436046, 0, 0, 0.416045, -118.708618, 6.589925)">Round 1 Totals</text>
+</svg>
