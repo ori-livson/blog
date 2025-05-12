@@ -2,6 +2,6 @@ Consider electorates where the final three candidates are Liberal, Labor and Gre
 
 1. If the Liberals were ranked 2<sup>nd</sup> and Labor 3<sup>rd</sup>, Labor ballots by in large flowed to the Greens, pushing the Greens vote past 50% to a victory.
 
-2. Conversely, if Labor was ranked 2<sup>nd</sup> and the Liberals 3<sup>rd</sup>, the Liberal voter's next preference by in large flowed to Labor vote past 50% to a victory.
+2. Conversely, if Labor was ranked 2<sup>nd</sup> and the Liberals 3<sup>rd</sup>, the Liberal voter's next preference by in large flowed to Labor, pushing the Labor vote past 50% to a victory.
 
-Case 2 consistently materialised - see Figure 3 for the example of it happening in Melbourne. As discussed in [Footnote 1](#footnote-1), these two cases aren't the norm in every election. However, in 2025, the fact that the Greens vs Labor outcome depended on the Labor vs Liberal outcome proves that Instant Run-Off Voting has a trade-off known as the violation of the **Independence of Irrelevant Alternatives** axiom. This axiom is the main subject of Arrow's Impossibility Theorem.
+Case 2 materialised several times - see Figure 3 for the electorate of Melbourne. As discussed in [Footnote 1](#footnote-1), these two cases aren't the norm in every election. However, in 2025, the fact that the Greens vs Labor outcome depended on the Labor vs Liberal outcome demonstrates that Instant Run-Off Voting has a trade-off known as the violation of the **Independence of Irrelevant Alternatives** axiom. This axiom is the main subject of Arrow's Impossibility Theorem.
