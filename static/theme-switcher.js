@@ -20,30 +20,30 @@
 const dark = "dark";
 const light = "light";
 
-toggle(netPreference(), false);
+toggleTheme(netThemePreference(), false);
 
-window.onload = function () {
-  function syncTheme() {
-    console.log("Watcher!");
-    toggle(netPreference(), false);
-  }
-
+function initThemeSwitcher() {
   document
     .getElementById("button-dark-mode")
     .addEventListener("click", function () {
-      toggle(!netPreference(), true);
+      toggleTheme(!netThemePreference(), true);
     });
   document
     .getElementById("revert-dark-mode")
     .addEventListener("click", function () {
       localStorage.removeItem("theme");
-      toggle(netPreference(), false);
+      toggleTheme(netThemePreference(), false);
     });
 
   setInterval(syncTheme, 1000);
-};
+}
 
-function netPreference() {
+function syncTheme() {
+  console.log("Watcher!");
+  toggleTheme(netThemePreference(), false);
+}
+
+function netThemePreference() {
   const storagePreference = localStorage.getItem("theme");
   if (storagePreference !== null) {
     return storagePreference === dark;
@@ -54,7 +54,7 @@ function netPreference() {
   return osPreference === dark;
 }
 
-function toggle(toDark, overriding) {
+function toggleTheme(toDark, overriding) {
   if (toDark) {
     document.documentElement.classList.add(dark);
   } else {

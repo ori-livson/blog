@@ -10,11 +10,6 @@ blockquote {
   font-style: italic;
 }
 
-/* em {
-  color: var(--strong-color);
-  font-weight: bold;
-} */
-
 /* Banner */
 
 .banner {
@@ -41,44 +36,41 @@ blockquote {
 
 /* Sticky Navbar */
 
-.navbar,
-.navbar-spacer {
+.navbar {
   display: block;
   width: 100%;
-  height: 6.5rem;
   background-color: var(--bg-navbar-color);
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
   z-index: 99;
 }
-.navbar-spacer {
-  display: none !important;
-}
-.navbar > .container {
+.container {
   width: 100%;
 }
 .navbar-list {
+  padding-top: 1rem;
   list-style: none;
   margin-bottom: 0;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
 }
 .navbar-item {
   position: relative;
   float: left;
-  margin-bottom: 0;
 }
 .navbar-item > button {
   margin-bottom: 0;
 }
 .navbar-link {
   text-transform: uppercase;
-  font-size: 11px;
+  font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.2rem;
-  margin-right: 35px;
+  margin-right: 4em;
   text-decoration: none;
-  line-height: 6.5rem;
   color: var(--text-color);
 }
 
@@ -94,13 +86,101 @@ blockquote {
   top: 0;
   left: 0;
 }
-.has-docked-nav .navbar-spacer {
+.has-docked-nav {
   display: block;
 }
 .has-docked-nav .navbar > .container {
   width: 80%;
 }
 
+.icon-button {
+  color: black;
+  transition: color 0.2s ease;
+}
+
+.icon-button:hover {
+  color: var(--primary-color);
+}
+
+#sandwich-button {
+  padding: 1px 6px !important;
+}
+
+#sandwich-button > svg {
+  margin-top: 1px;
+}
+
+#sandwich-li {
+  display: none;
+}
+
+#theme-li {
+  display: flex;
+}
+
+/*  Narrow / Mobile Styles
+    assuming 7 navbar items + 1 .expander
+    each about 7.5em wide.
+    each row of the navbar is about 6em high
+*/
+
+@media (max-width: 60em) {
+  .expander {
+    flex-grow: 0;
+  }
+  .navbar-list {
+    justify-content: space-between;
+  }
+
+  .navbar-item {
+    flex-basis: 25%;
+  }
+
+  .content {
+    margin-top: 6.5em;
+  }
+
+  figure,
+  figure img,
+  figure svg {
+    width: auto !important;
+  }
+
+  figure {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 50em) {
+  .navbar-item {
+    flex-basis: 50%;
+  }
+}
+
+@media (max-width: 35em), (pointer: none), (pointer: coarse) {
+  .navbar-item {
+    flex-basis: 100%;
+  }
+
+  .content {
+    margin-top: 0;
+  }
+
+  .nav-toggle,
+  #theme-li {
+    display: none;
+  }
+
+  .nav-toggle.show {
+    display: list-item;
+  }
+
+  #sandwich-li,
+  #theme-li.show {
+    display: flex;
+  }
+}
 /* Theme Switching */
 
 #button-dark-mode {

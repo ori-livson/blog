@@ -36,7 +36,8 @@ import GitHub
   )
 import Lucid
 import Lucid.Base (makeAttribute)
-import Lucid.Svg (d_, fill_, fill_rule_, path_, stroke_, viewBox_)
+import Lucid.Svg (d_, fill_, fill_rule_, path_, rect_, stroke_, viewBox_, x_, y_)
+import qualified Lucid.Svg as Svg
 import LucidUtils (LucidHtml)
 
 data Blog = Blog
@@ -281,6 +282,7 @@ standardHead t = doctypehtml_ $ do
     css
     codeBlockCSS
     script_ [src_ "/static/theme-switcher.js"] emptyText
+    script_ [src_ "/static/main.js"] emptyText
 
 css :: LucidHtml
 css = do
@@ -322,10 +324,10 @@ faviconLink =
 
 navBar :: LucidHtml
 navBar = do
-  div_ [class_ "navbar-spacer"] ""
   nav_ [class_ "navbar"] $ do
     div_ [class_ "container"] $ do
       ul_ [class_ "navbar-list"] $ do
+        li_ [id_ "sandwich-li", class_ "navbar-item"] $ sandwichButton
         navLink "/" "home"
         navLink "/about" "about"
         navLink "/publications" "publications"
@@ -334,14 +336,13 @@ navBar = do
         navLink "/upcoming" "upcoming"
         navLink "/contact" "contact"
         div_ [class_ "expander"] ""
-        li_ [class_ "navbar-item"] $ do
+        li_ [id_ "theme-li", class_ "navbar-item"] $ do
           themeButton
-        li_ [class_ "navbar-item"] $ do
           clearThemeButton
 
 navLink :: String -> String -> LucidHtml
 navLink path text = do
-  li_ [class_ "navbar-item"] $ do
+  li_ [class_ "navbar-item nav-toggle"] $ do
     a_ [class_ "navbar-link", href_ . pack $ path] $ toHtml text
 
 themeButton :: LucidHtml
@@ -349,38 +350,41 @@ themeButton = button_
   [id_ "button-dark-mode"]
   $ do
     svg_
-      [ xmlns_ "http://www.w3.org/2000/svg",
-        fill_ "black",
-        stroke_ "none",
-        width_ "30",
-        height_ "30",
-        class_ "inline-block",
-        viewBox_ "0 0 20 20",
-        id_ "light-mode-icon"
-      ]
+      (svgIcon "dark-mode-icon")
       $ do
         -- Light theme symbol (sun)
         path_ [fill_rule_ "evenodd", d_ "M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"]
 
     svg_
-      [ xmlns_ "http://www.w3.org/2000/svg",
-        fill_ "black",
-        stroke_ "none",
-        width_ "30",
-        height_ "30",
-        class_ "inline-block",
-        viewBox_ "0 0 20 20",
-        id_ "dark-mode-icon"
-      ]
+      (svgIcon "light-mode-icon")
       $ do
         -- Dark theme symbol (crescent moon)
         path_ [d_ "M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"]
+
+sandwichButton :: LucidHtml
+sandwichButton = button_ [id_ "sandwich-button"] $ do
+  svg_ (svgIcon "sandwich-icon") $ do
+    rect_ [x_ "2", y_ "5", Svg.width_ "16", height_ "1"]
+    rect_ [x_ "2", y_ "10", Svg.width_ "16", height_ "1"]
+    rect_ [x_ "2", y_ "15", Svg.width_ "16", height_ "1"]
+
+svgIcon :: Text -> [Attribute]
+svgIcon svgId =
+  [ xmlns_ "http://www.w3.org/2000/svg",
+    fill_ "currentColor",
+    stroke_ "none",
+    Svg.width_ "30",
+    height_ "30",
+    class_ "icon-button",
+    viewBox_ "0 0 20 20",
+    id_ svgId
+  ]
 
 clearThemeButton :: LucidHtml
 clearThemeButton =
   button_
     [id_ "revert-dark-mode", class_ "button-primary"]
-    "Revert to OS Theme"
+    "OS Theme"
 
 --------------------------------------
 -- Rest of Body
@@ -448,7 +452,7 @@ centerText = singleStyle "text-align" "center"
 youtube :: String -> LucidHtml
 youtube src =
   iframe_
-    [ width_ "560",
+    [ Lucid.width_ "560",
       height_ "315",
       src_ $ pack src,
       title_ "YouTube video player",
