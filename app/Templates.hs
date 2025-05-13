@@ -19,10 +19,12 @@ module Templates
     Post (..),
     Posts,
     Blog (..),
+    SiteConfig (..),
   )
 where
 
 import Config (bannerSubtitle, bannerTitle, defaultTheme, issuesUrl)
+import Control.Monad (when)
 import Data.List (nub, sort, sortBy)
 import Data.Map (Map, toList)
 import qualified Data.Map as M
@@ -55,7 +57,7 @@ data Blog = Blog
 
 homeHtml :: LucidHtml -> Posts -> LucidHtml
 homeHtml intro posts = do
-  standardHead bannerTitle
+  standardHead $ plainSite bannerTitle
   standardBody True $ do
     homeBanner
     div_ [centerText] intro
@@ -80,14 +82,15 @@ data Post = Post
     footnotes :: [LucidHtml],
     comments :: Maybe [LucidHtml],
     issueId :: Int,
-    staticPaths :: [FilePath]
+    staticPaths :: [FilePath],
+    siteConfig :: SiteConfig
   }
 
 type Posts = Map String Post
 
 postsHtml :: Posts -> LucidHtml
 postsHtml posts = do
-  standardHead "Posts"
+  standardHead $ plainSite "Posts"
   standardBody True $ do
     standardBanner
     titleH "Posts"
@@ -123,7 +126,7 @@ sortPosts posts = sortBy (flip comparePosts) (toList posts)
 
 aboutHtml :: LucidHtml -> LucidHtml
 aboutHtml contents = do
-  standardHead "About"
+  standardHead $ plainSite "About"
   standardBody True $ do
     standardBanner
     standardTitle "About" Nothing
@@ -135,7 +138,7 @@ aboutHtml contents = do
 
 upcomingHtml :: LucidHtml -> LucidHtml
 upcomingHtml contents = do
-  standardHead "Upcoming Posts"
+  standardHead $ plainSite "Upcoming Posts"
   standardBody True $ do
     standardBanner
     standardTitle "Upcoming Posts" Nothing
@@ -150,7 +153,7 @@ upcomingHtml contents = do
 
 contactHtml :: LucidHtml -> LucidHtml
 contactHtml contents = do
-  standardHead "Contact"
+  standardHead $ plainSite "Contact"
   standardBody True $ do
     standardBanner
     standardTitle "Contact" Nothing
@@ -162,7 +165,7 @@ contactHtml contents = do
 
 publicationsHtml :: LucidHtml -> LucidHtml
 publicationsHtml contents = do
-  standardHead "Publications"
+  standardHead $ plainSite "Publications"
   standardBody True $ do
     standardBanner
     standardTitle "Publications" Nothing
@@ -174,7 +177,7 @@ publicationsHtml contents = do
 
 allTagsHtml :: Posts -> LucidHtml
 allTagsHtml posts = do
-  standardHead "All Tags"
+  standardHead $ plainSite "All Tags"
   standardBody False $ do
     standardBanner
     standardTitle "All Tags" Nothing
@@ -184,7 +187,7 @@ allTagsHtml posts = do
 
 tagMatchHtml :: Posts -> String -> LucidHtml
 tagMatchHtml posts value = do
-  standardHead value
+  standardHead $ plainSite value
   standardBody True $ do
     standardBanner
     standardTitle ("Tag: \"" ++ value ++ "\"") Nothing
@@ -197,8 +200,8 @@ tagMatchHtml posts value = do
 ---------------------------------------------------------------------------------------------------
 
 assemblePost :: Post -> LucidHtml
-assemblePost Post {title, subtitle, tags, body, footnotes, comments, issueId} = do
-  standardHead title
+assemblePost Post {title, subtitle, tags, body, footnotes, comments, issueId, siteConfig} = do
+  standardHead siteConfig
   standardBody True $ do
     standardBanner
     postTitle title subtitle
@@ -270,17 +273,31 @@ commentToHtml Comment {user, createdAt, body} = do
 -- <Head>
 --------------------------------------------------------------------------
 
-standardHead :: String -> LucidHtml
-standardHead t = doctypehtml_ $ do
+data SiteConfig = SiteConfig
+  { siteTitle :: String,
+    hasCodeBlocks :: Bool,
+    hasMathBlocks :: Bool
+  }
+
+plainSite :: String -> SiteConfig
+plainSite t =
+  SiteConfig
+    { siteTitle = t,
+      hasCodeBlocks = False,
+      hasMathBlocks = False
+    }
+
+standardHead :: SiteConfig -> LucidHtml
+standardHead SiteConfig {siteTitle, hasCodeBlocks, hasMathBlocks} = doctypehtml_ $ do
   head_ $ do
-    title_ $ toHtml t
+    title_ $ toHtml siteTitle
     meta_ [httpEquiv_ "Content-Type", content_ "text/html; charset=UTF-8"]
     meta_ [name_ "viewport", content_ "width=device-width, initial-scale=1"]
     meta_ [charset_ "UTF-8"]
-    script_ [src_ "/static/math-jax.js"] emptyText
+    when hasMathBlocks $ script_ [src_ "/static/math-jax.js"] emptyText
     faviconLink
     css
-    codeBlockCSS
+    when hasCodeBlocks codeBlockCSS
     script_ [src_ "/static/theme-switcher.js"] emptyText
     script_ [src_ "/static/main.js"] emptyText
 

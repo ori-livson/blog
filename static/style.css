@@ -44,9 +44,6 @@ blockquote {
   border-bottom: 1px solid var(--border-color);
   z-index: 99;
 }
-.container {
-  width: 100%;
-}
 .navbar-list {
   padding-top: 1rem;
   list-style: none;
@@ -88,9 +85,6 @@ blockquote {
 }
 .has-docked-nav {
   display: block;
-}
-.has-docked-nav .navbar > .container {
-  width: 80%;
 }
 
 .icon-button {
@@ -196,7 +190,7 @@ html:not(.dark) #light-mode-icon {
   display: none;
 }
 
-html:not(.overridden) #revert-dark-mode {
+html:not(.non-os-preference) #revert-dark-mode {
   display: none;
 }
 

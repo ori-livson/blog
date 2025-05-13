@@ -12,10 +12,11 @@ import Templates
   ( Blog (..),
     Post (..),
     Posts,
+    SiteConfig (..),
+    -- youtube,
     commentToHtml,
     container,
     makeFigure,
-    -- youtube,
   )
 
 loadBlog :: Bool -> Bool -> IO Blog
@@ -103,9 +104,11 @@ loadArrowAus noComments = do
   footnotes <- loadPathsOrdered $ rootDir </> "footnotes"
   let issueId = 2
   comments <- generateComments noComments issueId
+  let postTitle = "Is there a right way to vote?"
+
   return
     Post
-      { title = "Is there a right way to vote?",
+      { title = postTitle,
         subtitle = Just "Arrow's Impossibility Theorem and the 2025 Australian Federal Election",
         date = fromGregorian 2025 05 12,
         tags =
@@ -116,7 +119,13 @@ loadArrowAus noComments = do
         footnotes = footnotes,
         comments = comments,
         issueId = issueId,
-        staticPaths = []
+        staticPaths = [],
+        siteConfig =
+          SiteConfig
+            { siteTitle = postTitle,
+              hasCodeBlocks = False,
+              hasMathBlocks = False
+            }
       }
   where
     rootDir = "content/posts/arrow-aus"
@@ -136,9 +145,11 @@ loadExamplePost noComments = do
   footnotes <- loadPathsOrdered $ rootDir </> "footnotes"
   let issueId = 1
   comments <- generateComments noComments issueId
+  let postTitle = "Just enough CSS for a blog (Test)"
+
   return
     Post
-      { title = "Just enough CSS for a blog (Test)",
+      { title = postTitle,
         subtitle = Just "This is copied from Niklas Fasching's blog post https://niklasfasching.de/posts/just-enough-css/ for testing only",
         date = fromGregorian 2023 10 09,
         tags = ["CSS", "Minimalism"],
@@ -146,7 +157,13 @@ loadExamplePost noComments = do
         footnotes = footnotes,
         comments = comments,
         issueId = issueId,
-        staticPaths = []
+        staticPaths = [],
+        siteConfig =
+          SiteConfig
+            { siteTitle = postTitle,
+              hasCodeBlocks = True,
+              hasMathBlocks = False
+            }
       }
   where
     rootDir = "content/posts/example"

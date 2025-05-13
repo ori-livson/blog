@@ -19,34 +19,36 @@
 
 const dark = "dark";
 const light = "light";
+let lastPreference = null;
 
-toggleTheme(netThemePreference(), false);
+toggleTheme(isNetPreferenceDark(), false);
 
 function initThemeSwitcher() {
+  /** Add handler for night / dark mode icon */
   document
     .getElementById("button-dark-mode")
     .addEventListener("click", function () {
-      toggleTheme(!netThemePreference(), true);
+      toggleTheme(!isNetPreferenceDark(), true);
     });
+  /** Add handler for revert to os theme icon */
   document
     .getElementById("revert-dark-mode")
     .addEventListener("click", function () {
       localStorage.removeItem("theme");
-      toggleTheme(netThemePreference(), false);
+      toggleTheme(isNetPreferenceDark(), false);
     });
-
-  setInterval(syncTheme, 1000);
+  /** Run watcher in the background every 1s */
+  setInterval(watcher, 1000);
 }
 
-function syncTheme() {
-  console.log("Watcher!");
-  toggleTheme(netThemePreference(), false);
+function watcher() {
+  toggleTheme(isNetPreferenceDark(), false);
 }
 
-function netThemePreference() {
-  const storagePreference = localStorage.getItem("theme");
-  if (storagePreference !== null) {
-    return storagePreference === dark;
+function isNetPreferenceDark() {
+  const buttonPreference = localStorage.getItem("theme");
+  if (buttonPreference !== null) {
+    return buttonPreference === dark;
   }
   const osPreference = window.matchMedia("(prefers-color-scheme: dark)").matches
     ? dark
@@ -54,24 +56,29 @@ function netThemePreference() {
   return osPreference === dark;
 }
 
-function toggleTheme(toDark, overriding) {
+function toggleTheme(toDark, removeButtonPreference) {
   if (toDark) {
     document.documentElement.classList.add(dark);
   } else {
     document.documentElement.classList.remove(dark);
   }
 
-  if (overriding) {
+  if (removeButtonPreference) {
     localStorage.setItem("theme", toDark ? dark : light);
   }
 
   if (localStorage.getItem("theme") === null) {
-    document.documentElement.classList.remove("overridden");
+    document.documentElement.classList.remove("non-os-preference");
   } else {
-    document.documentElement.classList.add("overridden");
+    document.documentElement.classList.add("non-os-preference");
   }
 
-  toggleAllCSS(toDark);
+  if (toDark === lastPreference) {
+    return;
+  }
+
+  lastPreference = toDark;
+  updateCSS(toDark);
 }
 
 /** Switch href for link tags to css like
@@ -81,12 +88,12 @@ function toggleTheme(toDark, overriding) {
  * See: app/Templates.hs
  */
 
-function toggleAllCSS(toDark) {
-  toggleCSSHref("theme", toDark);
-  toggleCSSHref("code-block-theme", toDark);
+function updateCSS(toDark) {
+  updateCSSHref("theme", toDark);
+  updateCSSHref("code-block-theme", toDark);
 }
 
-function toggleCSSHref(id, toDark) {
+function updateCSSHref(id, toDark) {
   const currentTheme = document.getElementById(id).getAttribute("href");
   const newTheme = toDark
     ? currentTheme.replace(light, dark)
