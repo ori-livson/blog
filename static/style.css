@@ -346,6 +346,11 @@ pre,
   width: auto;
 }
 
+.comments > form {
+  display: flex;
+  justify-content: center;
+}
+
 /* Post List */
 
 .posts {
