@@ -49,7 +49,7 @@ loadPublications = do
 
 loadPosts :: Bool -> Bool -> IO Posts
 loadPosts dev noComments = do
-  arrowAusPost <- Map.singleton "arrow-aus" <$> loadArrowAus noComments
+  arrowAusPost <- Map.singleton "is-there-a-right-way-to-vote" <$> loadArrowAus noComments
   let mainPosts = [arrowAusPost]
 
   examplePost <-
