@@ -84,6 +84,8 @@ loadArrowAus noComments = do
   discussion <- load "3-discussion.md"
   discussionb <- load "3b-discussion.md"
 
+  addendum <- load "4-addendum.md"
+
   let body =
         [ (Nothing, intro),
           (Nothing, methodMap),
@@ -98,7 +100,8 @@ loadArrowAus noComments = do
           (Nothing, condorcetExample),
           (Nothing, condorcet2),
           (Just "Arrow's Impossibility Theorem and Australia: a Bug or a Feature?", discussion),
-          (Just "Is Voting Doomed?", discussionb)
+          (Just "Is Voting Doomed?", discussionb),
+          (Just "Addendum", addendum)
         ]
 
   footnotes <- loadPathsOrdered $ rootDir </> "footnotes"

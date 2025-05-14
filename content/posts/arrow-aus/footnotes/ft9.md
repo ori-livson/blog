@@ -1,0 +1,1 @@
+Note, the total number of votes in Melbourne dropped quite significantly between the 2022 and 2025 elections; from 99,499 to 83,528 votes cast.

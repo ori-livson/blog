@@ -1,4 +1,4 @@
-Since 1946, Australia's government has been a contest between two major parties: the **Labor Party** (a left-wing party) and the **Liberals** (a right-wing party, typically in coalition with the National / Country party). That said, the performance of various minor parties and independent candidates often influences which major party wins. In this post, I want to focus on one minor party in particular: the **Greens** party (a far-left party), pretending no other candidates exist.
+Since 1946, Australia's government has been a contest between two major parties: the **Labor Party** (a left-wing party) and the **Liberals** (a right-wing party, typically in coalition with the National party). That said, the performance of various minor parties and independent candidates often influences which major party wins. In this post, I want to focus on one minor party in particular: the **Greens** party (a far-left party) and will pretend no other candidates exist.
 
 In this election, ballots typically ranked candidates from the three parties according to the left-right alignment of the voters <sup>[1](#footnote-1)</sup>, i.e.:
 
