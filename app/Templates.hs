@@ -207,8 +207,8 @@ assemblePost Post {title, subtitle, tags, body, footnotes, comments, issueId, si
     postTitle title subtitle
     tagsBar tags
     mapM_ renderSection body
-    footnotesSection footnotes
     commentSection issueId comments
+    footnotesSection footnotes
 
 postTitle :: String -> Maybe String -> LucidHtml
 postTitle title subtitle = do
