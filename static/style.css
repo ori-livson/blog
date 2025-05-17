@@ -291,6 +291,11 @@ figcaption {
   margin-top: 1rem;
 }
 
+ol,
+ul {
+  margin-bottom: 0.5em !important;
+}
+
 /* Code Blocks and Footnotes*/
 
 div.sourceCode,
