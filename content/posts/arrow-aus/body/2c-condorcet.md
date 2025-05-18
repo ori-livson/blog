@@ -1,4 +1,4 @@
-The suspicion that a theorem like Arrow's Impossibility Theorem holds, largely grew out of the heated debates preceding the French Revolution on how voting ought to be done. A pivotal momenet came when the French polymath Nicolas de Condorcet observed a problem with a voting-method known as **Pairwise Majority Voting** <sup>[6](#footnote-6)</sup>.
+The suspicion that a theorem like Arrow's Impossibility Theorem holds, largely grew out of the heated debates preceding the French Revolution on how voting ought to be done. A pivotal moment came when the French polymath Nicolas de Condorcet observed a problem with a voting-method known as **Pairwise Majority Voting** <sup>[6](#footnote-6)</sup>.
 
 The voting-method is simple: use the ballots to assess the candidates head-to-head, and rank winners and losers **transitively**. Transitivity means, for example, that if the Greens win against the Liberals, and the Liberals win against Labor, then the Greens win against Labor.
 
