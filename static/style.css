@@ -183,10 +183,10 @@ blockquote {
   align-items: center;
 }
 
-html.dark #dark-mode-icon {
+html.dark #moon-icon {
   display: none;
 }
-html:not(.dark) #light-mode-icon {
+html:not(.dark) #sun-icon {
   display: none;
 }
 
