@@ -7,7 +7,7 @@ import Data.Aeson.Types (Parser)
 import Data.Text (pack)
 import Data.Time.Clock (UTCTime)
 import Data.Time.Format (defaultTimeLocale, parseTimeM)
-import LucidUtils (LucidHtml, markdownToLucid)
+import LucidUtils (HTML, markdownToLucid)
 import Network.HTTP.Conduit (parseRequest)
 import Network.HTTP.Simple
   ( getResponseBody,
@@ -28,7 +28,7 @@ data Comment = Comment
   { htmlUrl :: String,
     user :: User,
     createdAt :: UTCTime,
-    body :: LucidHtml
+    body :: HTML
   }
   deriving (Show)
 

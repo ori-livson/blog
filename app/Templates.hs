@@ -42,14 +42,14 @@ import Lucid
 import Lucid.Base (makeAttribute)
 import Lucid.Svg (d_, fill_, fill_rule_, path_, rect_, stroke_, viewBox_, x_, y_)
 import qualified Lucid.Svg as Svg
-import LucidUtils (LucidHtml)
+import LucidUtils (HTML)
 
 data Blog = Blog
-  { home :: LucidHtml,
-    about :: LucidHtml,
-    upcoming :: LucidHtml,
-    contact :: LucidHtml,
-    publications :: LucidHtml,
+  { home :: HTML,
+    about :: HTML,
+    upcoming :: HTML,
+    contact :: HTML,
+    publications :: HTML,
     posts :: Posts
   }
 
@@ -57,7 +57,7 @@ data Blog = Blog
 -- /Home
 ---------------------------------------------------------------------------------------------------
 
-homeHtml :: LucidHtml -> Posts -> LucidHtml
+homeHtml :: HTML -> Posts -> HTML
 homeHtml intro posts = do
   standardHead $ plainSite bannerTitle
   standardBody True $ do
@@ -66,7 +66,7 @@ homeHtml intro posts = do
     titleH "Posts"
     postEntries posts
 
-homeBanner :: LucidHtml
+homeBanner :: HTML
 homeBanner = bannerHead $ do
   bannerHeading
   p_ $ toHtml bannerSubtitle
@@ -80,9 +80,9 @@ data Post = Post
     subtitle :: Maybe String,
     date :: Day,
     tags :: [String],
-    body :: [(Maybe String, LucidHtml)],
-    footnotes :: [LucidHtml],
-    comments :: Maybe [LucidHtml],
+    body :: [(Maybe String, HTML)],
+    footnotes :: [HTML],
+    comments :: Maybe [HTML],
     issueId :: Int,
     staticPaths :: [FilePath],
     siteConfig :: SiteConfig
@@ -90,7 +90,7 @@ data Post = Post
 
 type Posts = Map String Post
 
-postsHtml :: Posts -> LucidHtml
+postsHtml :: Posts -> HTML
 postsHtml posts = do
   standardHead $ plainSite "Posts"
   standardBody True $ do
@@ -98,11 +98,11 @@ postsHtml posts = do
     titleH "Posts"
     postEntries posts
 
-postEntries :: Posts -> LucidHtml
+postEntries :: Posts -> HTML
 postEntries specs = ul_ [class_ "posts"] $ do
   mapM_ (uncurry postEntry) (sortPosts specs)
 
-postEntry :: String -> Post -> LucidHtml
+postEntry :: String -> Post -> HTML
 postEntry endpoint Post {title, date, subtitle} = do
   let dateStr = formatTime defaultTimeLocale "%Y.%m.%d" date
   li_ [class_ "post"] $
@@ -126,7 +126,7 @@ sortPosts posts = sortBy (flip comparePosts) (toList posts)
 -- /About
 ---------------------------------------------------------------------------------------------------
 
-aboutHtml :: LucidHtml -> LucidHtml
+aboutHtml :: HTML -> HTML
 aboutHtml contents = do
   standardHead $ plainSite "About"
   standardBody True $ do
@@ -138,7 +138,7 @@ aboutHtml contents = do
 -- /Upcoming Posts
 ---------------------------------------------------------------------------------------------------
 
-upcomingHtml :: LucidHtml -> LucidHtml
+upcomingHtml :: HTML -> HTML
 upcomingHtml contents = do
   standardHead $ plainSite "Upcoming Posts"
   standardBody True $ do
@@ -153,7 +153,7 @@ upcomingHtml contents = do
 -- /Contact
 ---------------------------------------------------------------------------------------------------
 
-contactHtml :: LucidHtml -> LucidHtml
+contactHtml :: HTML -> HTML
 contactHtml contents = do
   standardHead $ plainSite "Contact"
   standardBody True $ do
@@ -165,7 +165,7 @@ contactHtml contents = do
 -- /Publications
 ---------------------------------------------------------------------------------------------------
 
-publicationsHtml :: LucidHtml -> LucidHtml
+publicationsHtml :: HTML -> HTML
 publicationsHtml contents = do
   standardHead $ plainSite "Publications"
   standardBody True $ do
@@ -177,7 +177,7 @@ publicationsHtml contents = do
 -- /Tags
 ---------------------------------------------------------------------------------------------------
 
-allTagsHtml :: Posts -> LucidHtml
+allTagsHtml :: Posts -> HTML
 allTagsHtml posts = do
   standardHead $ plainSite "All Tags"
   standardBody False $ do
@@ -187,7 +187,7 @@ allTagsHtml posts = do
   where
     distinctTags = sort . nub . concatMap tags $ posts
 
-tagMatchHtml :: Posts -> String -> LucidHtml
+tagMatchHtml :: Posts -> String -> HTML
 tagMatchHtml posts value = do
   standardHead $ plainSite value
   standardBody True $ do
@@ -201,7 +201,7 @@ tagMatchHtml posts value = do
 -- /Posts/x
 ---------------------------------------------------------------------------------------------------
 
-assemblePost :: Post -> LucidHtml
+assemblePost :: Post -> HTML
 assemblePost Post {title, subtitle, tags, body, footnotes, comments, issueId, siteConfig} = do
   standardHead siteConfig
   standardBody True $ do
@@ -212,25 +212,25 @@ assemblePost Post {title, subtitle, tags, body, footnotes, comments, issueId, si
     commentSection issueId comments
     footnotesSection footnotes
 
-postTitle :: String -> Maybe String -> LucidHtml
+postTitle :: String -> Maybe String -> HTML
 postTitle title subtitle = do
   postTitleH $ toHtml title
   case subtitle of
     Just s -> subtitleH $ toHtml s
     Nothing -> mempty
 
-tagsBar :: [String] -> LucidHtml
+tagsBar :: [String] -> HTML
 tagsBar values = ul_ [class_ "tags"] $ do
   mapM_ (\s -> li_ $ url ("/tags/" ++ s) s) values
 
-renderSection :: (Maybe String, LucidHtml) -> LucidHtml
+renderSection :: (Maybe String, HTML) -> HTML
 renderSection (heading, content) = do
   case heading of
     Just s -> sectionH $ toHtmlRaw s
     Nothing -> mempty
   content
 
-footnotesSection :: [LucidHtml] -> LucidHtml
+footnotesSection :: [HTML] -> HTML
 footnotesSection [] = mempty
 footnotesSection values = div_ [class_ "footnotes"] $ do
   sectionH "Footnotes and References"
@@ -238,7 +238,7 @@ footnotesSection values = div_ [class_ "footnotes"] $ do
   div_ [class_ "footnote-definitions"] $ do
     mapM_ (uncurry footnote) (zip [1 ..] values)
 
-footnote :: Int -> LucidHtml -> LucidHtml
+footnote :: Int -> HTML -> HTML
 footnote idx html = do
   div_ [id_ footnoteId, class_ "footnote-definition"] $ do
     sup_ [class_ "dummy-a"] (toHtml $ show idx)
@@ -246,7 +246,7 @@ footnote idx html = do
   where
     footnoteId = pack $ "footnote-" ++ show idx
 
-commentSection :: Int -> Maybe [LucidHtml] -> LucidHtml
+commentSection :: Int -> Maybe [HTML] -> HTML
 commentSection _ Nothing = mempty
 commentSection issueId (Just comments) = do
   div_ [class_ "comments"] $ do
@@ -256,7 +256,7 @@ commentSection issueId (Just comments) = do
       button_ [formtarget_ "_blank", class_ "button-primary"] "Post a Comment"
     sequence_ comments
 
-commentToHtml :: Comment -> LucidHtml
+commentToHtml :: Comment -> HTML
 commentToHtml Comment {user, createdAt, body} = do
   let User {login, userHtmlUrl} = user
   let dateStr = formatTime defaultTimeLocale "%Y.%m.%d %H:%M:%S (UTC)" createdAt
@@ -289,7 +289,7 @@ plainSite t =
       hasMathBlocks = False
     }
 
-standardHead :: SiteConfig -> LucidHtml
+standardHead :: SiteConfig -> HTML
 standardHead SiteConfig {siteTitle, hasCodeBlocks, hasMathBlocks} = doctypehtml_ $ do
   head_ $ do
     title_ $ toHtml siteTitle
@@ -303,7 +303,7 @@ standardHead SiteConfig {siteTitle, hasCodeBlocks, hasMathBlocks} = doctypehtml_
     script_ [src_ "/static/theme-switcher.js"] emptyText
     script_ [src_ "/static/main.js"] emptyText
 
-css :: LucidHtml
+css :: HTML
 css = do
   link_
     [ id_ "link-theme-css-vars",
@@ -314,7 +314,7 @@ css = do
   link_ [rel_ "stylesheet", href_ "/static/style.css", type_ "text/css"]
   link_ [rel_ "stylesheet", href_ "/static/skeleton.css", type_ "text/css"]
 
-codeBlockCSS :: LucidHtml
+codeBlockCSS :: HTML
 codeBlockCSS = do
   link_ [rel_ "stylesheet", href_ "/static/highlight.default.min.css"]
   link_
@@ -325,7 +325,7 @@ codeBlockCSS = do
   script_ [src_ "/static/highlight.min.js"] emptyText
   script_ "hljs.highlightAll();"
 
-faviconLink :: LucidHtml
+faviconLink :: HTML
 faviconLink =
   link_
     [ rel_ "icon",
@@ -341,7 +341,7 @@ faviconLink =
 -- Nav Bar
 --------------------------------------
 
-navBar :: LucidHtml
+navBar :: HTML
 navBar = do
   nav_ [class_ "navbar"] $ do
     div_ [class_ "container"] $ do
@@ -359,12 +359,12 @@ navBar = do
           themeButton
           clearThemeButton
 
-navLink :: String -> String -> LucidHtml
+navLink :: String -> String -> HTML
 navLink path text = do
   li_ [class_ "navbar-item nav-toggle"] $ do
     a_ [class_ "navbar-link", href_ . pack $ path] $ toHtml text
 
-themeButton :: LucidHtml
+themeButton :: HTML
 themeButton = button_
   [id_ "button-toggle-dark-mode"]
   $ do
@@ -380,7 +380,7 @@ themeButton = button_
         -- Dark theme symbol (crescent moon)
         path_ [d_ "M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"]
 
-sandwichButton :: LucidHtml
+sandwichButton :: HTML
 sandwichButton = button_ [id_ "sandwich-button"] $ do
   svg_ (svgIcon "sandwich-icon") $ do
     rect_ [x_ "2", y_ "5", Svg.width_ "16", height_ "1"]
@@ -399,7 +399,7 @@ svgIcon svgId =
     id_ svgId
   ]
 
-clearThemeButton :: LucidHtml
+clearThemeButton :: HTML
 clearThemeButton =
   button_
     [id_ "button-revert-to-os-theme-preference", class_ "button-primary"]
@@ -409,24 +409,24 @@ clearThemeButton =
 -- Rest of Body
 --------------------------------------
 
-bannerHead :: LucidHtml -> LucidHtml
+bannerHead :: HTML -> HTML
 bannerHead = header_ [class_ "banner"]
 
-bannerHeading :: LucidHtml
+bannerHeading :: HTML
 bannerHeading = a_ [href_ "/"] $ bannerH (toHtml bannerTitle)
 
-standardBanner :: LucidHtml
+standardBanner :: HTML
 standardBanner = bannerHead $ do
   bannerHeading
 
-standardTitle :: String -> Maybe String -> LucidHtml
+standardTitle :: String -> Maybe String -> HTML
 standardTitle title subtitle = do
   titleH $ toHtml title
   case subtitle of
     Just s -> subtitleH $ toHtml s
     Nothing -> mempty
 
-standardBody :: Bool -> LucidHtml -> LucidHtml
+standardBody :: Bool -> HTML -> HTML
 standardBody centered content = body_ [class_ "container has-docked-nav"] $ do
   navBar
   div_
@@ -442,7 +442,7 @@ standardBody centered content = body_ [class_ "container has-docked-nav"] $ do
 --------------------------------------
 
 -- Bool arg is noComments
-generateComments :: Bool -> Int -> IO (Maybe [LucidHtml])
+generateComments :: Bool -> Int -> IO (Maybe [HTML])
 generateComments True _ = return Nothing
 generateComments False issueId = Just . map commentToHtml <$> loadCommentsFromIssue issueId
 
@@ -450,34 +450,34 @@ generateComments False issueId = Just . map commentToHtml <$> loadCommentsFromIs
 -- General Elements
 ---------------------------------------------------------------------------------------------------
 
-url :: String -> String -> LucidHtml
+url :: String -> String -> HTML
 url path label = a_ [href_ (pack path)] $ toHtml label
 
 emptyText :: Text
 emptyText = pack ""
 
-container :: LucidHtml -> LucidHtml
+container :: HTML -> HTML
 container = div_
 
-bannerH :: LucidHtml -> LucidHtml
+bannerH :: HTML -> HTML
 bannerH = h1_ [centerText]
 
-titleH :: LucidHtml -> LucidHtml
+titleH :: HTML -> HTML
 titleH = h2_ [centerText]
 
-postTitleH :: LucidHtml -> LucidHtml
+postTitleH :: HTML -> HTML
 postTitleH = h3_ [centerText]
 
-sectionH :: LucidHtml -> LucidHtml
+sectionH :: HTML -> HTML
 sectionH = h3_ [centerText]
 
-subtitleH :: LucidHtml -> LucidHtml
+subtitleH :: HTML -> HTML
 subtitleH = h5_ [centerText, singleStyle "font-style" "italic"]
 
 centerText :: Attribute
 centerText = singleStyle "text-align" "center"
 
-youtube :: String -> LucidHtml
+youtube :: String -> HTML
 youtube src =
   iframe_
     [ Lucid.width_ "560",
@@ -491,7 +491,7 @@ youtube src =
     ]
     mempty
 
-makeFigure :: Text -> Text -> LucidHtml -> LucidHtml
+makeFigure :: Text -> Text -> HTML -> HTML
 makeFigure width caption content =
   figure_ [styleFromMap $ Map.fromList [("width", width), ("height", "auto")]] $ do
     content

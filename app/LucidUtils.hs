@@ -1,4 +1,4 @@
-module LucidUtils (markdownToLucid, loadPathsOrdered, expandPath, LucidHtml, loadPath, latexToLucid) where
+module LucidUtils (markdownToLucid, loadPathsOrdered, expandPath, HTML, loadPath, latexToLucid) where
 
 import Control.Monad ((<=<))
 import Data.List (sort)
@@ -10,11 +10,11 @@ import System.Directory.Recursive (getFilesRecursive)
 import System.FilePath (takeExtension)
 import Text.Pandoc
 
-type LucidHtml = Html ()
+type HTML = Html ()
 
 -- Posts
 
-loadPathsOrdered :: FilePath -> IO [LucidHtml]
+loadPathsOrdered :: FilePath -> IO [HTML]
 loadPathsOrdered = pathsToHtml <=< expandPathSorted
   where
     expandPathSorted = (return . sort) <=< expandPath
@@ -34,7 +34,7 @@ expandPath path =
     ifM :: (Monad m) => m Bool -> m a -> m a -> m a
     ifM c t f = c >>= (\c' -> if c' then t else f)
 
-loadPath :: FilePath -> IO LucidHtml
+loadPath :: FilePath -> IO HTML
 loadPath path = do
   text <- TIO.readFile path
   case takeExtension path of
@@ -46,7 +46,7 @@ loadPath path = do
 
 -- Markdown Reading through Pandoc
 
-markdownToLucid :: Text -> IO LucidHtml
+markdownToLucid :: Text -> IO HTML
 markdownToLucid text = do
   case markdownToHtmlText text of
     Left err -> error $ "Markdown conversion failed: " ++ show err
@@ -60,7 +60,7 @@ markdownToHtmlText markdownInput = do
 
 -- HTML Reading through Lucid
 
-htmlToLucid :: Text -> IO LucidHtml
+htmlToLucid :: Text -> IO HTML
 htmlToLucid text = do
   return $ toHtmlRaw text
 
@@ -68,7 +68,7 @@ htmlToLucid text = do
 -- Note: this doesn't work very well
 -- I prefer MathJax in markdown, and https://upmath.me/) for things like tikzcd.
 
-latexToLucid :: Text -> IO LucidHtml
+latexToLucid :: Text -> IO HTML
 latexToLucid text = do
   case latexToHtmlText text of
     Left err -> error $ "Latex conversion failed: " ++ show err

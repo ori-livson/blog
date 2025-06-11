@@ -9,7 +9,7 @@ import Data.List (nub)
 import Data.Map as Map (elems, traverseWithKey)
 import Data.Text.Lazy.IO as TLIO (writeFile)
 import Lucid (renderText)
-import LucidUtils (LucidHtml, expandPath)
+import LucidUtils (HTML, expandPath)
 import PageSpecs (loadBlog)
 import System.Directory (copyFile, createDirectoryIfMissing, removeDirectoryRecursive)
 import System.FilePath ((</>), takeFileName)
@@ -72,10 +72,10 @@ generateStaticSite Blog {home, about, upcoming, contact, publications, posts} = 
     tagToFile tag = htmlToDir (tagMatchHtml posts tag) $ targetDir </> "tags" </> tag
     postToFile endpoint post = createHtmlDir (assemblePost post) (staticPaths post) (targetDir </> "posts" </> endpoint)
 
-htmlToDir :: LucidHtml -> FilePath -> IO ()
+htmlToDir :: HTML -> FilePath -> IO ()
 htmlToDir h d =  createHtmlDir h [] d
 
-createHtmlDir :: LucidHtml -> [FilePath] -> FilePath -> IO ()
+createHtmlDir :: HTML -> [FilePath] -> FilePath -> IO ()
 createHtmlDir html extraStaticPaths htmlDir = do
   safeCreateDir htmlDir
   TLIO.writeFile (htmlDir </> "index.html") (renderText html)
