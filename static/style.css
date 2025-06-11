@@ -175,9 +175,10 @@ blockquote {
     display: flex;
   }
 }
+
 /* Theme Switching */
 
-#button-dark-mode {
+#button-toggle-dark-mode {
   padding: 0 0.5rem;
   display: flex;
   align-items: center;
@@ -190,11 +191,11 @@ html:not(.dark) #sun-icon {
   display: none;
 }
 
-html:not(.non-os-preference) #revert-dark-mode {
+html:not(.user-theme-preference) #button-revert-to-os-theme-preference {
   display: none;
 }
 
-#revert-dark-mode {
+#button-revert-to-os-theme-preference {
   margin-left: 1em;
 }
 
@@ -292,8 +293,9 @@ figcaption {
 }
 
 ol,
-ul {
+ul:not(.tags) {
   margin-bottom: 0.5em !important;
+  width: 100%;
 }
 
 /* Code Blocks and Footnotes*/

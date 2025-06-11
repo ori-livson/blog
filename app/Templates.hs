@@ -3,6 +3,7 @@
 
 module Templates
   ( aboutHtml,
+    generateComments,
     homeHtml,
     tagMatchHtml,
     contactHtml,
@@ -35,6 +36,7 @@ import Data.Time.Format (defaultTimeLocale, formatTime)
 import GitHub
   ( Comment (Comment, body, createdAt, user),
     User (User, login, userHtmlUrl),
+    loadCommentsFromIssue,
   )
 import Lucid
 import Lucid.Base (makeAttribute)
@@ -304,7 +306,7 @@ standardHead SiteConfig {siteTitle, hasCodeBlocks, hasMathBlocks} = doctypehtml_
 css :: LucidHtml
 css = do
   link_
-    [ id_ "theme",
+    [ id_ "link-theme-css-vars",
       rel_ "stylesheet",
       href_ (pack $ "/static/" ++ defaultTheme ++ "-theme.css"),
       type_ "text/css"
@@ -316,7 +318,7 @@ codeBlockCSS :: LucidHtml
 codeBlockCSS = do
   link_ [rel_ "stylesheet", href_ "/static/highlight.default.min.css"]
   link_
-    [ id_ "code-block-theme",
+    [ id_ "link-code-block-theme",
       rel_ "stylesheet",
       href_ (pack $ "/static/" ++ defaultTheme ++ ".min.css")
     ]
@@ -364,7 +366,7 @@ navLink path text = do
 
 themeButton :: LucidHtml
 themeButton = button_
-  [id_ "button-dark-mode"]
+  [id_ "button-toggle-dark-mode"]
   $ do
     svg_
       (svgIcon "sun-icon")
@@ -400,7 +402,7 @@ svgIcon svgId =
 clearThemeButton :: LucidHtml
 clearThemeButton =
   button_
-    [id_ "revert-dark-mode", class_ "button-primary"]
+    [id_ "button-revert-to-os-theme-preference", class_ "button-primary"]
     "OS Theme"
 
 --------------------------------------
@@ -434,6 +436,15 @@ standardBody centered content = body_ [class_ "container has-docked-nav"] $ do
           else "content"
     ]
     content
+
+--------------------------------------
+-- Comments
+--------------------------------------
+
+-- Bool arg is noComments
+generateComments :: Bool -> Int -> IO (Maybe [LucidHtml])
+generateComments True _ = return Nothing
+generateComments False issueId = Just . map commentToHtml <$> loadCommentsFromIssue issueId
 
 ---------------------------------------------------------------------------------------------------
 -- General Elements
