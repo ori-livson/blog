@@ -6,10 +6,6 @@
 
 **Software Development**
 
-- "How this site was made - Static Site Generation with Haskell"
-
-- "Github Comments as a Free Comment Server for Static Websites"
+- "How this website was made"
 
 - "An Opinionated Beginner's Guide to Setting Up Haskell Projects"
-
-- "Lightweight HTMX with Python: FastAPI + HTBuilder"
