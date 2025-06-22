@@ -208,7 +208,7 @@ assemblePost Post {title, subtitle, tags, body, footnotes, comments, issueId, si
     standardBanner
     postTitle title subtitle
     tagsBar tags
-    mapM_ renderSection body
+    mapM_ (uncurry renderSection) $ zip [0 ..] body
     commentSection issueId comments
     footnotesSection footnotes
 
@@ -223,12 +223,14 @@ tagsBar :: [String] -> HTML
 tagsBar values = ul_ [class_ "tags"] $ do
   mapM_ (\s -> li_ $ url ("/tags/" ++ s) s) values
 
-renderSection :: (Maybe String, HTML) -> HTML
-renderSection (heading, content) = do
+renderSection :: Int -> (Maybe String, HTML) -> HTML
+renderSection idx (heading, content) = do
   case heading of
-    Just s -> sectionH $ toHtmlRaw s
+    Just s -> sectionHId headerId $ toHtmlRaw s
     Nothing -> mempty
   content
+  where
+    headerId = pack $ "section-" ++ (show idx)
 
 footnotesSection :: [HTML] -> HTML
 footnotesSection [] = mempty
@@ -359,10 +361,10 @@ navBar = do
           themeButton
           clearThemeButton
 
-navLink :: String -> String -> HTML
+navLink :: Text -> Text -> HTML
 navLink path text = do
   li_ [class_ "navbar-item nav-toggle"] $ do
-    a_ [class_ "navbar-link", href_ . pack $ path] $ toHtml text
+    a_ [class_ "navbar-link", href_ path] $ toHtml text
 
 themeButton :: HTML
 themeButton = button_
@@ -470,6 +472,9 @@ postTitleH = h3_ [centerText]
 
 sectionH :: HTML -> HTML
 sectionH = h3_ [centerText]
+
+sectionHId :: Text -> HTML -> HTML
+sectionHId headerId = h3_ [centerText, id_ headerId]
 
 subtitleH :: HTML -> HTML
 subtitleH = h5_ [centerText, singleStyle "font-style" "italic"]
