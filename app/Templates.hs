@@ -302,8 +302,19 @@ standardHead SiteConfig {siteTitle, hasCodeBlocks, hasMathBlocks} = doctypehtml_
     faviconLink
     css
     when hasCodeBlocks codeBlockCSS
+    analytics
+    script_ [src_ "/static/theme-switcher.js"] emptyText
     script_ [src_ "/static/theme-switcher.js"] emptyText
     script_ [src_ "/static/main.js"] emptyText
+
+analytics :: HTML
+analytics =
+  with
+    (script_ "")
+    [ data_ "goatcounter" "https://ori-livson.goatcounter.com/count",
+      async_ "async",
+      src_ "//gc.zgo.at/count.js"
+    ]
 
 css :: HTML
 css = do
