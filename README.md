@@ -50,8 +50,6 @@ Add `-fno-comments` to disable the GitHub API code (used to pull comments)
 
 Add `-fforce-recomp` because we want to rebuild if we change markdown files for instance
 
-I also keep another module an executable `adhoc` for adhoc tasks such as converting a specific tex file to html to save in `content`.
-
 ## Run Simple Local Server
 
 ```

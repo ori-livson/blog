@@ -17,6 +17,3 @@ cradle:
 
     - path: "app/LucidUtils.hs"
       component: "blog:exe:blog"
-
-    - path: "app/AdHoc.hs"
-      component: "blog:exe:blog"
