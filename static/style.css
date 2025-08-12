@@ -218,11 +218,14 @@ ul.all-tags {
   display: flex;
   list-style: none;
   flex-wrap: wrap;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
 }
 
 li.all-tags {
   flex-shrink: 0;
+  width: 30%;
+  text-align: center;
 }
 
 /* Post Body */
@@ -258,7 +261,7 @@ p:has(+ blockquote) {
 }
 
 .content li {
-  padding-left: 1rem;
+  margin-left: 2rem;
 }
 
 code {
