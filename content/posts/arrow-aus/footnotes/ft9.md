@@ -1,0 +1,1 @@
+Livson, O., Prokopenko, M. *Comparing and Contrasting Arrow's Impossibility Theorem and Gödel's Incompleteness Theorem.* (2025) [https://arxiv.org/abs/2504.06589](https://arxiv.org/abs/2504.06589).

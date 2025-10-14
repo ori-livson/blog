@@ -6,4 +6,4 @@ By "expressive", I mean an election outcome consist of preferences that no indiv
 
 This principle can be found in other domains. For example, if one wanted English to be unambiguous, or free from Self-Referential Paradoxes (e.g., the sentence *"This sentence is false"*), one would need to remove so many words and grammatical forms that English would also have to become very dull.
 
-In fact, my aforementioned 2025 [paper](https://arxiv.org/abs/2504.06589) demonstrates formal links of this sort by relating the trade-offs of Arrow's Impossibility Theorem to the trade-off of incompleteness in logic (specifically, Gödel's First Incompleteness Theorem). A post outlining that paper is coming soon.
+In fact, another 2025 [paper](https://arxiv.org/abs/2504.06589) of mine demonstrates formal links of this sort by relating the trade-offs of Arrow's Impossibility Theorem to the trade-off of incompleteness in logic (specifically, Gödel's First Incompleteness Theorem)<sup>[9](#footnote-9)</sup>. A post outlining that paper is coming soon.

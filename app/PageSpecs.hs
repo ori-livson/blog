@@ -5,18 +5,17 @@ where
 
 import qualified Data.Map as Map
 import Data.Time.Calendar (fromGregorian)
-import GitHub (loadCommentsFromIssue)
-import LucidUtils (LucidHtml, loadPath, loadPathsOrdered)
+import LucidUtils (HTML, loadPath, loadPathsOrdered)
 import System.FilePath ((</>))
 import Templates
   ( Blog (..),
     Post (..),
     Posts,
     SiteConfig (..),
-    -- youtube,
-    commentToHtml,
     container,
+    generateComments,
     makeFigure,
+    -- youtube,
   )
 
 loadBlog :: Bool -> Bool -> IO Blog
@@ -29,21 +28,21 @@ loadBlog devMode noComments = do
   publications <- loadPublications
   return Blog {home, about, upcoming, contact, publications, posts}
 
-loadAbout :: IO LucidHtml
+loadAbout :: IO HTML
 loadAbout = container <$> loadPath "content/about.md"
 
-loadUpcomingPlans :: IO LucidHtml
+loadUpcomingPlans :: IO HTML
 loadUpcomingPlans = container <$> loadPath "content/upcoming.md"
 
-loadContact :: IO LucidHtml
+loadContact :: IO HTML
 loadContact = do
   container <$> loadPath "content/contact.md"
 
-loadHome :: IO LucidHtml
+loadHome :: IO HTML
 loadHome = do
   container <$> loadPath "content/home.md"
 
-loadPublications :: IO LucidHtml
+loadPublications :: IO HTML
 loadPublications = do
   container <$> loadPath "content/publications.md"
 
@@ -135,6 +134,10 @@ loadArrowAus noComments = do
     bodyDir = rootDir </> "body"
     load = \x -> loadPath $ bodyDir </> x
 
+---------------------------------------------------------------------------------------------------
+-- Example Post
+---------------------------------------------------------------------------------------------------
+
 loadExamplePost :: Bool -> IO Post
 loadExamplePost noComments = do
   intro <- load "intro.md"
@@ -172,8 +175,3 @@ loadExamplePost noComments = do
     rootDir = "content/posts/example"
     bodyDir = rootDir </> "body"
     load = \x -> loadPath $ rootDir </> "body" </> x
-
--- Bool arg is noComments
-generateComments :: Bool -> Int -> IO (Maybe [LucidHtml])
-generateComments True _ = return Nothing
-generateComments False issueId = Just . map commentToHtml <$> loadCommentsFromIssue issueId
