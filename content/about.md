@@ -79,7 +79,7 @@ Additionally, since **2021**, I have been the lead software engineer at the Canc
 
 As of **May 2025**, I am also an "Associate Lecturer PhD Teaching Fellow" in the School of Computer Science, University of Sydney. For Semester 2, 2025, I developed and delivered the Turing Machine and Undecidability lectures for [COMP2022: Models of Computation](https://www.sydney.edu.au/units/COMP2022).
 
-Prior to these roles, I held various other roles in software engineering, data science and app development, comprising **over 8 years of industry experience**. I have also completed a Masters of Research in Applied Category Theory at Macquarie University and a Bachelor of Science in Mathematics and Computer Science at the University of Sydney.
+Prior to these roles, I held various other roles in software engineering, data science and app development, comprising **over 10 years of industry experience**. I have also completed a Masters of Research in Applied Category Theory at Macquarie University and a Bachelor of Science in Mathematics and Computer Science at the University of Sydney.
 
 This website was generated from Haskell project I developed, and statically hosted via AWS. I plan to write a number of related posts about web development (see the [upcoming](/upcoming) page), but as is, the website is publicly available on [GitHub](https://github.com/ori-livson/blog).
 
