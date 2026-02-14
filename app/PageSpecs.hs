@@ -26,7 +26,8 @@ loadBlog devMode noComments = do
   posts <- loadPosts devMode noComments
   contact <- loadContact
   publications <- loadPublications
-  return Blog {home, about, upcoming, contact, publications, posts}
+  teaching <- loadTeaching
+  return Blog {home, about, upcoming, contact, publications, teaching, posts}
 
 loadAbout :: IO HTML
 loadAbout = container <$> loadPath "content/about.md"
@@ -45,6 +46,10 @@ loadHome = do
 loadPublications :: IO HTML
 loadPublications = do
   container <$> loadPath "content/publications.md"
+
+loadTeaching :: IO HTML
+loadTeaching = do
+  container <$> loadPath "content/teaching.md"
 
 loadPosts :: Bool -> Bool -> IO Posts
 loadPosts dev noComments = do

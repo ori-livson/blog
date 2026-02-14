@@ -24,6 +24,7 @@ import Templates
     assemblePost,
     postsHtml,
     publicationsHtml,
+    teachingHtml,
     tagMatchHtml,
     upcomingHtml,
   )
@@ -50,7 +51,7 @@ main = do
   generateStaticSite blog
 
 generateStaticSite :: Blog -> IO ()
-generateStaticSite Blog {home, about, upcoming, contact, publications, posts} = do
+generateStaticSite Blog {home, about, upcoming, contact, publications, teaching, posts} = do
   putStrLn $ "Deleting: " ++ targetDir ++ " directory"
   removeDirectoryRecursive targetDir
   safeCreateDir targetDir
@@ -66,6 +67,7 @@ generateStaticSite Blog {home, about, upcoming, contact, publications, posts} = 
   htmlToDir (upcomingHtml upcoming) $ targetDir </> "upcoming"
   htmlToDir (contactHtml contact) $ targetDir </> "contact"
   htmlToDir (publicationsHtml publications) $ targetDir </> "publications"
+  htmlToDir (teachingHtml teaching) $ targetDir </> "teaching"
   Map.traverseWithKey postToFile posts
   mapM_ tagToFile $ distinctTags posts -- page per tag listing posts with that tag
   where

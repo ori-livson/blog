@@ -1,3 +1,5 @@
+- Livson, O., Pritam, S., Prokopenko, M. **(2026)**. [Condorcet's Paradox as Non-Orientability.](https://arxiv.org/abs/2601.07283)
+
 - Livson, O., Prokopenko, M. **(2025)**. [Arrow's Impossibility Theorem as a Generalisation of Condorcet's Paradox.](https://arxiv.org/abs/2510.09076)
 
 - Livson, O., Prokopenko, M. **(2025)**. [Comparing and Contrasting Arrow's Impossibility Theorem and Gödel's Incompleteness Theorem.](https://arxiv.org/abs/2504.06589)

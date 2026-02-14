@@ -17,6 +17,7 @@ module Templates
     container,
     youtube,
     titleH,
+    teachingHtml,
     Post (..),
     Posts,
     Blog (..),
@@ -50,6 +51,7 @@ data Blog = Blog
     upcoming :: HTML,
     contact :: HTML,
     publications :: HTML,
+    teaching :: HTML,
     posts :: Posts
   }
 
@@ -171,6 +173,18 @@ publicationsHtml contents = do
   standardBody True $ do
     standardBanner
     standardTitle "Publications" Nothing
+    contents
+
+---------------------------------------------------------------------------------------------------
+-- /Teaching
+---------------------------------------------------------------------------------------------------
+
+teachingHtml :: HTML -> HTML
+teachingHtml contents = do
+  standardHead $ plainSite "Teaching"
+  standardBody True $ do
+    standardBanner
+    standardTitle "Teaching" Nothing
     contents
 
 ---------------------------------------------------------------------------------------------------
@@ -363,6 +377,7 @@ navBar = do
         navLink "/" "home"
         navLink "/about" "about"
         navLink "/publications" "publications"
+        navLink "/teaching" "teaching"
         navLink "/posts" "posts"
         navLink "/tags" "tags"
         navLink "/upcoming" "upcoming"
