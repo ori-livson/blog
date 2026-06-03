@@ -385,7 +385,7 @@ navBar = do
         div_ [class_ "expander"] ""
         li_ [id_ "theme-li", class_ "navbar-item"] $ do
           themeButton
-          clearThemeButton
+          revertToOSThemeButton
 
 navLink :: Text -> Text -> HTML
 navLink path text = do
@@ -427,8 +427,8 @@ svgIcon svgId =
     id_ svgId
   ]
 
-clearThemeButton :: HTML
-clearThemeButton =
+revertToOSThemeButton :: HTML
+revertToOSThemeButton =
   button_
     [id_ "button-revert-to-os-theme-preference", class_ "button-primary"]
     "OS Theme"
