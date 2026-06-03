@@ -1,5 +1,7 @@
 # Ori Livson's Blog
 
+My personal site & blog generator, currently hosted at [https://ori-livson.com](https://ori-livson.com/)
+
 Feel free to fork this project and create your own:
 - `content` folder
 - `app/PageSpecs.hs` implementing:
