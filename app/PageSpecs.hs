@@ -54,7 +54,8 @@ loadTeaching = do
 loadPosts :: Bool -> Bool -> IO Posts
 loadPosts dev noComments = do
   arrowAusPost <- Map.singleton "is-there-a-right-way-to-vote" <$> loadArrowAus noComments
-  let mainPosts = [arrowAusPost]
+  staticSite1 <- Map.singleton "how-this-website-was-made" <$> loadHowThisSiteWasMade noComments
+  let mainPosts = [arrowAusPost, staticSite1]
 
   examplePost <-
     if dev
@@ -136,6 +137,66 @@ loadArrowAus noComments = do
       }
   where
     rootDir = "content/posts/arrow-aus"
+    bodyDir = rootDir </> "body"
+    load = \x -> loadPath $ bodyDir </> x
+
+---------------------------------------------------------------------------------------------------
+-- How this website was made
+---------------------------------------------------------------------------------------------------
+
+loadHowThisSiteWasMade :: Bool -> IO Post
+loadHowThisSiteWasMade noComments = do
+  footnotes <- loadPathsOrdered $ rootDir </> "footnotes"
+  let issueId = 3
+  comments <- generateComments noComments issueId
+  let postTitle = "How this website was made"
+
+  intro <- load "0-intro.md"
+  why <- load "1-the-requirements.md"
+  functionalTemplating <- load "2-functional-templating.md"
+  minimisingFrameworks <- load "3-minimising-frameworks.md"
+  commentsTrick <- load "4-comments.md"
+  themeing <- load "5-dark-light-mode.md"
+  looks <- load "6-looks.md"
+  codeAndMath <- load "7-code-blocks-and-math.md"
+  hosting <- load "8-hosting.md"
+
+  let body =
+        [ (Nothing, intro),
+          (Just "The Requirements", why),
+          (Just "Functional Templating", functionalTemplating),
+          (Just "Minimising Frameworks", minimisingFrameworks),
+          (Just "Comments", commentsTrick),
+          (Just "Themes", themeing),
+          (Just "Looks", looks),
+          (Just "Markdown Authoring", codeAndMath),
+          (Just "Deployment and Hosting", hosting)
+        ]
+
+  return
+    Post
+      { title = postTitle,
+        subtitle = Just "Clean HTML templating in Haskell and tricks for webdev on the cheap.",
+        date = fromGregorian 2026 06 04,
+        tags =
+          [ "Software Engineering",
+            "Web Development",
+            "Haskell"
+          ],
+        body = body,
+        footnotes = footnotes,
+        comments = comments,
+        issueId = issueId,
+        staticPaths = [],
+        siteConfig =
+          SiteConfig
+            { siteTitle = postTitle,
+              hasCodeBlocks = True,
+              hasMathBlocks = False
+            }
+      }
+  where
+    rootDir = "content/posts/how-this-website-was-made"
     bodyDir = rootDir </> "body"
     load = \x -> loadPath $ bodyDir </> x
 

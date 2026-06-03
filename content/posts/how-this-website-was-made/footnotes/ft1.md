@@ -1,0 +1,1 @@
+This doesn't include the $15.40 USD per year I pay for my domain through Amazon Registrar but is rather is the **$0.57 USD** per month I pay for AWS Route 53 to serve the static website I've uploaded to AWS Amplify for free.

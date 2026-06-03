@@ -1,0 +1,5 @@
+Note, my original inspiration for this was [Luke Smith](https://lukesmith.xyz/)'s rants on [modern web bloat](https://www.youtube.com/watch?v=cvDyQUpaFf4). For him, living in the woods, he found that loading a simple cooking recipe site would load 20-30Mb of data, ads and trackers over several minutes.
+
+This eventually led me to HTMX, which allows you to get quite a cool amount of interactivity and dynamic content out of an API server. It works particularly well for me when I need to make simple data entry forms and tables for work; they don't have to be pretty, but they do have to be user-friendly.
+
+The free ebook [Hypermedia Systems](https://hypermedia.systems/book/contents/) is a good place to start with HTML. There are also lots of good talks - especially by its creator Carson Gross, e.g., [this presentation on theprimeagen](https://www.youtube.com/watch?v=LriHRa9t1fQ). At the very least, that experiment is a great way to take a step back and conceptualise what the web really is.
