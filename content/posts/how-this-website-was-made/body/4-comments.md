@@ -11,6 +11,6 @@ Then I stumbled on [Rachel Smith's blog](https://rachsmith.com/static-blog-comme
 
 >**The idea of gaining so much by just taking a way a bit of functionality blew my mind... We really lack an opposite to the phrase "throwing the baby out with the bathwater".**
 
-Afterwards, I found [Ryan HBM's blog](https://www.richyhbm.co.uk/posts/using-github-issues-as-comments-for-a-static-site/), which found an ingenious way to host comments in Rachel's style. Simply use the GitHub issues of your repository as the form the submitting comments, and build the website by loading those comments using the GitHub API. The benefit here is GitHub handles the tough work of formatting your comments, images, GIFs, etc., providing moderation, storage, accounts, and more.
+Afterwards, I found [Ryan HBM's blog](https://www.richyhbm.co.uk/posts/using-github-issues-as-comments-for-a-static-site/), which found an ingenious way to host comments in Rachel's style. Simply use the GitHub issues of your repository as the form for submitting comments, and build the website by loading those comments using the GitHub API. The benefit here is GitHub handles the tough work of formatting your comments, images, GIFs, etc., providing moderation, storage, accounts, and more.
 
 My Haskell code for reading GitHub comments can be found [here](https://github.com/ori-livson/blog/blob/master/app/GitHub.hs).

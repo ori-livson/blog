@@ -1,8 +1,8 @@
 #### *Towards HTML Templating that actually looks like HTML*
 
-Many webdev development frameworks allow you to generate HTML using **HTML templating**. This works by users writing the HTML they can, and leaving special *placeholders* to later be filled-in according to variables; they also *wrappers* around HTML that cause HTML to be rendered according to if-else logic or per iterations of a loop.
+Many webdev development frameworks allow you to generate HTML using **HTML templating**. This works by letting users write the HTML they can, while leaving special *placeholders* to be filled-in by variables. HTML templating also typically includes *wrappers* around HTML that cause it to be rendered according to if-else logic or per iterations of a loop.
 
-However, mixing HTML with programmatic logic (i.e., variables, if-else logic and loops) often leads to templates that lack readability or even resemblance to the HTML it generates. Examples include:
+However, mixing HTML with programmatic logic (i.e., variables, if-else logic and loops) often leads to templates that lack readability, let alone even resembling the HTML it generates. Examples include:
 
 **React JSX (JavaScript)**
 ```jsx

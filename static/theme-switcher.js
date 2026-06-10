@@ -40,8 +40,8 @@ function initThemeSwitcher() {
       localStorage.removeItem("user-theme-preference");
       toggleTheme({ toDark: currentPreferenceIsDark() });
     });
-  /** Run watcher in the background to update them every 1s */
-  setInterval(watcher, 1000);
+  /** Run watcher in the background to update them every 500ms */
+  setInterval(watcher, 500);
 }
 
 function watcher() {
