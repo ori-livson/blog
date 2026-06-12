@@ -1,0 +1,80 @@
+<div style="padding-left: 20px; zoom: 0.75; border-style: solid; padding: 20px 30px""">
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <h3>HTMX Demo</h3>
+    <span style="margin-bottom: 0">
+      <input
+        type="text"
+        style="width: 30ch"
+        placeholder="Type to filter rows by name..."
+      />
+      <button>Select All</button>
+    </span>
+    <table id="table" style="width: 200px">
+      <thead>
+        <tr>
+          <th
+            style="
+              text-align: left;
+              padding: 8px;
+              border-bottom: 1px solid #eee;
+            "
+          >
+            Selected<span
+              style="
+                color: black;
+                margin-left: 2ch;
+                text-decoration: none;
+                cursor: pointer;
+              "
+              >↑</span
+            >
+          </th>
+          <th
+            style="
+              text-align: left;
+              padding: 8px;
+              border-bottom: 1px solid #eee;
+            "
+          >
+            Name<span
+              style="
+                color: red;
+                margin-left: 2ch;
+                text-decoration: none;
+                cursor: pointer;
+              "
+              >↑</span
+            >
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 8px; border-bottom: 1px solid #eee">
+            <input type="checkbox" name="selected" value="1" />
+          </td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee">Alice</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border-bottom: 1px solid #eee">
+            <input
+              type="checkbox"
+              name="selected"
+              value="2"
+              checked="checked"
+            />
+          </td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee">Bob</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border-bottom: 1px solid #eee">
+            <input type="checkbox" name="selected" value="3" />
+          </td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee">Charlie</td>
+        </tr>
+      </tbody>
+    </table>
+    <input type="submit" style="width: 30ch" />
+    <p id="result"></p>
+  </div>
+</div>

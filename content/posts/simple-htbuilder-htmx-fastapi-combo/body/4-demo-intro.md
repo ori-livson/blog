@@ -1,0 +1,1 @@
+For the remainder of this post, we will go over some key portions of this example project (available [here](https://github.com/ori-livson/simple-htbuilder-htmx-fastapi-combo)). Here's a non-functioning preview of what this project produces.

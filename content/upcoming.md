@@ -1,6 +1,6 @@
 **Mathematics**
 
-- "Creating the Real Projective Plane from a Sealed Cylinder"
+- "Creating the Real Projective Plane from a Capped Cylinder"
 
 - "Condorcet's Paradox as Non-Orientability"
 
@@ -10,6 +10,6 @@
 
 **Software Development**
 
-- "Basic Design Patterns for HTMX Based Data Entry Forms & Viewers"
-
 - "An Opinionated Beginner's Guide to Setting Up Haskell Projects"
+
+- "HTMX with Haskell's Lucid & Servant

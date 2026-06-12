@@ -55,7 +55,8 @@ loadPosts :: Bool -> Bool -> IO Posts
 loadPosts dev noComments = do
   arrowAusPost <- Map.singleton "is-there-a-right-way-to-vote" <$> loadArrowAus noComments
   staticSite1 <- Map.singleton "how-this-website-was-made" <$> loadHowThisSiteWasMade noComments
-  let mainPosts = [arrowAusPost, staticSite1]
+  pythonHTMX <- Map.singleton "simple-htbuilder-htmx-fastapi-combo" <$> loadPythonHTMX noComments
+  let mainPosts = [arrowAusPost, staticSite1, pythonHTMX]
 
   examplePost <-
     if dev
@@ -117,7 +118,7 @@ loadArrowAus noComments = do
   return
     Post
       { title = postTitle,
-        subtitle = Just "Arrow's Impossibility Theorem and the 2025 Australian Federal Election",
+        subtitle = Just "Arrow's Impossibility Theorem and the 2025 Australian Federal Election.",
         date = fromGregorian 2025 05 12,
         tags =
           [ "Mathematics",
@@ -197,6 +198,74 @@ loadHowThisSiteWasMade noComments = do
       }
   where
     rootDir = "content/posts/how-this-website-was-made"
+    bodyDir = rootDir </> "body"
+    load = \x -> loadPath $ bodyDir </> x
+
+---------------------------------------------------------------------------------------------------
+-- HTMX with Python's HTBuilder & FastAPI
+---------------------------------------------------------------------------------------------------
+
+loadPythonHTMX :: Bool -> IO Post
+loadPythonHTMX noComments = do
+  footnotes <- loadPathsOrdered $ rootDir </> "footnotes"
+  let issueId = 4
+  comments <- generateComments noComments issueId
+  let postTitle = "HTMX with Python's HTBuilder & FastAPI"
+
+  intro <- load "0-intro.md"
+  htmx <- load "1-what-is-htmx.md"
+  htbuilder <- load "2-what-is-htbuilder.md"
+  fastapi <- load "3-fastapi.md"
+  demoIntro <- load "4-demo-intro.md"
+  preview <- load "5-preview.html"
+  demoIntro2 <- load "6-demo-intro-2.md"
+  sessionState <- load "7-session-state.md"
+  multiupdates <- load "8-updating-mutliple-elements.md"
+  conclusion <- load "9-conclusion.md"
+  tricks <- load "10-htbuilder-tricks.md"
+  css <- load "11-css.md"
+  extras <- load "12-extras.md"
+
+  let body =
+        [ (Just "Introduction", intro),
+          (Just "What is HTMX?", htmx),
+          (Just "Generating HTML with HTBuilder?", htbuilder),
+          (Just "FastAPI", fastapi),
+          (Just "A First Project", demoIntro),
+          (Nothing, preview),
+          (Nothing, demoIntro2),
+          (Just "Session State", sessionState),
+          (Just "Updating Multiple HTMX Targets", multiupdates),
+          (Just "Conclusion", conclusion),
+          (Just "HT Builder Tricks", tricks),
+          (Just "CSS", css),
+          (Just "HTMX Extras", extras)
+        ]
+
+  return
+    Post
+      { title = postTitle,
+        subtitle = Just "Interactive websites all in one server generating HTML snippets.",
+        date = fromGregorian 2026 06 12,
+        tags =
+          [ "Software Engineering",
+            "Web Development",
+            "Python"
+          ],
+        body = body,
+        footnotes = footnotes,
+        comments = comments,
+        issueId = issueId,
+        staticPaths = [],
+        siteConfig =
+          SiteConfig
+            { siteTitle = postTitle,
+              hasCodeBlocks = True,
+              hasMathBlocks = False
+            }
+      }
+  where
+    rootDir = "content/posts/simple-htbuilder-htmx-fastapi-combo"
     bodyDir = rootDir </> "body"
     load = \x -> loadPath $ bodyDir </> x
 
