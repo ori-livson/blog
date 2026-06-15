@@ -12,3 +12,12 @@ I extended Codemzy's approach in the following way:
 - Finally, I poll the user / OS preferences every 0.5 seconds to apply any updates.
 
 You can view the JavaScript [here](https://github.com/ori-livson/blog/blob/master/static/theme-switcher.js).
+
+**Note:** the files `light-theme.css` and `dark-theme.css` primarily contain CSS variables, (e.g., `--text-color: #FFF;` for the dark theme), a nifty trick there is adding theme specific CSS rules to these files, e.g.,
+```css
+svg,
+img {
+  filter: invert(1) hue-rotate(180deg);
+}
+```
+for inverting the colours of `<image>` and `<svg>` elements in dark mode. 

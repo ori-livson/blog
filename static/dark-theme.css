@@ -10,6 +10,7 @@
   --strong-color: #cf4d85;
 }
 
-svg {
+svg,
+img {
   filter: invert(1) hue-rotate(180deg);
 }

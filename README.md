@@ -46,11 +46,20 @@ targetDir = "html"
 cabal run -fforce-recomp blog
 ```
 
-Add `-fdev` to include an example post.
+(`-fforce-recomp` because we want to rebuild if we change markdown files for instance)
 
-Add `-fno-comments` to disable the GitHub API code (used to pull comments)
+With options:
 
-Add `-fforce-recomp` because we want to rebuild if we change markdown files for instance
+Add `-dev` to include an example post.
+
+Add `-no-comments` to disable the GitHub API code (may be needed to pull comments)
+
+e.g., 
+
+```bash
+cabal run -fforce-recomp blog -- --no-comments
+```
+
 
 ## Run Simple Local Server
 

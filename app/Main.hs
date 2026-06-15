@@ -10,45 +10,59 @@ import Data.Map as Map (elems, traverseWithKey)
 import Data.Text.Lazy.IO as TLIO (writeFile)
 import Lucid (renderText)
 import LucidUtils (HTML, expandPath)
+import Options.Applicative
 import PageSpecs (loadBlog)
 import System.Directory (copyFile, createDirectoryIfMissing, removeDirectoryRecursive)
-import System.FilePath ((</>), takeFileName)
+import System.FilePath (takeFileName, (</>))
 import Templates
   ( Blog (..),
-    Post (tags, staticPaths),
+    Post (staticPaths, tags),
     Posts,
     aboutHtml,
     allTagsHtml,
+    assemblePost,
     contactHtml,
     homeHtml,
-    assemblePost,
     postsHtml,
     publicationsHtml,
-    teachingHtml,
     tagMatchHtml,
+    teachingHtml,
     upcomingHtml,
   )
 
+data CliArgs = CliArgs
+  { devMode :: Bool,
+    noComments :: Bool
+  }
+
 main :: IO ()
 main = do
-#ifdef DEV_MODE
-  -- -fdev flag see: .cabal file
-  putStrLn "Running in Development Mode"
-  let devMode = True
-#else
-  putStrLn "Running in Production Mode"
-  let devMode = False
-#endif
-#ifdef NO_COMMENTS
-  -- -fdev flag see: .cabal file
-  putStrLn "Without Comments"
-  let noComments = True
-#else
-  putStrLn "With Comments"
-  let noComments = False
-#endif
+  CliArgs {devMode, noComments} <- execParser optsInfo
+
+  putStrLn $
+    if devMode
+      then "Running in Development Mode"
+      else "Running in Production Mode"
+
+  putStrLn $
+    if noComments
+      then "Without Comments"
+      else "With Comments"
+
   blog <- loadBlog devMode noComments
   generateStaticSite blog
+  where
+    optsInfo :: ParserInfo CliArgs
+    optsInfo =
+      info
+        (optionsParser <**> helper)
+        fullDesc
+
+    optionsParser :: Parser CliArgs
+    optionsParser =
+      CliArgs
+        <$> switch (long "dev")
+        <*> switch (long "no-comments")
 
 generateStaticSite :: Blog -> IO ()
 generateStaticSite Blog {home, about, upcoming, contact, publications, teaching, posts} = do
@@ -75,7 +89,7 @@ generateStaticSite Blog {home, about, upcoming, contact, publications, teaching,
     postToFile endpoint post = createHtmlDir (assemblePost post) (staticPaths post) (targetDir </> "posts" </> endpoint)
 
 htmlToDir :: HTML -> FilePath -> IO ()
-htmlToDir h d =  createHtmlDir h [] d
+htmlToDir h = createHtmlDir h []
 
 createHtmlDir :: HTML -> [FilePath] -> FilePath -> IO ()
 createHtmlDir html extraStaticPaths htmlDir = do
@@ -84,7 +98,7 @@ createHtmlDir html extraStaticPaths htmlDir = do
   safeCreateDir $ htmlDir </> "static"
   copyFile (staticSrc </> "favicon.ico") (htmlDir </> "static" </> "favicon.ico")
   forM_ extraStaticPaths $ \path ->
-      copyFile (path) (htmlDir </> "static" </> takeFileName path)
+    copyFile path (htmlDir </> "static" </> takeFileName path)
 
 distinctTags :: Posts -> [String]
 distinctTags posts = nub . concat $ tagLists -- merge tag lists and dedupe

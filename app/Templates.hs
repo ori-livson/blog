@@ -3,21 +3,22 @@
 
 module Templates
   ( aboutHtml,
+    allTagsHtml,
+    assemblePost,
+    contactHtml,
+    commentToHtml,
+    container,
     generateComments,
     homeHtml,
-    tagMatchHtml,
-    contactHtml,
-    postsHtml,
-    assemblePost,
-    upcomingHtml,
     makeFigure,
+    makeImg,
+    postsHtml,
     publicationsHtml,
-    commentToHtml,
-    allTagsHtml,
-    container,
-    youtube,
-    titleH,
+    tagMatchHtml,
     teachingHtml,
+    titleH,
+    upcomingHtml,
+    youtube,
     Post (..),
     Posts,
     Blog (..),
@@ -244,7 +245,7 @@ renderSection idx (heading, content) = do
     Nothing -> mempty
   content
   where
-    headerId = pack $ "section-" ++ (show idx)
+    headerId = pack $ "section-" ++ show idx
 
 footnotesSection :: [HTML] -> HTML
 footnotesSection [] = mempty
@@ -373,7 +374,7 @@ navBar = do
   nav_ [class_ "navbar"] $ do
     div_ [class_ "container"] $ do
       ul_ [class_ "navbar-list"] $ do
-        li_ [id_ "sandwich-li", class_ "navbar-item"] $ sandwichButton
+        li_ [id_ "sandwich-li", class_ "navbar-item"] sandwichButton
         navLink "/" "home"
         navLink "/about" "about"
         navLink "/publications" "publications"
@@ -527,6 +528,9 @@ makeFigure width caption content =
   figure_ [styleFromMap $ Map.fromList [("width", width), ("height", "auto")]] $ do
     content
     figcaption_ (toHtmlRaw caption)
+
+makeImg :: Text -> HTML
+makeImg src = img_ [src_ src]
 
 styleFromMap :: Map Text Text -> Attribute
 styleFromMap m = style_ $ mconcat $ map stylePart (M.toList m)

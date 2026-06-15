@@ -66,9 +66,11 @@ Printing either of `dom1` or `dom2` produces the following HTML (both indented o
   </ul>
 </div>
 ```
-Importantly, the source Python and resulting HTML have matching visual logic, i.e., you can mentally write out the HTML as your eyes follow the nesting of `dom1` or `dom2`'s definitions. Furthermore, htbuilder works great when paired with [fastapi](https://fastapi.tiangolo.com/features/#just-modern-python) for the server, and [htmx](https://htmx.org/) for interactivity and dynamically generating content.
+Importantly, the source Python and resulting HTML have matching visual logic, i.e., you can mentally write out the HTML as your eyes follow the nesting of `dom1` or `dom2`'s definitions. Furthermore, htbuilder works great when paired with [fastapi](https://fastapi.tiangolo.com/features/#just-modern-python) for the server, and [htmx](https://htmx.org/) for interactivity and dynamically generating content. 
 
-In this website, I used Haskell's [Lucid](https://hackage.haskell.org/package/lucid2-0.0.20250303#readme) package (see <sup>[2](#footnote-2)</sup> for tutorial info). The indentation of Haskell's `do-blocks` mirrors the resulting HTML nesting, and seamlessly composes with other HTML returning functions. Below is how the nav-bar for this site is written.
+**Edit:** see this [newer post](/posts/simple-htbuilder-htmx-fastapi-combo/) for more details.
+
+In this website, I used Haskell's [Lucid](https://hackage.haskell.org/package/lucid2#readme) package (see [Footnote 2](#footnote-2) for tutorial info). The indentation of Haskell's `do-blocks` mirrors the resulting HTML nesting, and seamlessly composes with other HTML returning functions. Below is how the nav-bar for this site is written.
 ```haskell
 navBar :: HTML
 navBar = do
@@ -103,12 +105,8 @@ revertToOSThemeButton :: HTML
 ...
 ```
 
-Note, the repeated `navLink` elements could have been generated using a `forM` loop, but I don't think that would improve readability in this case.
+Note, the repeated `navLink` elements could have been generated using a `forM_` loop, but I don't think that would improve readability in this case.
 
-#### *So why Haskell (i.e., strongly typed functional)?*
+**Edit:** see this [even newer post](/posts/lucid-htmx-servant-combo) that goes into much more detail about Lucid (as well as HTMX), and the perks of using functional programming languages in web development besides the usual cliché of *"if it compiles, it works"*.
 
-With the right languages and tools, programming should feel like putting Lego blocks together, and when the pieces *click*, you're usually confident it works. For programming, it's: *"if it compiles, it works"* - so Python falls short there.
-
-However, a compiler isn't enough on its own. This is because modern webdev frameworks are often plagued with unclear **events** and **lifecycle** systems (not to mention CSS). In other words, a typescript-based framework may compile, but still leave you feeling like an idiot after you click something on the screen and nothing happens, or nothing centres on the page for the 100<sup>th</sup> time.
-
-The first time I didn't feel that kind of dread doing web development was programming with [elm](https://elm-lang.org/) plus [elm-ui](https://package.elm-lang.org/packages/mdgriffith/elm-ui/latest/) for replacing CSS. However, Elm shines best when making single-page-apps with lots of state and interactivity. In other words, not this site. So the most practical solution to me was to use very minimal, compartmentalised JavaScript and CSS.
+I also highly, recommend looking into [elm](https://elm-lang.org/) for it's very interesting approach to developing single-page-apps (i.e., not this website), and its user-friendliness. Plus, it also features [elm-ui](https://package.elm-lang.org/packages/mdgriffith/elm-ui/latest/) for replacing CSS (talk [here](https://www.youtube.com/watch?v=Ie-gqwSHQr0)), and may soon be getting a DB language Acadia, made by elm's creator Evan Czaplicki.

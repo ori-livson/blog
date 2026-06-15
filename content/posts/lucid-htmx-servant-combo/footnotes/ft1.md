@@ -1,3 +1,3 @@
 Besides YouTube, tutorials are a bit lacking here and tend to focus on the improvements of Lucid over another package Blaze HTML. Nevertheless, [Monday Morning Haskell](https://mmhaskell.com/blog/2020/3/16/lucid-another-html-option)'s tutorial is a good start. [Chris Done](https://chrisdone.com/posts/lucid/)'s post goes into other benefits and subtleties around how the `Html` monad works, as well as the [Hackage homepage](https://hackage.haskell.org/package/lucid2#readme).
 
-**NOTE**: I'm using the original `lucid` package rather than `lucid2` because of compatibility issues with`lucid-svg`.
+**Note:** I prefer to use the original lucid v1

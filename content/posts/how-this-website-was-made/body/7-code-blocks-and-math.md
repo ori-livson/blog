@@ -1,4 +1,4 @@
-The implementation involves using Haskell's [Pandoc](https://pandoc.org/) package to convert Markdown to [Lucid](https://hackage.haskell.org/package/lucid2-0.0.20250303#readme) HTML. A useful, unintended consequence is that writing raw HTML into markdown files just functions as normal HTML in the corresponding converted HTML. For example, converting:
+The implementation involves using Haskell's [Pandoc](https://pandoc.org/) package to convert Markdown to [Lucid](https://hackage.haskell.org/package/lucid2#readme) HTML. A useful, unintended consequence is that writing raw HTML into markdown files just functions as normal HTML in the corresponding converted HTML. For example, converting:
 ```markdown
 # Hello
 
