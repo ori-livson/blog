@@ -1,5 +1,3 @@
-Before jumping into code, let's go through a solution of what the DOM should look like, what the primary HTMX powered elements are, when they trigger HTTP requests, and what the **target** of those requests are. In this case, what part of the DOM's outerHYML should be replaced by response of those requests (note: HTMX has many other options for what to do with responses). 
+Before jumping into the code, let's go through a solution of what the DOM should look like, what the primary HTMX powered elements are, when they trigger HTTP requests, and what the **target** of those requests are. In this case, target means what part of the DOM's outerHTML should be replaced by response HTML (note: HTMX has many other options for what to do with responses).
 
 Figure 1 below details the DOM, what triggers requests, and what the targets of those requests are. Afterwards, we will outline what the responses should look like.
-
-**Note:** I stumbled my way to this solution and wish I had charted this out before I started writing code. When the flow isn't straightforward HTMX, good code generally comes from a *think before you type* approach, rather than* think by typing*, which is my usual style. The same is true for Haskell more generally.

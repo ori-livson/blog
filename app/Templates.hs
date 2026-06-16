@@ -222,8 +222,8 @@ assemblePost Post {title, subtitle, tags, body, footnotes, comments, issueId, si
   standardBody True $ do
     standardBanner
     postTitle title subtitle
-    tagsBar tags
     mapM_ (uncurry renderSection) $ zip [0 ..] body
+    tagsBar tags
     commentSection issueId comments
     footnotesSection footnotes
 
@@ -235,8 +235,11 @@ postTitle title subtitle = do
     Nothing -> mempty
 
 tagsBar :: [String] -> HTML
-tagsBar values = ul_ [class_ "tags"] $ do
-  mapM_ (\s -> li_ $ url ("/tags/" ++ s) s) values
+tagsBar values = span_ [class_ "tags"] $ do
+  "Tags: "
+  mapM_
+    (\s -> url ("/tags/" ++ s) s)
+    values
 
 renderSection :: Int -> (Maybe String, HTML) -> HTML
 renderSection idx (heading, content) = do

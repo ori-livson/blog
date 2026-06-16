@@ -168,7 +168,7 @@ blockquote {
   }
 
   figure {
-    width: 100% !important;
+    width: 95% !important;
   }
 }
 
@@ -212,8 +212,12 @@ html:not(.user-theme-preference) #button-revert-to-os-theme-preference {
 
 /* Tags */
 
-.tags li {
-  display: inline;
+span.tags {
+  width: 100%;
+  text-align: left;
+}
+
+.tags a {
   margin-right: 0.5em;
 }
 
@@ -248,7 +252,7 @@ li.all-tags {
 }
 
 .content blockquote,
-.content ul:not(.tags) {
+.content ul {
   margin-top: 0em;
   margin-bottom: 0em;
 }
@@ -299,7 +303,7 @@ figcaption {
 }
 
 ol,
-ul:not(.tags) {
+ul {
   margin-bottom: 0.5em !important;
   width: 100%;
 }
@@ -315,6 +319,10 @@ ul:not(.tags) {
   margin-bottom: 20px;
   margin-top: 10px;
   max-width: 100%;
+}
+
+p code {
+  text-wrap: auto;
 }
 
 div.sourceCode,

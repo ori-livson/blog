@@ -1,6 +1,6 @@
 Putting aside Haskell for a moment, the two main ideas I'm playing with here are:
 
-1. Programmatically generating HTML with code that really *looks like* the HTML it outputs. In other words, generating HTML with the full logic of a programming language (conditionals, loops, composition, nesting, abstraction) but not at the cost of the readability of HTML (i.e., its visual logic of nesting elements). This is something I believe HTML templating languages such as jinja and JSX often fall short at.
+1. Programmatically generating HTML with code that really *looks like* the HTML it outputs. In other words, generating HTML with the full logic of a programming language (conditionals, loops, composition, nesting, abstraction) but not at the cost of the readability of HTML. This is something I believe HTML templating languages such as jinja and JSX often fall short at.
 
 2. HTMX as a means to avoiding writing front-end code dedicated to: event listeners, managing HTTP requests, serialising and deserialising request and response objects, state management, re-rendering elements, etc. In other words, that sort of code often adds a lot of code volume, fragmentation, complexity and failure points.
 
@@ -32,7 +32,7 @@ greetings =
       li_ "whattup"
 ```
 
-In fact, the combination of the do-notation and absence of bracketing enabled by Haskell's ML-style syntax can lead to HTML generating functions that are more readable than the HTML itself. This is furthered enhanced by Haskell's unparalleled type safety and features for composition (e.g., partial application).
+In fact, the combination of the do-notation and absence of bracketing enabled by Haskell's ML-style syntax can lead to HTML generating functions that are more readable than the HTML itself. This is furthered enhanced by Haskell's unparalleled type safety and features for composition (e.g., partial function application).
 
 - **Servant** is a very interesting framework for developing REST APIs. In particular, its "API as a type" concept adds very thorough type safety to API endpoint paths, query parameters, request bodies, response types, etc. It is especially powerful when those HTTP types link to type-safe query generation (e.g., via the package [postgres-typed](https://github.com/dylex/postgresql-typed#complete-example)).
 
