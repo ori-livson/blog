@@ -118,7 +118,7 @@ blockquote {
     each row of the navbar is about 6em high
 */
 
-@media (max-width: 60em) {
+@media (max-width: 75em) {
   .expander {
     flex-grow: 0;
   }
@@ -134,25 +134,17 @@ blockquote {
     margin-top: 6.5em;
   }
 
-  figure,
-  figure img,
-  figure svg {
-    width: auto !important;
-  }
-
   figure {
     margin-left: 0;
     margin-right: 0;
   }
-}
 
-@media (max-width: 50em) {
-  .navbar-item {
-    flex-basis: 50%;
+  figure {
+    width: 90% !important;
   }
 }
 
-@media (max-width: 35em), (pointer: none), (pointer: coarse) {
+@media (max-width: 50em), (pointer: none), (pointer: coarse) {
   .navbar-item {
     flex-basis: 100%;
   }
@@ -173,6 +165,10 @@ blockquote {
   #sandwich-li,
   #theme-li.show {
     display: flex;
+  }
+
+  figure {
+    width: 100% !important;
   }
 }
 
@@ -309,6 +305,17 @@ ul:not(.tags) {
 }
 
 /* Code Blocks and Footnotes*/
+
+.html-preview {
+  padding-left: 20px;
+  zoom: 0.75;
+  border-style: solid;
+  border-color: var(--primary-color);
+  padding: 20px 30px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  max-width: 100%;
+}
 
 div.sourceCode,
 pre,

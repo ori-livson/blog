@@ -309,7 +309,7 @@ loadHaskellHTMX noComments = do
   let diagramFname = "htmx-vomit-draft-diagram.png"
   let diagram =
         makeFigure
-          "75%"
+          "80%"
           "Figure 1: HTML & HX Posts; arrow direction points at what outerHTML will be replaced by the response."
           (makeImg . pack $ "static" </> diagramFname)
   -- important the above "static" doesn't start with a / so it's the static dir relative to the index.html
