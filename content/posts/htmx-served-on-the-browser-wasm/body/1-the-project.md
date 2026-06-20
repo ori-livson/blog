@@ -1,0 +1,5 @@
+A **vomit draft** refers to a draft (traditionally of a script or novel) where the author writes continuously, with minimal editing or back-tracking. The project of this post is an online text editor to facilitate vomit draft writing. The basic idea is that the user is given an active text-box, but if too much time has passes without any edits, that text is frozen, and a new text-box is opened (see [the original post](/posts/lucid-htmx-servant-combo/)) for more details.
+
+It could use many more features to prevent backtracking and editing, but the idea is to showcase HTMX beyond the usual example of data-entry forms.
+
+Below, is a non-functioning preview of the idea; a working version is also available [here](/other-projects/htmx-served-in-browser-wasm/), i.e., the version that serves the HTMX endpoints via a `.wasm`.

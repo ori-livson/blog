@@ -1,0 +1,9 @@
+Recently I've written some posts showcasing projects that serve HTMX endpoints with APIs that functionally generate HTML, i.e., [this post for Haskell](/posts/lucid-htmx-servant-combo/) and [this post for Python which more background](/posts/simple-htbuilder-htmx-fastapi-combo/). However, since the demo projects I made for these posts don't rely on any backend services such as databases, it made me wonder: ***"can the API serving the HTMX endpoints live entirely on the browser?"*** If so, one can use HTMX in static websites.
+
+It's a strange idea to be sure, but if they way HTMX provides interactivity and dynamic content speaks to you, this may be an effective way of combining the benefits of HTMX with the benefits of statically generating websites (e.g., speed, caching, hosting costs - see [this related post of mine](/posts/how-this-website-was-made/)).
+
+Luckily, there's [this repo](https://github.com/ernestmarcinko/htmx-serverless) by Ernest Marcinko that allows one to substitute HTMX's HTTP requests with JavaScript functions that capture query parameters / form data to serve HTML back. So, by compiling my existing API's endpoints into WebAssembly, I can serve HTMX entirely on the browser!
+
+However, a significant motivation of HTMX is eliminating cumbersome JavaScript normally needed for routing HTTP requests and responses. Thus, I believe that any solution for serving HTMX on the browser must auto-generate the JavaScript routing code. Moreover, if a new HTMX endpoint is added, no more code should be added to the backend (i.e., `.wasm` generating project) than would be needed in the original backend API server.
+
+In this post, we will go over a solution based on the Haskell project behind [this post](/posts/lucid-htmx-servant-combo/); all the code is available in this [public repo](https://github.com/ori-livson/haskell-htmx-to-wasm) of mine.

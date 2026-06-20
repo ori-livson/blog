@@ -1,0 +1,62 @@
+<div id="vomit-editor-preview" class="html-preview"">
+  <style>
+      #vomit-editor-preview textarea {
+        display: block;
+        background-color: var(--primary-color);
+
+        overflow-y: scroll;
+        scrollbar-color: #444 #111;
+
+        max-width: 100%;
+
+        /* Unset Skeleton.css properties */
+        height: unset;
+        min-height: unset;
+        max-height: unset;
+      }
+
+      #vomit-editor-preview button {
+        background: transparent;
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+        cursor: pointer;
+        margin-top: 12px;
+        margin-right: 12px;
+      }
+
+      #vomit-editor-preview button:hover {
+        background: var(--primary-color);
+        color: black;
+      }
+  </style>
+  <h3>Vomit Draft Editor</h3>
+  <p>
+    Once you start typing, you can only stop typing for 30 seconds before your
+    text is locked in!
+  </p>
+  <form hx-post="/finish" hx-target="#container" hx-swap="outerHTML">
+    <div id="container">
+      <div id="active">
+        <textarea
+          rows="5"
+          hx-post="/reset-timer"
+          hx-trigger="input changed delay:300ms, paste changed delay:300ms, cut changed delay:300ms"
+          hx-target="#timer"
+          hx-swap="outerHTML"
+          name="segments"
+          cols="100"
+        ></textarea>
+        <div
+          hx-post="/30/tick"
+          hx-trigger="every 1000ms"
+          hx-target="#timer"
+          hx-swap="outerHTML"
+          id="timer"
+        >
+          Remaining: 30
+        </div>
+      </div>
+      <button type="submit">Finalise</button>
+    </div>
+  </form>
+</div>

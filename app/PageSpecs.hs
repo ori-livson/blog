@@ -61,7 +61,8 @@ loadPosts dev noComments = do
   pythonHTMX <- Map.singleton "simple-htbuilder-htmx-fastapi-combo" <$> loadPythonHTMX noComments
   haskellHTMX <- Map.singleton "lucid-htmx-servant-combo" <$> loadHaskellHTMX noComments
   constructionOfRP2 <- Map.singleton "rp2-from-a-capped-cylinder" <$> loadConstructionOfRP2 noComments
-  let mainPosts = [arrowAusPost, staticSite1, pythonHTMX, haskellHTMX, constructionOfRP2]
+  servingHTMXOnTheBrowser <- Map.singleton "htmx-served-on-the-browser-wasm" <$> loadHTMXOnTheBrowser noComments
+  let mainPosts = [arrowAusPost, staticSite1, pythonHTMX, haskellHTMX, constructionOfRP2, servingHTMXOnTheBrowser]
 
   examplePost <-
     if dev
@@ -374,7 +375,7 @@ loadHaskellHTMX noComments = do
     load x = loadPath $ bodyDir </> x
 
 ---------------------------------------------------------------------------------------------------
--- Example Post
+-- Construction of the Real Projective Plane from a Capped Cylinder
 ---------------------------------------------------------------------------------------------------
 
 loadConstructionOfRP2 :: Bool -> IO Post
@@ -496,6 +497,59 @@ loadConstructionOfRP2 noComments = do
       }
   where
     rootDir = "content/posts/rp2-cylinder"
+    bodyDir = rootDir </> "body"
+    load x = loadPath $ bodyDir </> x
+
+---------------------------------------------------------------------------------------------------
+-- HTMX served on the browser with Web Assembly
+---------------------------------------------------------------------------------------------------
+
+loadHTMXOnTheBrowser :: Bool -> IO Post
+loadHTMXOnTheBrowser noComments = do
+  let postTitle = "HTMX served on the browser with WebAssembly"
+  let subtitle = Just "A Haskell project for generating an HTMX powered website and request routing without a server."
+
+  intro <- load "0-intro.md"
+  theProject <- load "1-the-project.md"
+  preview <- load "2-preview.html"
+  theSolution <- load "3-the-solution.md"
+  conclusion <- load "4-conclusion.md"
+
+  let body =
+        [ (Just "Introduction", intro),
+          (Just "The Project", theProject),
+          (Nothing, preview),
+          (Just "The Solution", theSolution),
+          (Just "Conclusion", conclusion)
+        ]
+
+  let issueId = 5
+  comments <- generateComments noComments issueId
+
+  return
+    Post
+      { title = postTitle,
+        subtitle = subtitle,
+        date = fromGregorian 2026 06 20,
+        tags =
+          [ "Software Engineering",
+            "Web Development",
+            "Haskell"
+          ],
+        body = body,
+        footnotes = [],
+        comments = comments,
+        issueId = issueId,
+        staticPaths = [],
+        siteConfig =
+          SiteConfig
+            { siteTitle = postTitle,
+              hasCodeBlocks = True,
+              hasMathBlocks = False
+            }
+      }
+  where
+    rootDir = "content/posts/htmx-served-on-the-browser-wasm"
     bodyDir = rootDir </> "body"
     load x = loadPath $ bodyDir </> x
 

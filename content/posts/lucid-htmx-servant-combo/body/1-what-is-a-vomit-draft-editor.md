@@ -1,3 +1,3 @@
 A vomit draft refers to a draft (traditionally of a script or novel) where the author writes continuously, with minimal editing or back-tracking. The ability to write a vomit draft is a skill I absolutely do not possess, so I thought - could a restrictive text editor force me to try?
 
-Here is a non-functioning preview of the idea.
+Here is a non-functioning preview of the idea. **Edit:** there's also a working version [here](/other-projects/htmx-served-in-browser-wasm/) due to [this post](/posts/htmx-served-on-the-browser-wasm/) on serving HTMX entirely on the browser with WebAssembly.
