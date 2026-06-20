@@ -6,6 +6,6 @@ If you do go the `.wasm` API route, I'm sure you could come up with better inter
 - Being able to seamlessly switch to the usual `cabal run` and `cabal repl` commands. This was important because I'd use `cabal run` to generate the initial homepage, and `cabal repl` for debugging.
 - Being able to pass `stdout` and `stderr` through to JavaScript's `console.log`. Without this, troubleshooting problems with the `.wasm` is very difficult.
 
-So hopefully my solutions can save you some trouble there too.
+The solutions to these problems primarily lie in the `deploy.sh` script, `wasm-dispatcher.js` and `.cabal` files. So hopefully my solutions can save you some trouble there too.
 
 Happy coding!
