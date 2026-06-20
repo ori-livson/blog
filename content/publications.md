@@ -1,4 +1,4 @@
-- Livson, O., Pritam, S., Prokopenko, M. **(2026)**. [Condorcet's Paradox as Non-Orientability.](https://arxiv.org/abs/2601.07283)
+- Livson, O., Pritam, S., & Prokopenko, M. (2026). The Non-Orientable Topology of Condorcet’s Paradox. Mathematics, 14(12), 2127. [https://doi.org/10.3390/math14122127](https://doi.org/10.3390/math14122127) (also on [arXiv](https://arxiv.org/abs/2601.07283))
 
 - Livson, O., Prokopenko, M. **(2025)**. [Arrow's Impossibility Theorem as a Generalisation of Condorcet's Paradox.](https://arxiv.org/abs/2510.09076)
 
