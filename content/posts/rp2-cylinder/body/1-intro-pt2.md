@@ -1,0 +1,1 @@
+A well-known construction of the Klein bottle involves taking a cylinder / annulus (i.e., S<suo>1</sup> x [0,1] ) and gluing its openings together with an orientation reversing twist (see Figure 2)

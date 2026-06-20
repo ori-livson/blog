@@ -2,7 +2,9 @@
 {-# OPTIONS_GHC -Wno-missing-signatures #-}
 
 module Templates
-  ( aboutHtml,
+  ( addMaxWidth,
+    addMaxHeight,
+    aboutHtml,
     allTagsHtml,
     assemblePost,
     contactHtml,
@@ -116,7 +118,7 @@ postEntry endpoint Post {title, date, subtitle} = do
       div_ $ do
         a_ [href_ (pack $ "/posts/" ++ endpoint), class_ "post-title"] $ toHtml title
         case subtitle of
-          Just s -> div_ [singleStyle "font-style" "italic"] $ toHtml s
+          Just s -> div_ [singleStyle "font-style" "italic"] $ toHtmlRaw s
           Nothing -> mempty
 
 sortPosts :: Posts -> [(String, Post)]
@@ -231,7 +233,7 @@ postTitle :: String -> Maybe String -> HTML
 postTitle title subtitle = do
   postTitleH $ toHtml title
   case subtitle of
-    Just s -> subtitleH $ toHtml s
+    Just s -> subtitleH $ toHtmlRaw s
     Nothing -> mempty
 
 tagsBar :: [String] -> HTML
@@ -455,7 +457,7 @@ standardTitle :: String -> Maybe String -> HTML
 standardTitle title subtitle = do
   titleH $ toHtml title
   case subtitle of
-    Just s -> subtitleH $ toHtml s
+    Just s -> subtitleH $ toHtmlRaw s
     Nothing -> mempty
 
 standardBody :: Bool -> HTML -> HTML
@@ -531,6 +533,12 @@ makeFigure width caption content =
   figure_ [styleFromMap $ Map.fromList [("width", width), ("height", "auto")]] $ do
     content
     figcaption_ (toHtmlRaw caption)
+
+addMaxWidth :: HTML -> Text -> HTML
+addMaxWidth element val = with element [style_ $ stylePart ("max-width", val)]
+
+addMaxHeight :: HTML -> Text -> HTML
+addMaxHeight element val = with element [style_ $ stylePart ("max-height", val)]
 
 makeImg :: Text -> HTML
 makeImg src = img_ [src_ src]

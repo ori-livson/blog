@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 12.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.0"
+   id="Layer_1"
+   width="75"
+   height="150"
+   viewBox="0 0 206.82 251.857"
+   overflow="visible"
+   enable-background="new 0 0 206.82 251.857"
+   xml:space="preserve"
+   sodipodi:version="0.32"
+   inkscape:version="0.45"
+   sodipodi:docname="Klein Bottle 2.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   sodipodi:docbase="C:\Documents and Settings\JJB\My Documents\Temporary Files\Klein Bottle"
+   sodipodi:modified="true"><metadata
+   id="metadata2506"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+   id="defs2504" /><sodipodi:namedview
+   inkscape:window-height="874"
+   inkscape:window-width="1337"
+   inkscape:pageshadow="2"
+   inkscape:pageopacity="0.0"
+   guidetolerance="10.0"
+   gridtolerance="10000"
+   objecttolerance="22.7"
+   borderopacity="1.0"
+   bordercolor="#666666"
+   pagecolor="#ffffff"
+   id="base"
+   showguides="true"
+   inkscape:guide-bbox="true"
+   showgrid="true"
+   inkscape:zoom="2"
+   inkscape:cx="113.29671"
+   inkscape:cy="56.118798"
+   inkscape:window-x="99"
+   inkscape:window-y="-4"
+   inkscape:current-layer="g5444"
+   inkscape:object-points="false"
+   inkscape:object-paths="true"
+   inkscape:grid-points="true"
+   height="150px"
+   width="75px" />
+
+
+
+
+
+
+
+
+<g
+   id="g5444"><g
+     transform="matrix(2.7576,0,0,2.7576,-19.303189,-76.360748)"
+     id="g7944"><path
+       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 66.999996,36.856995 L 66.999996,133.857"
+       id="path2531" /><path
+       style="fill:#000099;fill-opacity:1;fill-rule:evenodd;stroke:#000099;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 41.999995,39.798937 L 41.999995,43.798938 L 47.999995,41.798938 L 41.999995,39.798937 z "
+       id="path2518" /><path
+       sodipodi:type="arc"
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000099;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:20.00000238;stroke-opacity:1"
+       id="path2520"
+       sodipodi:cx="44.499996"
+       sodipodi:cy="23.356995"
+       sodipodi:rx="32.5"
+       sodipodi:ry="18.5"
+       d="M 76.999996 23.356995 A 32.5 18.5 0 1 1  11.999996,23.356995 A 32.5 18.5 0 1 1  76.999996 23.356995 z" /><path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 76.999996,23.856995 L 76.999996,120.857"
+       id="path2524" /><path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 11.999994,23.856986 L 11.999994,120.857"
+       id="path2526" /><path
+       style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000099;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-dashoffset:20.00000238;stroke-opacity:1"
+       d="M 76.999994,120.857 C 76.999994,131.069 62.439994,139.357 44.499994,139.357 C 26.559994,139.357 11.999994,131.069 11.999994,120.857"
+       id="path2528"
+       sodipodi:nodetypes="css" /><path
+       style="fill:#ff0000;fill-rule:evenodd;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 68.999996,59.856996 L 64.999995,59.856996 L 66.999995,65.856996 L 68.999996,59.856996 z "
+       id="path3502" /><path
+       style="fill:#000099;fill-opacity:1;fill-rule:evenodd;stroke:#000099;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 47.999995,137.357 L 47.999995,141.357 L 41.999995,139.357 L 47.999995,137.357 z "
+       id="path3504" /></g></g></svg>

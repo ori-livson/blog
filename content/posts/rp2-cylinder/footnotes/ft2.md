@@ -1,0 +1,1 @@
+For the purposes of SEO, in addition to capped vs uncapped cylinder, one may also use the terms opens vs closed cylinder, or sealed vs unsealed cylinder.

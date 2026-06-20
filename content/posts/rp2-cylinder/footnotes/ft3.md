@@ -1,0 +1,3 @@
+For reference, a 2-sheeted covering map q is a 2-to-1 covering map, where the pre-image of each point in X has a point from each orientation of Y. Firstly this implies that Y is a surface, since q is a covering map from a surface X, so it follows that y is locally homeomorphic to the 2D plane, and hence is a surface. 
+
+Examples of 2-sheeted covering maps from connected surfaces to well-known non-orientable surfaces include maps from cylinders to Möbius strips and from tori to Klein bottles.

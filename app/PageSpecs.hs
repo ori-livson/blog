@@ -3,18 +3,22 @@ module PageSpecs
   )
 where
 
-import qualified Data.Map as Map
 -- youtube,
 
+import Control.Monad (forM)
+import qualified Data.Map as Map
 import Data.Text (pack)
 import Data.Time.Calendar (fromGregorian)
 import LucidUtils (HTML, loadPath, loadPathsOrdered)
+import System.Directory (doesDirectoryExist, listDirectory)
 import System.FilePath ((</>))
 import Templates
   ( Blog (..),
     Post (..),
     Posts,
     SiteConfig (..),
+    -- addMaxHeight,
+    addMaxWidth,
     container,
     generateComments,
     makeFigure,
@@ -56,7 +60,8 @@ loadPosts dev noComments = do
   staticSite1 <- Map.singleton "how-this-website-was-made" <$> loadHowThisSiteWasMade noComments
   pythonHTMX <- Map.singleton "simple-htbuilder-htmx-fastapi-combo" <$> loadPythonHTMX noComments
   haskellHTMX <- Map.singleton "lucid-htmx-servant-combo" <$> loadHaskellHTMX noComments
-  let mainPosts = [arrowAusPost, staticSite1, pythonHTMX, haskellHTMX]
+  constructionOfRP2 <- Map.singleton "rp2-from-a-capped-cylinder" <$> loadConstructionOfRP2 noComments
+  let mainPosts = [arrowAusPost, staticSite1, pythonHTMX, haskellHTMX, constructionOfRP2]
 
   examplePost <-
     if dev
@@ -312,6 +317,7 @@ loadHaskellHTMX noComments = do
           "80%"
           "Figure 1: HTML & HX Posts; arrow direction points at what outerHTML will be replaced by the response."
           (makeImg . pack $ "static" </> diagramFname)
+
   -- important the above "static" doesn't start with a / so it's the static dir relative to the index.html
 
   solutionPt2 <- load "4.5-the-solution.md"
@@ -371,6 +377,132 @@ loadHaskellHTMX noComments = do
 -- Example Post
 ---------------------------------------------------------------------------------------------------
 
+loadConstructionOfRP2 :: Bool -> IO Post
+loadConstructionOfRP2 noComments = do
+  let postTitle = "Construction of the Real Projective Plane from a Capped Cylinder"
+  let subtitle = Just "I.e., RP<sup>2</sup> via identification of the two caps on cylinder with an orientation-reversing twist."
+
+  intro <- load "0-intro.md"
+
+  klein1 <-
+    makeFigure
+      "20%"
+      "Figure 1: A Klein Bottle</br>( ref: <a href=\"https://commons.wikimedia.org/wiki/File:Klein_bottle.svg\">wikicommons</a>)."
+      <$> load ("static" </> "klein-bottle.svg")
+  let klein1b = addMaxWidth klein1 "200px"
+
+  introPt2 <- load "1-intro-pt2.md"
+
+  klein2 <-
+    makeFigure
+      "90%"
+      ( "Figure 2: Construction of a Klein Bottle from an uncapped cylinder "
+          <> "( ref: <a href=\"https://commons.wikimedia.org/wiki/File:Klein_Bottle_Folding_1.svg\">start of series in wikicommons</a>)."
+      )
+      <$> load ("static" </> "klein-construction.html")
+
+  let roman =
+        makeFigure
+          "30%"
+          ( "Figure 3: The Roman Surface - one of several surfaces homeomorphic to the Klein Bottle, also see: the Boy surface and cross-cap "
+              <> "( ref: <a href=\"https://commons.wikimedia.org/wiki/File:RomanSurfaceFrontalView.PNG\">wikicommons</a>)."
+          )
+          (makeImg . pack $ "static" </> "roman-surface.png")
+  let romanb = addMaxWidth roman "300px"
+
+  introPt3 <- load "1-intro-pt3.md"
+  rp2 <- load "2-rp2.md"
+
+  romanfp <-
+    makeFigure
+      "40%"
+      ( "Figure 4: Fundamental polygon for a real projective plane; i.e., the sides of square have to be stretched, twisted and glued so that like arrows join, alinged "
+          <> "( ref: <a href=\"https://commons.wikimedia.org/wiki/File:RomanSurfaceFrontalView.PNG\">wikicommons</a>)."
+      )
+      <$> load ("static" </> "rp2-fundamental-polygon.svg")
+  let romanfpb = addMaxWidth romanfp "300px"
+
+  let rp2sphere =
+        makeFigure
+          "30%"
+          ( "Figure 5: Construction of the real projective plane by identifying (i.e., gluing) antipodal points p and −p on a sphere"
+              <> "(ref: modified from <a href=\" https://commons.wikimedia.org/wiki/File:Sphere_symmetry_group_ci.png\">wikicommons</a>)."
+          )
+          (makeImg . pack $ "static" </> "real-projective-plane-sphere.png")
+  let rp2sphereb = addMaxWidth rp2sphere "400px"
+
+  proof1 <- load "proof1.md"
+  let proof1Fig =
+        makeFigure
+          "50%"
+          "Figure 6: equivalence (i.e., homeomorphism) between a capped cylinder and a sphere (ref: our [paper](https://arxiv.org/abs/2601.07283))."
+          (makeImg . pack $ "static" </> "proof-1.png")
+
+  proof2 <- load "proof2.md"
+
+  let proof2Fig =
+        makeFigure
+          "50%"
+          ( "Figure 7: equivalence between orientation reversing identification of the caps of the closed disk, "
+              <> "and identification of antipodal points on a sphere (ref: our [paper](https://arxiv.org/abs/2601.07283))."
+          )
+          (makeImg . pack $ "static" </> "proof-2.png")
+
+  proof3 <- load "proof3.md"
+
+  let body =
+        [ (Just "Introduction", intro),
+          (Nothing, klein1b),
+          (Nothing, introPt2),
+          (Nothing, klein2),
+          (Nothing, introPt3),
+          (Nothing, romanb),
+          (Just "The Real Projective Plane", rp2),
+          (Nothing, romanfpb),
+          (Nothing, rp2sphereb),
+          (Just "The Construction via a Capped Cylinder", proof1),
+          (Nothing, proof1Fig),
+          (Nothing, proof2),
+          (Nothing, proof2Fig),
+          (Nothing, proof3)
+        ]
+
+  footnotes <- loadPathsOrdered $ rootDir </> "footnotes"
+  let issueId = 6
+  comments <- generateComments noComments issueId
+
+  allStaticPaths <- listDirectoryRecursive $ bodyDir </> "static"
+
+  return
+    Post
+      { title = postTitle,
+        subtitle = subtitle,
+        date = fromGregorian 2026 06 17,
+        tags =
+          [ "Mathematics",
+            "Topology"
+          ],
+        body = body,
+        footnotes = footnotes,
+        comments = comments,
+        issueId = issueId,
+        staticPaths = allStaticPaths,
+        siteConfig =
+          SiteConfig
+            { siteTitle = postTitle,
+              hasCodeBlocks = False,
+              hasMathBlocks = False
+            }
+      }
+  where
+    rootDir = "content/posts/rp2-cylinder"
+    bodyDir = rootDir </> "body"
+    load x = loadPath $ bodyDir </> x
+
+---------------------------------------------------------------------------------------------------
+-- Example Post
+---------------------------------------------------------------------------------------------------
+
 loadExamplePost :: Bool -> IO Post
 loadExamplePost noComments = do
   let postTitle = "Just enough CSS for a blog (Test)"
@@ -412,3 +544,18 @@ loadExamplePost noComments = do
     rootDir = "content/posts/example"
     bodyDir = rootDir </> "body"
     load x = loadPath $ rootDir </> "body" </> x
+
+-- Utils
+
+listDirectoryRecursive :: FilePath -> IO [FilePath]
+listDirectoryRecursive dir = do
+  entries <- map (dir </>) <$> listDirectory dir
+  concat
+    <$> forM
+      entries
+      ( \path -> do
+          isDir <- doesDirectoryExist path
+          if isDir
+            then listDirectoryRecursive path
+            else pure [path]
+      )
