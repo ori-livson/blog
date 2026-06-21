@@ -3,6 +3,7 @@
 
 module Main (main) where
 
+import Assertions (assertAllStaticRefsExist)
 import Config (staticSrc, targetDir)
 import Control.Monad (forM_)
 import Data.List (nub)
@@ -50,7 +51,12 @@ main = do
       else "With Comments"
 
   blog <- loadBlog devMode noComments
+
+  putStrLn "Creating html directory."
   generateStaticSite blog
+
+  putStrLn "Checking all static references exist."
+  assertAllStaticRefsExist "html"
   where
     optsInfo :: ParserInfo CliArgs
     optsInfo =
@@ -66,7 +72,6 @@ main = do
 
 generateStaticSite :: Blog -> IO ()
 generateStaticSite Blog {home, about, upcoming, contact, publications, teaching, posts} = do
-  putStrLn $ "Deleting: " ++ targetDir ++ " directory"
   removeDirectoryRecursive targetDir
   safeCreateDir targetDir
   safeCreateDir $ targetDir </> "tags"

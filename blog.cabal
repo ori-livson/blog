@@ -27,8 +27,10 @@ executable blog
     http-conduit,
     lucid,
     lucid-svg,
+    network-uri,
     optparse-applicative,
     pandoc,
+    tagsoup,
     text,
     time,
 
@@ -46,7 +48,7 @@ executable blog
     RecordWildCards
     TypeOperators
 
-  other-modules:
+  other-modules: Assertions
     Config
     GitHub
     LucidUtils
