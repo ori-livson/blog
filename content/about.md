@@ -79,8 +79,8 @@ Additionally, since **2021**, I have been the lead software engineer at the Canc
 
 Finally, since **2025**, I have been "Associate Lecturer PhD Teaching Fellow" in the School of Computer Science, University of Sydney, where I help develop and deliver lecture content, among other teaching duties (see the [teaching](/teaching) page for more details).
 
-Prior to these roles, I held various other roles in software engineering, data science and app development, comprising **over 9 years of industry experience**. I have also completed a Masters of Research in Applied Category Theory at Macquarie University and a Bachelor of Science in Mathematics and Computer Science at the University of Sydney.
-
-This website was generated from Haskell project I developed, and statically hosted via AWS. I plan to write a number of related posts about web development (see the [upcoming](/upcoming) page), but as is, the website is publicly available on [GitHub](https://github.com/ori-livson/blog).
+Prior to these roles, I held various other roles in software engineering, data science and app development, all comprising over 9 years of industry experience. I have also completed a Masters of Research in Applied Category Theory at Macquarie University and a Bachelor of Science in Mathematics and Computer Science at the University of Sydney.
 
 For more information, view my [CV](/static/Ori\ Livson\ CV\ -\ 2026\ -\ General.pdf) and [Contact](/contact) page for further information.
+
+This website was generated from Haskell project I developed, and statically hosted via AWS (see [this post](/posts/how-this-website-was-made/) for more information).
