@@ -31,7 +31,7 @@ bannerTitle :: String
 bannerTitle = "Ori Livson"
 
 bannerSubtitle :: String
-bannerSubtitle = "PhD Candidate / Software Engineer / PhD Teaching Fellow"
+bannerSubtitle = "PhD Candidate / Software Engineer"
 
 staticSrc :: String
 staticSrc = "static"
@@ -54,7 +54,7 @@ Add `-dev` to include an example post.
 
 Add `-no-comments` to disable the GitHub API code (may be needed to pull comments)
 
-e.g., 
+e.g.,
 
 ```bash
 cabal run -fforce-recomp blog -- --no-comments

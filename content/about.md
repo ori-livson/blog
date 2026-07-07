@@ -77,7 +77,7 @@ Since **2024**, I have been a PhD candidate at the [Centre for Complex Systems, 
 
 Additionally, since **2021**, I have been the lead software engineer at the Cancer Proteomics lab [ProCan](https://www.cmrijeansforgenes.org.au/research/research-teams/procan). There, I specialise in building big data exploration and visualisation platforms, distributed databasing solutions, data engineering workflows, automation and programming environments for proteomicists and data scientists.
 
-Finally, since **2025**, I have been "Associate Lecturer PhD Teaching Fellow" in the School of Computer Science, University of Sydney, where I help develop and deliver lecture content, among other teaching duties (see the [teaching](/teaching) page for more details).
+Between **2025-2026**, I was an "Associate Lecturer PhD Teaching Fellow" in the School of Computer Science, University of Sydney, where I helped develop and deliver lecture content, among other teaching duties (see the [teaching](/teaching) page for more details).
 
 Prior to these roles, I held various other roles in software engineering, data science and app development, all comprising over 9 years of industry experience. I have also completed a Masters of Research in Applied Category Theory at Macquarie University and a Bachelor of Science in Mathematics and Computer Science at the University of Sydney.
 

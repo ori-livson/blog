@@ -13,7 +13,7 @@ bannerTitle :: String
 bannerTitle = "Ori Livson"
 
 bannerSubtitle :: String
-bannerSubtitle = "PhD Candidate / Software Engineer / PhD Teaching Fellow"
+bannerSubtitle = "PhD Candidate / Software Engineer"
 
 staticSrc :: String
 staticSrc = "static"
