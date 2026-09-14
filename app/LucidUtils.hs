@@ -78,4 +78,4 @@ latexToHtmlText :: Text -> Either PandocError Text
 latexToHtmlText latexInput = do
   let readerOptions = def {readerExtensions = enableExtension Ext_latex_macros (readerExtensions def)}
   pandoc <- runPure $ readLaTeX readerOptions latexInput
-  runPure $ writeHtml5String def {writerHTMLMathMethod = MathJax ""} pandoc
+  runPure $ writeHtml5String def {writerMathMethod = MathJax ""} pandoc
