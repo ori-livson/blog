@@ -28,7 +28,6 @@ import Templates
     publicationsHtml,
     tagMatchHtml,
     teachingHtml,
-    upcomingHtml,
   )
 
 data CliArgs = CliArgs
@@ -71,7 +70,7 @@ main = do
         <*> switch (long "no-comments")
 
 generateStaticSite :: Blog -> IO ()
-generateStaticSite Blog {home, about, upcoming, contact, publications, teaching, posts} = do
+generateStaticSite Blog {home, about, contact, publications, teaching, posts} = do
   removeDirectoryRecursive targetDir
   safeCreateDir targetDir
   safeCreateDir $ targetDir </> "tags"
@@ -83,7 +82,6 @@ generateStaticSite Blog {home, about, upcoming, contact, publications, teaching,
   htmlToDir (postsHtml posts) $ targetDir </> "posts"
   htmlToDir (allTagsHtml posts) $ targetDir </> "tags"
   htmlToDir (aboutHtml about) $ targetDir </> "about"
-  htmlToDir (upcomingHtml upcoming) $ targetDir </> "upcoming"
   htmlToDir (contactHtml contact) $ targetDir </> "contact"
   htmlToDir (publicationsHtml publications) $ targetDir </> "publications"
   htmlToDir (teachingHtml teaching) $ targetDir </> "teaching"

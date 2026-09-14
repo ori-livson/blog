@@ -19,7 +19,6 @@ module Templates
     tagMatchHtml,
     teachingHtml,
     titleH,
-    upcomingHtml,
     youtube,
     Post (..),
     Posts,
@@ -51,7 +50,6 @@ import LucidUtils (HTML)
 data Blog = Blog
   { home :: HTML,
     about :: HTML,
-    upcoming :: HTML,
     contact :: HTML,
     publications :: HTML,
     teaching :: HTML,
@@ -137,21 +135,6 @@ aboutHtml contents = do
   standardBody True $ do
     standardBanner
     standardTitle "About" Nothing
-    contents
-
----------------------------------------------------------------------------------------------------
--- /Upcoming Posts
----------------------------------------------------------------------------------------------------
-
-upcomingHtml :: HTML -> HTML
-upcomingHtml contents = do
-  standardHead $ plainSite "Upcoming Posts"
-  standardBody True $ do
-    standardBanner
-    standardTitle "Upcoming Posts" Nothing
-    -- standardBody True centers everything below with flex-box
-    -- wrapping contents with div_ keeps contents left aligned
-    -- but the whole block centered
     contents
 
 ---------------------------------------------------------------------------------------------------
@@ -386,7 +369,6 @@ navBar = do
         navLink "/teaching" "teaching"
         navLink "/posts" "posts"
         navLink "/tags" "tags"
-        navLink "/upcoming" "upcoming"
         navLink "/contact" "contact"
         div_ [class_ "expander"] ""
         li_ [id_ "theme-li", class_ "navbar-item"] $ do
