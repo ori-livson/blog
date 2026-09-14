@@ -1,6 +1,6 @@
-- **Livson, O.**, Pritam, S., & Prokopenko, M. (2026). The Non-Orientable Topology of Condorcet’s Paradox. Mathematics, 14(12), 2127. [https://doi.org/10.3390/math14122127](https://doi.org/10.3390/math14122127), part of Special Issue Geometry, Topology, Manifolds and Their Applications (also on [arXiv](https://arxiv.org/abs/2601.07283))
+- Prokopenko, M., Ay, N., Breviario, A., Crocker, R.M., Davies, P.C., Davies, P.C., Dougan, D., Fletcher, R., Harr'e, M., Heisler, M.G., Kuncic, Z., Lewis, G.F., **Livson, O.**, Reiner, V., & Serra, J. (2026). [Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis.](https://doi.org/10.1016/j.plrev.2026.09.001) Physics of Life Reviews (also on [arXiv](<(https://arxiv.org/abs/2605.04498)>)).
 
-- Prokopenko, M., Ay, N., Breviario, A., Crocker, R.M., Davies, P.C., Davies, P.C., Dougan, D., Fletcher, R., Harr'e, M., Heisler, M.G., Kuncic, Z., Lewis, G..., **Livson, O.**, Reiner, V., & Serra, J. (2026). [Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis.](https://arxiv.org/abs/2605.04498)
+- **Livson, O.**, Pritam, S., & Prokopenko, M. (2026). The Non-Orientable Topology of Condorcet’s Paradox. Mathematics, 14(12), 2127. [https://doi.org/10.3390/math14122127](https://doi.org/10.3390/math14122127), part of Special Issue Geometry, Topology, Manifolds and Their Applications (also on [arXiv](https://arxiv.org/abs/2601.07283))
 
 - **Livson, O.**, Prokopenko, M. **(2025)**. [Arrow's Impossibility Theorem as a Generalisation of Condorcet's Paradox.](https://arxiv.org/abs/2510.09076)
 
