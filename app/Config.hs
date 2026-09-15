@@ -38,7 +38,7 @@ selfUrl :: String
 selfUrl = "https://ori-livson.com"
 
 selfAuthor :: String
-selfAuthor = "ori.livson.blog@gmail.com (Ori Livson)"
+selfAuthor = "Ori Livson"
 
 selfTitle :: String
 selfTitle = "Ori Livson's Blog"
