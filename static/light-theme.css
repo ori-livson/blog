@@ -4,8 +4,9 @@
   --bg-navbar-color: #fff;
   --text-color: #000;
   --text-secondary-color: #555;
-  --primary-color: #1eaedb;
+  --primary-color: #33c3f0;
   --primary-button: #33c3f0;
-  --border-color: #e1e1e1;
+  /* --border-color: #e1e1e1; */
+  --border-color: #33c3f0;
   --strong-color: #0fa0ce;
 }
