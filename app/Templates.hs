@@ -307,6 +307,7 @@ standardHead SiteConfig {siteTitle, hasCodeBlocks, hasMathBlocks} = doctypehtml_
     css
     when hasCodeBlocks codeBlockCSS
     analytics
+    script_ [src_ "/static/rss-toast.js", defer_ mempty] emptyText
     script_ [src_ "/static/theme-switcher.js"] emptyText
     script_ [src_ "/static/theme-switcher.js"] emptyText
     script_ [src_ "/static/main.js"] emptyText
@@ -330,6 +331,7 @@ css = do
     ]
   link_ [rel_ "stylesheet", href_ "/static/style.css", type_ "text/css"]
   link_ [rel_ "stylesheet", href_ "/static/skeleton.css", type_ "text/css"]
+  link_ [rel_ "stylesheet", href_ "/static/rss-toast.css", type_ "text/css"]
 
 codeBlockCSS :: HTML
 codeBlockCSS = do
@@ -371,16 +373,26 @@ navBar = do
         navLink "/posts" "posts"
         navLink "/tags" "tags"
         navLink "/contact" "contact"
-        navLink "/rss.xml" "RSS"
+        rssLink
         div_ [class_ "expander"] ""
         li_ [id_ "theme-li", class_ "navbar-item"] $ do
           themeButton
           revertToOSThemeButton
+        rssToast
 
 navLink :: Text -> Text -> HTML
 navLink path text = do
   li_ [class_ "navbar-item nav-toggle"] $ do
     a_ [class_ "navbar-link", href_ path] $ toHtml text
+
+-- see rss-toast.js
+rssLink :: HTML
+rssLink = do
+  li_ [class_ "navbar-item nav-toggle"] $ do
+    a_ [id_ "rss-link", class_ "navbar-link", href_ "/rss.xml"] "RSS"
+
+rssToast :: HTML
+rssToast = div_ [id_ "rss-toast", class_ "rss-toast", role_ "status"] mempty
 
 themeButton :: HTML
 themeButton = button_
