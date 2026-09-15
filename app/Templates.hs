@@ -16,6 +16,7 @@ module Templates
     makeImg,
     postsHtml,
     publicationsHtml,
+    sortPosts,
     tagMatchHtml,
     teachingHtml,
     titleH,
@@ -370,6 +371,7 @@ navBar = do
         navLink "/posts" "posts"
         navLink "/tags" "tags"
         navLink "/contact" "contact"
+        navLink "/rss.xml" "RSS"
         div_ [class_ "expander"] ""
         li_ [id_ "theme-li", class_ "navbar-item"] $ do
           themeButton

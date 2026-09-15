@@ -33,6 +33,7 @@ executable blog
     tagsoup,
     text,
     time,
+    rss
 
   default-extensions:
     DataKinds
@@ -48,7 +49,9 @@ executable blog
     RecordWildCards
     TypeOperators
 
-  other-modules: Assertions
+  other-modules:
+    Assertions
+    RssGenerator
     Config
     GitHub
     LucidUtils

@@ -8,11 +8,13 @@ import Config (staticSrc, targetDir)
 import Control.Monad (forM_)
 import Data.List (nub)
 import Data.Map as Map (elems, traverseWithKey)
+import Data.Text.Lazy (pack)
 import Data.Text.Lazy.IO as TLIO (writeFile)
 import Lucid (renderText)
 import LucidUtils (HTML, expandPath)
 import Options.Applicative
 import PageSpecs (loadBlog)
+import RssGenerator (rss)
 import System.Directory (copyFile, createDirectoryIfMissing, removeDirectoryRecursive)
 import System.FilePath (takeFileName, (</>))
 import Templates
@@ -87,6 +89,7 @@ generateStaticSite Blog {home, about, contact, publications, teaching, posts} = 
   htmlToDir (teachingHtml teaching) $ targetDir </> "teaching"
   Map.traverseWithKey postToFile posts
   mapM_ tagToFile $ distinctTags posts -- page per tag listing posts with that tag
+  TLIO.writeFile (targetDir </> "rss.xml") (pack $ rss posts)
   where
     tagToFile tag = htmlToDir (tagMatchHtml posts tag) $ targetDir </> "tags" </> tag
     postToFile endpoint post = createHtmlDir (assemblePost post) (staticPaths post) (targetDir </> "posts" </> endpoint)

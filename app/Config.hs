@@ -1,4 +1,17 @@
-module Config (issuesUrl, issuesApiUrl, bannerSubtitle, bannerTitle, defaultTheme, staticSrc, targetDir) where
+module Config
+  ( issuesUrl,
+    issuesApiUrl,
+    bannerSubtitle,
+    bannerTitle,
+    defaultTheme,
+    selfAuthor,
+    selfDescription,
+    selfTitle,
+    selfUrl,
+    staticSrc,
+    targetDir,
+  )
+where
 
 issuesUrl :: String
 issuesUrl = "https://github.com/ori-livson/blog/issues/"
@@ -20,3 +33,15 @@ staticSrc = "static"
 
 targetDir :: String
 targetDir = "html"
+
+selfUrl :: String
+selfUrl = "https://ori-livson.com"
+
+selfAuthor :: String
+selfAuthor = "ori.livson.blog@gmail.com (Ori Livson)"
+
+selfTitle :: String
+selfTitle = "Ori Livson's Blog"
+
+selfDescription :: String
+selfDescription = "My blog about my math research and musings on software engineering."

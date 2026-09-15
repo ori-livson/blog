@@ -6,6 +6,9 @@ cradle:
     - path: "app/Assertions.hs"
       component: "blog:exe:blog"
 
+    - path: "app/RssGenerator.hs"
+      component: "blog:exe:blog"
+
     - path: "app/Config.hs"
       component: "blog:exe:blog"
 
