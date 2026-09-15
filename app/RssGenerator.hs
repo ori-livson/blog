@@ -7,7 +7,7 @@ import Network.URI (parseURI)
 import Templates (Post (..), Posts, sortPosts)
 import Text.RSS
   ( Item,
-    ItemElem (Author, Category, Description, Link, PubDate, Title),
+    ItemElem (Author, Category, Description, Guid, Link, PubDate, Title),
     RSS (RSS),
     rssToXML,
     showXML,
@@ -18,17 +18,16 @@ rss posts =
   showXML . rssToXML $
     RSS
       selfTitle -- Channel title
-      (fromJust (parseURI channelUri)) -- Channel link (will crash if invalid)
+      (fromJust (parseURI selfUrl)) -- Channel link (will crash if invalid)
       selfDescription -- Channel description
       [] -- Channel extensions
       (map item $ sortPosts posts) -- Channel items
-  where
-    channelUri = selfUrl ++ "/rss.xml"
 
 item :: (String, Post) -> Item
 item (resource, post) =
   [ Title $ title post,
     Link (fromJust . parseURI $ itemUri),
+    Guid True itemUri,
     Description (fromMaybe "" $ subtitle post),
     Author selfAuthor,
     Category Nothing (head $ tags post), -- all posts should have at least 1 tag so this should crash if not
