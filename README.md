@@ -3,19 +3,22 @@
 My personal site & blog generator, currently hosted at [https://ori-livson.com](https://ori-livson.com/)
 
 Feel free to fork this project and create your own:
+
 - `content` folder
 - `app/PageSpecs.hs` implementing:
-    ``` haskell
-    module PageSpecs (loadBlog) where
 
-    import Templates (Blog(..))
+  ```haskell
+  module PageSpecs (loadBlog) where
 
-    loadBlog :: Bool -> Bool -> IO Blog
-    loadBlog devMode noComments = ...
-    ```
+  import Templates (Blog(..))
+
+  loadBlog :: Bool -> Bool -> IO Blog
+  loadBlog devMode noComments = ...
+  ```
+
 - `app/Config.hs` implementing:
 
-``` haskell
+```haskell
 module Config (issuesUrl, issuesApiUrl, bannerSubtitle, bannerTitle, defaultTheme, staticSrc, targetDir) where
 
 issuesUrl :: String
@@ -60,6 +63,11 @@ e.g.,
 cabal run -fforce-recomp blog -- --no-comments
 ```
 
+There are also tools in the `tools` dir that can be run with:
+
+```bash
+cabal run tools
+```
 
 ## Run Simple Local Server
 

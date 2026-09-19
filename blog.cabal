@@ -73,3 +73,33 @@ executable blog
     cpp-options: -DNO_COMMENTS
   else
     cpp-options: -DCOMMENTS
+
+executable tools
+  main-is: Main.hs
+
+  build-depends:
+    base ^>=4.18.3.0,
+    aeson,
+    binary,
+    commonmark,
+    commonmark-extensions,
+    containers,
+    dir-traverse,
+    directory,
+    filepath,
+    http-conduit,
+    lucid,
+    lucid-svg,
+    network-uri,
+    optparse-applicative,
+    pandoc,
+    tagsoup,
+    text,
+    time,
+    rss
+
+  hs-source-dirs: tools app
+  default-language: Haskell2010
+
+  ghc-options:
+    -Wall
