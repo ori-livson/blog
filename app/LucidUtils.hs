@@ -1,10 +1,10 @@
-module LucidUtils (markdownToLucid, loadPathsOrdered, expandPath, HTML, loadPath, latexToLucid) where
+module LucidUtils (markdownToLucid, renderPathsOrdered, expandPath, HTML, renderPath, latexToLucid) where
 
 import Control.Monad ((<=<))
 import Data.List (sort)
-import Data.Text (Text)
+import Data.Text (Text, pack)
 import qualified Data.Text.IO as TIO
-import Lucid (Html, ToHtml (toHtmlRaw))
+import Lucid (Html, ToHtml (toHtmlRaw), img_, src_)
 import System.Directory (doesDirectoryExist, doesPathExist)
 import System.Directory.Recursive (getFilesRecursive)
 import System.FilePath (takeExtension)
@@ -14,11 +14,11 @@ type HTML = Html ()
 
 -- Posts
 
-loadPathsOrdered :: FilePath -> IO [HTML]
-loadPathsOrdered = pathsToHtml <=< expandPathSorted
+renderPathsOrdered :: FilePath -> IO [HTML]
+renderPathsOrdered = pathsToHtml <=< expandPathSorted
   where
     expandPathSorted = (return . sort) <=< expandPath
-    pathsToHtml = mapM loadPath
+    pathsToHtml = mapM renderPath
 
 expandPath :: FilePath -> IO [FilePath]
 expandPath path =
@@ -34,15 +34,17 @@ expandPath path =
     ifM :: (Monad m) => m Bool -> m a -> m a -> m a
     ifM c t f = c >>= (\c' -> if c' then t else f)
 
-loadPath :: FilePath -> IO HTML
-loadPath path = do
-  text <- TIO.readFile path
+renderPath :: FilePath -> IO HTML
+renderPath path = do
   case takeExtension path of
-    ".md" -> markdownToLucid text
-    ".html" -> htmlToLucid text
-    ".svg" -> htmlToLucid text
-    ".tex" -> latexToLucid text
+    ".md" -> contents >>= markdownToLucid
+    ".html" -> contents >>= htmlToLucid
+    ".svg" -> contents >>= htmlToLucid
+    ".tex" -> contents >>= latexToLucid
+    ".png" -> return . makeImg . pack $ path
     unknown -> error $ "Missing implementation for " ++ unknown ++ " to HTML"
+  where
+    contents = TIO.readFile path
 
 -- Markdown Reading through Pandoc
 
@@ -79,3 +81,6 @@ latexToHtmlText latexInput = do
   let readerOptions = def {readerExtensions = enableExtension Ext_latex_macros (readerExtensions def)}
   pandoc <- runPure $ readLaTeX readerOptions latexInput
   runPure $ writeHtml5String def {writerMathMethod = MathJax ""} pandoc
+
+makeImg :: Text -> HTML
+makeImg src = img_ [src_ src]
