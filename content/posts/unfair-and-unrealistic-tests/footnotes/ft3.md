@@ -1,1 +1,0 @@
-Although, one weakness pervasive in testing (whether the questions are well-designed or not) is that grading typically does not reward improvement as well as it rewards students being comfortable from the very start. Perhaps I'll look into that more, one day.

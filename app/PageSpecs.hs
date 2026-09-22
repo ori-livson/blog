@@ -54,15 +54,13 @@ loadPosts dev noComments = do
   haskellHTMX <- Map.singleton "lucid-htmx-servant-combo" <$> loadHaskellHTMX noComments
   constructionOfRP2 <- Map.singleton "rp2-from-a-capped-cylinder" <$> loadConstructionOfRP2 noComments
   servingHTMXOnTheBrowser <- Map.singleton "htmx-served-on-the-browser-wasm" <$> loadHTMXOnTheBrowser noComments
-  unfairTeaching <- Map.singleton "unfair-and-unrealistic-tests" <$> loadUnfairTeaching noComments
   let mainPosts =
         [ arrowAusPost,
           staticSite1,
           pythonHTMX,
           haskellHTMX,
           constructionOfRP2,
-          servingHTMXOnTheBrowser,
-          unfairTeaching
+          servingHTMXOnTheBrowser
         ]
 
   examplePost <-
@@ -551,70 +549,6 @@ loadHTMXOnTheBrowser noComments = do
       }
   where
     rootDir = "content/posts/htmx-served-on-the-browser-wasm"
-    bodyDir = rootDir </> "body"
-    renderAbs x = renderPath $ bodyDir </> x
-
----------------------------------------------------------------------------------------------------
--- Unfair Teaching
----------------------------------------------------------------------------------------------------
-
-loadUnfairTeaching :: Bool -> IO Post
-loadUnfairTeaching noComments = do
-  let postTitle = "Unrealistic Tests Are Our Last Hope for Education and Technical Interviews"
-  let subtitle = Just "The surprising value of the closed book, memorisation and trivia."
-
-  intro <- renderAbs "0-intro.md"
-  whyRealisticIsImpossible <- renderAbs "1-why-realistic-is-impossible.md"
-  remainder <- renderAbs "1.5b-remainder.md"
-  midtermVsFinal <-
-    makeFigure
-      "40%"
-      "Figure 1: ECON1170 take-home midterm exam grades (orange) vs in-person final exam grades (grey)."
-      <$> renderPath ("static" </> "1.5-midterm-vs-final.png")
-  sportsAndLanguageLearning <- renderAbs "2-leaning-into-the-unrealistic-in-sports-and-language-learning.md"
-  learningWithAnUnexercisedMind <- renderAbs "3-the-challenge-of-learning-with-an-unexercised-mind.md"
-  theValueOfUnrealisticCuricula <- renderAbs "4-the-value-of-unrealistic-curicula.md"
-  whatIsLeftForEducation <- renderAbs "5-what-is-left-for-education.md"
-  theValueOfTrivia <- renderAbs "6-technical-interviews-and-the-value-of-trivia.md"
-  conclusion <- renderAbs "7-conclusion.md"
-  let body =
-        [ (Just "Introduction", intro),
-          (Just "Why \"Realistic\" Is Impossible", whyRealisticIsImpossible),
-          (Nothing, midtermVsFinal),
-          (Nothing, remainder),
-          (Just "Leaning Into the Unrealistic in Sports and Language Learning", sportsAndLanguageLearning),
-          (Just "The Challenge of Learning with an Unexercised Mind", learningWithAnUnexercisedMind),
-          (Just "The Value of Unrealistic Curicula", theValueOfUnrealisticCuricula),
-          (Just "How Else Educators Can Test", whatIsLeftForEducation),
-          (Just "Technical Interviews and the Value of Trivia", theValueOfTrivia),
-          (Just "Conclusion", conclusion)
-        ]
-
-  allStaticPaths <- listDirectoryRecursive $ bodyDir </> "static"
-  footnotes <- renderPathsOrdered $ rootDir </> "footnotes"
-  let issueId = 7
-  comments <- generateComments noComments issueId
-
-  return
-    Post
-      { title = postTitle,
-        subtitle = subtitle,
-        date = fromGregorian 2026 09 22,
-        tags = ["Education", "Technical Interviews", "Artificial Intelligence"],
-        body = body,
-        footnotes = footnotes,
-        comments = comments,
-        issueId = issueId,
-        staticPaths = allStaticPaths,
-        siteConfig =
-          SiteConfig
-            { siteTitle = postTitle,
-              hasCodeBlocks = True,
-              hasMathBlocks = False
-            }
-      }
-  where
-    rootDir = "content/posts/unfair-and-unrealistic-tests"
     bodyDir = rootDir </> "body"
     renderAbs x = renderPath $ bodyDir </> x
 
