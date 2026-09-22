@@ -1,8 +1,8 @@
 The following are reasonable criticisms of education and testing (not just because I have held them all at some point).
 
 1. Exams are unfair because the conditions are unrealistic.
-2. Closed-book exams are especially unrealistic and unfair.
-3. Curricula are unrealistic and unfair when they do not emphasise "real world content".
+2. Closed-book exams are especially unrealistic.
+3. Curricula should emphasise more "real world content".
 
 These criticisms are commonly levied against high schools, universities, technical interviews for jobs, and in many other domains.
 

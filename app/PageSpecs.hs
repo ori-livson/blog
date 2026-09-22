@@ -560,7 +560,7 @@ loadHTMXOnTheBrowser noComments = do
 
 loadUnfairTeaching :: Bool -> IO Post
 loadUnfairTeaching noComments = do
-  let postTitle = "Unfair and Unrealistic Tests Are Our Last Hope for Education and Technical Interviews"
+  let postTitle = "Unrealistic Tests Are Our Last Hope for Education and Technical Interviews"
   let subtitle = Just "The surprising value of the closed book, memorisation and trivia."
 
   intro <- renderAbs "0-intro.md"
