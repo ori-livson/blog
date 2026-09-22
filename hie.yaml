@@ -24,5 +24,14 @@ cradle:
     - path: "app/Templates.hs"
       component: "blog:exe:blog"
 
-    - path: "tools/Main.hs"
-      component: "tools:exe:tools"
+    - path: "tools/Tools.hs"
+      component: "blog:exe:blog-tools"
+
+    - path: "tools/PageSpecGenerator.hs"
+      component: "blog:exe:blog-tools"
+
+    - path: "tools/generateMergedMds.hs"
+      component: "blog:exe:blog-tools"
+
+    - path: "tools/Utils.hs"
+      component: "blog:exe:blog-tools"

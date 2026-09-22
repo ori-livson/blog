@@ -1,10 +1,9 @@
-module Main where
+module PageSpecGenerator (printSpecs) where
 
-import Control.Monad (filterM)
 import Data.Char (toUpper)
-import Data.List (intercalate, sort)
-import System.Directory (doesDirectoryExist, doesFileExist, listDirectory)
-import System.FilePath (dropExtension, takeExtension, takeFileName, (</>))
+import Data.List (intercalate)
+import System.FilePath (dropExtension, takeExtension, takeFileName)
+import Utils (getInnerFiles, getPostDirs, getSectionDir, getStaticDir)
 
 -- Go into each posts folder and for each file with relative path <f> print
 -- <var f> <- renderAbs| "<f>"
@@ -14,19 +13,13 @@ import System.FilePath (dropExtension, takeExtension, takeFileName, (</>))
 -- Also handles all static resources as figures as
 -- <var f> <- makeFigure "80%" "Figure X:" <$> <renderAbs|renderPath> ("static" </> <f>)
 -- (Nothing,        , <figure f>) for f in staticFnames
-main :: IO ()
-main = do
+printSpecs :: IO ()
+printSpecs = do
   -- One dir f per post
-  postDirs <- getInnerDirs $ "content" </> "posts"
+  postDirs <- getPostDirs
   -- Still 1 dir per post but may be < f / body >
   sectionDirs <- mapM getSectionDir postDirs
   mapM_ displaySections sectionDirs
-
-getSectionDir :: FilePath -> IO FilePath
-getSectionDir dir = do
-  let bodyDir = dir </> "body"
-  exists <- doesDirectoryExist bodyDir
-  return $ (if exists then bodyDir else dir)
 
 displaySections :: FilePath -> IO ()
 displaySections sectionDir = do
@@ -41,22 +34,22 @@ displaySections sectionDir = do
   let staticFnames = map takeFileName staticPaths
 
   -- <var f> <- renderAbs| "<f>"
-  mapM_ (putStrLn . renderStatement) fnames
+  mapM_ (printIndented . renderStatement) fnames
 
   -- <var f> <- makeFigure "80%" "Figure X:" <$> <renderAbs|renderPath> ("static" </> <f>)
-  mapM_ (putStrLn . renderStaticStatement) staticFnames
+  mapM_ (printIndented . renderStaticStatement) staticFnames
 
   -- (Just "<title f>", <var f>) for f in fnames
   -- (Nothing,        , <figure f>) for f in staticFnames
   let sections = (map sectionStatement fnames) ++ (map staticSectionStatement staticFnames)
 
-  putStrLn $ ("let body = " ++ listStr sections)
+  printIndented $ ("let body = " ++ listStr sections)
   case staticDir of
     Just _ -> do
       putStrLn "Don't forget to add:"
-      putStrLn "allStaticPaths <- listDirectoryRecursive $ bodyDir </> \"static\""
-      putStrLn "..."
-      putStrLn "staticPaths = allStaticPaths,"
+      printIndented "allStaticPaths <- listDirectoryRecursive $ bodyDir </> \"static\""
+      printIndented "..."
+      printIndented "staticPaths = allStaticPaths,"
     Nothing -> return ()
   where
     renderStatement fname = (var fname) ++ " <- renderAbs " ++ (quote fname)
@@ -85,30 +78,12 @@ displaySections sectionDir = do
     -- introX <- load "0-intro-x.md"
     var = kebabToCamel . dropFnameMeta
 
-getStaticDir :: FilePath -> IO (Maybe FilePath)
-getStaticDir sectionDir = do
-  let staticDir = sectionDir </> "static"
-  exists <- doesDirectoryExist staticDir
-  return $ if exists then Just staticDir else Nothing
-
 -- Drop file number prefix and extension
 dropFnameMeta :: String -> String
-dropFnameMeta xs =
-  case break (== '-') xs of
+dropFnameMeta s =
+  case break (== '-') s of
     (_, '-' : rest) -> dropExtension rest
-    _ -> dropExtension xs
-
--- Subdir listing
-
-getInnerDirs :: FilePath -> IO [FilePath]
-getInnerDirs dir = sort <$> (filterM doesDirectoryExist =<< innerPaths dir)
-
-getInnerFiles :: FilePath -> IO [FilePath]
-getInnerFiles dir = do
-  sort <$> (filterM doesFileExist =<< innerPaths dir)
-
-innerPaths :: FilePath -> IO [FilePath]
-innerPaths dir = map (dir </>) <$> listDirectory dir
+    _ -> dropExtension s
 
 -- String format conversions
 
@@ -118,12 +93,16 @@ innerPaths dir = map (dir </>) <$> listDirectory dir
 kebabToCamel :: String -> String
 kebabToCamel "" = ""
 kebabToCamel s =
-  let parts = kebabSplit s
-   in head parts ++ concatMap capitalise (tail parts)
+  case kebabSplit s of
+    (x : xs) -> x ++ concatMap capitalise xs
+    [] -> ""
 
 -- "hello-world" -> "Hello World"
 kebabToTitle :: String -> String
-kebabToTitle = unwords . map capitalise . kebabSplit
+kebabToTitle s = unwords $
+  case kebabSplit s of
+    (x : xs) -> [capitalise x] ++ map titleCapitalise xs
+    [] -> []
 
 kebabSplit :: String -> [String]
 kebabSplit xs =
@@ -132,8 +111,40 @@ kebabSplit xs =
     _ -> [xs]
 
 capitalise :: String -> String
-capitalise (x : xs) = toUpper x : xs
 capitalise "" = ""
+capitalise (x : xs) = toUpper x : xs
+
+titleCapitalise :: String -> String
+titleCapitalise w
+  | w `elem` toKeepLowerCase = w
+  | otherwise = capitalise w
+
+toKeepLowerCase :: [String]
+toKeepLowerCase =
+  [ -- articles
+    "a",
+    "an",
+    "the",
+    -- conjunctions
+    "and",
+    "but",
+    "or",
+    "nor",
+    "for",
+    "yet",
+    "so",
+    -- prepositions
+    "as",
+    "at",
+    "by",
+    "in",
+    "of",
+    "on",
+    "per",
+    "to",
+    "up",
+    "via"
+  ]
 
 -- Pretty string representations of Haskell types
 
@@ -143,5 +154,22 @@ quote s = "\"" ++ s ++ "\""
 tupleStr :: [String] -> String
 tupleStr lst = "(" ++ intercalate ", " lst ++ ")"
 
+-- Make a list like
+-- let lst =
+--      [
+--         el1,
+--         el2
+--      ]
 listStr :: [String] -> String
-listStr lst = "\n\t[ " ++ intercalate ",\n\t" lst ++ "\n\t]"
+listStr lst = left ++ elements ++ right
+  where
+    elements = intercalate ("," ++ space) lst
+    left = space ++ "["
+    right = space ++ "]"
+    space = "\n" ++ tabs 4
+
+printIndented :: String -> IO ()
+printIndented s = putStrLn $ (tabs 1) ++ s
+
+tabs :: Int -> String
+tabs n = replicate (n * 2) ' '
