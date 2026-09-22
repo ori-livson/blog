@@ -1,12 +1,10 @@
 Thus, if we accept that an exercised mind is a must, and that unrealistic settings and content may be required -- what can educators do?
 
-Here are two recommendations:
+Here are my two cents:
 
-- Firstly, stick to tough fundamentals with tough exams that require deep background knowledge.
+- Firstly, stick to tough fundamentals with tough exams that require deep background knowledge, especially in the form of well-crafted closed-book exams.
 
-  This can take the form of well-crafted closed-book exams.
-
-  For example, well-crafted theory may mean not asking student to say, write a code-block using a React `useEffect` hook, but rather asking them to explain what problem `useEffect` solves, its pros and cons, alternatives ways the problem has been solved, etc. Similarly, tasks such as tasking students with reviewing AI outputs for inaccuracies and oversights can be more instructive than generating them these days.
+  For example, well-crafted theory may mean not asking student to say, write a code-block using a React `useEffect` hook, but rather asking them to explain what problem `useEffect` solves, its pros and cons, alternatives ways the problem has been solved, etc. Similarly, tasks such as tasking students with reviewing AI outputs for inaccuracies and oversights can be more instructive than tasking them with generating them.
 
   Tools also exist to do closed-book (or partially open-book) exams in offline computer sessions (such as via ETH Zürich's open source [Safe Exam Browser](https://safeexambrowser.org/about_overview_en.html)). This enables in-person coding assessments as an alternative to assignments.
 
