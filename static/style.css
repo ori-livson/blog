@@ -96,6 +96,10 @@ blockquote {
   color: var(--primary-color);
 }
 
+.footnotes {
+  margin-top: 1em;
+}
+
 #sandwich-button {
   padding: 1px 6px !important;
 }
@@ -257,7 +261,7 @@ li.all-tags {
   margin-bottom: 0em;
 }
 
-p:has(+ blockquote) {
+div:has(+ blockquote) {
   margin-bottom: 0.5em !important;
 }
 
