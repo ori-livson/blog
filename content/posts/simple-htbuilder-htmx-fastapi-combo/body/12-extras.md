@@ -1,4 +1,4 @@
-Here are some HTMX + Htbuilder additions that you might find yourself needing for similar, real-world projects.
+Here are some HTMX + Htbuilder additions that you might find yourself needing for similar, real world projects.
 
 **Loading Spinners**
 

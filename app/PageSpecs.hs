@@ -560,39 +560,52 @@ loadHTMXOnTheBrowser noComments = do
 
 loadUnfairTeaching :: Bool -> IO Post
 loadUnfairTeaching noComments = do
-  let postTitle = "Unfair and unrealistic tests are our only hope for education"
-  let subtitle = Just "The surprising value of trivia, memorisation and the closed book."
+  let postTitle = "Unfair and Unrealistic Tests Are Our Last Hope for Education and Technical Interviews"
+  let subtitle = Just "The surprising value of the closed book, memorisation and trivia."
 
   intro <- renderAbs "0-intro.md"
-  theCriticisms <- renderAbs "1-the-criticisms.md"
-  whyWeNeedToDropThem <- renderAbs "2-why-we-need-to-drop-them.md"
-  whatTheAlternativeIs <- renderAbs "3-what-the-alternative-is.md"
-  fairnessAndGradeInflation <- renderAbs "4-fairness-and-grade-inflation.md"
-  conclusion <- renderAbs "5-conclusion.md"
+  whyRealisticIsImpossible <- renderAbs "1-why-realistic-is-impossible.md"
+  remainder <- renderAbs "1.5b-remainder.md"
+  midtermVsFinal <-
+    makeFigure
+      "40%"
+      "Figure 1: ECON1170 take-home midterm exam grades (orange) vs in-person final exam grades (grey)."
+      <$> renderPath ("static" </> "1.5-midterm-vs-final.png")
+  sportsAndLanguageLearning <- renderAbs "2-leaning-into-the-unrealistic-in-sports-and-language-learning.md"
+  learningWithAnUnexercisedMind <- renderAbs "3-the-challenge-of-learning-with-an-unexercised-mind.md"
+  theValueOfUnrealisticCuricula <- renderAbs "4-the-value-of-unrealistic-curicula.md"
+  whatIsLeftForEducation <- renderAbs "5-what-is-left-for-education.md"
+  theValueOfTrivia <- renderAbs "6-technical-interviews-and-the-value-of-trivia.md"
+  conclusion <- renderAbs "7-conclusion.md"
   let body =
-        [ (Just "Intro", intro),
-          (Just "The Criticisms", theCriticisms),
-          (Just "Why We Need To Drop Them", whyWeNeedToDropThem),
-          (Just "What The Alternative Is", whatTheAlternativeIs),
-          (Just "Fairness And Grade Inflation", fairnessAndGradeInflation),
+        [ (Just "Introduction", intro),
+          (Just "Why \"Realistic\" Is Impossible", whyRealisticIsImpossible),
+          (Nothing, midtermVsFinal),
+          (Nothing, remainder),
+          (Just "Leaning Into the Unrealistic in Sports and Language Learning", sportsAndLanguageLearning),
+          (Just "The Challenge of Learning with an Unexercised Mind", learningWithAnUnexercisedMind),
+          (Just "The Value of Unrealistic Curicula", theValueOfUnrealisticCuricula),
+          (Just "How Else Educators Can Test", whatIsLeftForEducation),
+          (Just "Technical Interviews and the Value of Trivia", theValueOfTrivia),
           (Just "Conclusion", conclusion)
         ]
 
+  allStaticPaths <- listDirectoryRecursive $ bodyDir </> "static"
   footnotes <- renderPathsOrdered $ rootDir </> "footnotes"
-  let issueId = 1
+  let issueId = 7
   comments <- generateComments noComments issueId
 
   return
     Post
       { title = postTitle,
         subtitle = subtitle,
-        date = fromGregorian 2026 09 21,
-        tags = ["Education", "Software Engineering"],
+        date = fromGregorian 2026 09 22,
+        tags = ["Education", "Technical Interviews", "Artificial Intelligence"],
         body = body,
         footnotes = footnotes,
         comments = comments,
         issueId = issueId,
-        staticPaths = [],
+        staticPaths = allStaticPaths,
         siteConfig =
           SiteConfig
             { siteTitle = postTitle,
