@@ -1,7 +1,7 @@
 module RssGenerator (rss) where
 
 import Config (selfAuthor, selfDescription, selfTitle, selfUrl)
-import Data.Maybe (fromJust, fromMaybe)
+import Data.Maybe (fromJust, fromMaybe, listToMaybe)
 import Data.Time (Day, UTCTime (..))
 import Network.URI (parseURI)
 import Templates (Post (..), Posts, sortPosts)
@@ -30,7 +30,7 @@ item (resource, post) =
     Guid True itemUri,
     Description (fromMaybe "" $ subtitle post),
     Author selfAuthor,
-    Category Nothing (head $ tags post), -- all posts should have at least 1 tag so this should crash if not
+    Category Nothing (headOrEmpty $ tags post),
     PubDate (dayToUTCTime $ date post)
   ]
   where
@@ -38,3 +38,6 @@ item (resource, post) =
 
 dayToUTCTime :: Day -> UTCTime
 dayToUTCTime day = UTCTime {utctDay = day, utctDayTime = 0}
+
+headOrEmpty :: [String] -> String
+headOrEmpty = fromMaybe "" . listToMaybe
