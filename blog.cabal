@@ -36,18 +36,10 @@ executable blog
     rss
 
   default-extensions:
-    DataKinds
-    DeriveGeneric
-    FlexibleInstances
-    GADTs
-    InstanceSigs
-    MultiParamTypeClasses
     NamedFieldPuns
-    OverloadedLists
     OverloadedStrings
-    RankNTypes
     RecordWildCards
-    TypeOperators
+    MultilineStrings
 
   other-modules:
     Assertions
@@ -102,6 +94,9 @@ executable blog-tools
     MakeMergedMds
     PageSpecGenerator
     Utils
+
+  default-extensions:
+    TupleSections
 
   hs-source-dirs: tools app
   default-language: Haskell2010

@@ -1,6 +1,3 @@
-{-# LANGUAGE CPP #-}
-{-# OPTIONS_GHC -Wno-unused-do-bind #-}
-
 module Main (main) where
 
 import Assertions (assertAllStaticRefsExist)
@@ -87,7 +84,7 @@ generateStaticSite Blog {home, about, contact, publications, teaching, posts} = 
   htmlToDir (contactHtml contact) $ targetDir </> "contact"
   htmlToDir (publicationsHtml publications) $ targetDir </> "publications"
   htmlToDir (teachingHtml teaching) $ targetDir </> "teaching"
-  Map.traverseWithKey postToFile posts
+  _ <- Map.traverseWithKey postToFile posts
   mapM_ tagToFile $ distinctTags posts -- page per tag listing posts with that tag
   TLIO.writeFile (targetDir </> "rss.xml") (pack $ rss posts)
   where

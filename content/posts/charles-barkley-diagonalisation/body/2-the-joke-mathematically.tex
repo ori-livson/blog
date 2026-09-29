@@ -1,0 +1,20 @@
+Let $\textbf{Face}$ be the set of all possible human faces (including the person behind them) and let $\textbf{Statue}$ be the set of all possible statues of faces.
+
+Then, let Dwyane Wade's statue maker be formalised as a function $depict: \textbf{Face} \rightarrow \textbf{Statue}$.
+
+Furthermore, a reaction to a statue (insofar as it changes one's facial expression) is given by a function $react: \textbf{Face} \times \textbf{Statue} \rightarrow \textbf{Face}$.
+
+The function signature of $react$ reflects that the reaction (a new facial expression) does not only depend on the statue one is reacting to but also on the person reacting to the statue. For instance, the earlier debate between Barkley and Smith shows that different people (i.e., subsets of $ \textbf{Face}$) may react differently to the same statue.
+
+Thus, a potential formalisation of Charles Barkley's joke is:
+
+\textbf{The Dwyane Wade Fixed-Point Conjecture:} for any face $D \in \textbf{Face}$ of Dwyane Wade, there exists another face of Dwyane Wade $D_{fp} \in \textbf{Face}$ such that:
+\begin{equation*}
+    react(D,\ depict(D_{fp})) = D_{fp}
+\end{equation*}
+
+To reiterate, $D$ represents Dwyane Wade before seeing the statue of him (i.e., before seeing $depict(D_{fp})$), and after he sees that statue, he makes a reaction face (i.e., $react(D,\ depict(D_{fp}))$), and that face is claimed to match the face that the statue depicts, i.e., his reaction face matches $D_{fp}$.
+
+Moreover, $D_{fp}$ is specifically a fixed-point of the function $react(D,\ depict(-)): \textbf{Face} \rightarrow \textbf{Face}$.
+
+Although, the above conjecture may only hold for particular initial faces of Dwyane Wade (i.e., one can only find a fixed-point $D_{fp}$ given the right time, place or mood). It also remains to see whether there is a statue like $D_{fp}$ exists for people besides Dwyane Wade.

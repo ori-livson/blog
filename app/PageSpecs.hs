@@ -6,7 +6,7 @@ where
 import Control.Monad (forM)
 import qualified Data.Map as Map
 import Data.Time.Calendar (fromGregorian)
-import LucidUtils (HTML, renderPath, renderPathsOrdered)
+import LucidUtils (HTML, renderPath, renderPathsOrdered) -- renderText
 import System.Directory (doesDirectoryExist, listDirectory)
 import System.FilePath ((</>))
 import Templates
@@ -19,6 +19,8 @@ import Templates
     container,
     generateComments,
     makeFigure,
+    noFilter,
+    youtube,
   )
 
 loadBlog :: Bool -> Bool -> IO Blog
@@ -54,13 +56,15 @@ loadPosts dev noComments = do
   haskellHTMX <- Map.singleton "lucid-htmx-servant-combo" <$> loadHaskellHTMX noComments
   constructionOfRP2 <- Map.singleton "rp2-from-a-capped-cylinder" <$> loadConstructionOfRP2 noComments
   servingHTMXOnTheBrowser <- Map.singleton "htmx-served-on-the-browser-wasm" <$> loadHTMXOnTheBrowser noComments
+  barkleyDiagonalisation <- Map.singleton "charles-barkley-diagonalisation" <$> loadBarkleyDiagonalisation noComments
   let mainPosts =
         [ arrowAusPost,
           staticSite1,
           pythonHTMX,
           haskellHTMX,
           constructionOfRP2,
-          servingHTMXOnTheBrowser
+          servingHTMXOnTheBrowser,
+          barkleyDiagonalisation
         ]
 
   examplePost <-
@@ -549,6 +553,96 @@ loadHTMXOnTheBrowser noComments = do
       }
   where
     rootDir = "content/posts/htmx-served-on-the-browser-wasm"
+    bodyDir = rootDir </> "body"
+    renderAbs x = renderPath $ bodyDir </> x
+
+---------------------------------------------------------------------------------------------------
+-- What Charles Barkley Can Teach Us About Diagonalisation and Fixed-Point Theorems
+---------------------------------------------------------------------------------------------------
+
+loadBarkleyDiagonalisation :: Bool -> IO Post
+loadBarkleyDiagonalisation noComments = do
+  let postTitle = "What NBA Legend Charles Barkley Can Teach Us About Diagonalisation and Fixed-Point Theorems"
+  let subtitle = Just "The link between questionable statues of Dwyane Wade, incompleteness, recursion, self-replication and super-rationality."
+
+  intro <- renderAbs "0-intro.md"
+  comparison <-
+    makeFigure "40%" "Figure 1: Dwyane Wade vs his statue (<a href=\"https://www.youtube.com/watch?v=2BmyTu-m0Mk\">source</a>)."
+      <$> noFilter
+      <$> renderPath ("static" </> "comparison.png")
+  next <- renderAbs "1-next.md"
+  let yt =
+        makeFigure
+          "60%"
+          "Figure 2: Charle's Barkley's Joke about the statue (starts just after 50s in)."
+          $ youtube "Min3wtQyCOE" 50
+
+  theJokeMathematically <- renderAbs "2-the-joke-mathematically.tex"
+  howTheJokeResemblesGodelsTheorem <- renderAbs "3-how-the-joke-resembles-godels-theorem.tex"
+  recursion <- renderAbs "4-kleene-recursion.tex"
+  quines <- renderAbs "5-quines.md"
+  quinesTex <- renderAbs "5-quines.tex"
+  pd <- renderAbs "6-pd.md"
+  pdMatrix <-
+    makeFigure
+      "40%"
+      "Figure 3: Example Prisoner's Dilemma Payoff Matrix. Each prisoner (1 or 2) chooses \"Cooperate\" (C) or \"Defect\" (D) and the combination of their choices yields a payoff in the form of a prison sentence in years for each prisoner."
+      <$> renderAbs "pd.svg"
+  pdPt2 <- renderAbs "6.2-pd.md"
+  selfReferentialRobots <- renderAbs "7-self-referential-robots-pd.md"
+  selfReferentialRobotsPt2 <- renderAbs "7.2-self-referential-robots-pd.tex"
+  selfReferentialRobotsPt3 <- renderAbs "7.3-self-referential-robots-pd.md"
+  selfReferentialRobotsPt4 <- renderAbs "7.4-self-referential-robots-pd.tex"
+  selfReferentialRobotsPt5 <- renderAbs "7.5-self-referential-robots-pd.md"
+
+  conclusion <- renderAbs "8-conclusion.tex"
+
+  let body =
+        [ (Just "Intro", intro),
+          (Nothing, comparison),
+          (Nothing, next),
+          (Nothing, yt),
+          (Just "The Joke, Mathematically", theJokeMathematically),
+          (Just "How the Joke Resembles Godel's First Incompleteness Theorem", howTheJokeResemblesGodelsTheorem),
+          (Just "Kleene's Second Recursion Theorem", recursion),
+          (Just "Application 1: Quines - Programs That Reproduce Their Source Code", quines),
+          (Nothing, quinesTex),
+          (Just "Interlude: The Prisoner's Dillema", pd),
+          (Nothing, pdMatrix),
+          (Nothing, pdPt2),
+          (Just "Application 2: CliqueBot and FairBot - The Self-Referential Robot Prisoners", selfReferentialRobots),
+          (Nothing, selfReferentialRobotsPt2),
+          (Nothing, selfReferentialRobotsPt3),
+          (Nothing, selfReferentialRobotsPt4),
+          (Nothing, selfReferentialRobotsPt5),
+          (Just "Conclusion: A Unifying Pattern", conclusion)
+        ]
+
+  allStaticPaths <- listDirectoryRecursive $ bodyDir </> "static"
+  footnotes <- renderPathsOrdered $ rootDir </> "footnotes"
+  let issueId = 8
+  comments <- generateComments noComments issueId
+
+  return
+    Post
+      { title = postTitle,
+        subtitle = subtitle,
+        date = fromGregorian 2026 09 29,
+        tags = ["Mathematics", "Charles Barkley", "Fixed-Point Theorems"],
+        body = body,
+        footnotes = footnotes,
+        comments = comments,
+        issueId = issueId,
+        staticPaths = allStaticPaths,
+        siteConfig =
+          SiteConfig
+            { siteTitle = postTitle,
+              hasCodeBlocks = True,
+              hasMathBlocks = True
+            }
+      }
+  where
+    rootDir = "content/posts/charles-barkley-diagonalisation"
     bodyDir = rootDir </> "body"
     renderAbs x = renderPath $ bodyDir </> x
 

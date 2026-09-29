@@ -308,6 +308,14 @@ figcaption {
   margin-top: 1rem;
 }
 
+figure iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 0;
+}
+
 ol,
 ul {
   margin-bottom: 0.5em !important;

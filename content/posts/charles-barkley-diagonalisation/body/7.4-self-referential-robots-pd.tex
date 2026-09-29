@@ -1,0 +1,16 @@
+However, \textbf{CliqueBot}'s source code requiring knowledge of its own source code appears paradoxical in the same way Quines seemed to be. In other words, \textbf{CliqueBot}'s source code $S$ appears to need a snippet $C$ that compares \textbf{CliqueBot}'s input to $S$, so that $S = S + C$.
+
+Yet, once again, by Kleene's Recursion Theorem, this problem can be solved as follows.
+
+1. Let $Q: \mathbb{N} \times \mathbb{N} \rightarrow \mathbb{N}$ be any function that for all algorithms $a: \mathbb{N} \rightarrow \textbf{Choice}$, satisfies:
+\begin{center}
+    $\forall\ n \in \mathbb{N}:$ $Q(source(a), n) = 1$ if and only if $n = source(a)$ and $0$ otherwise.
+\end{center}
+(Where $1$ will be a proxy for Cooperate (C) and $0$ will be a proxy for Defect (D))
+
+2. By Kleene's Recursion Theorem, there then exists a function $q: \mathbb{N} \rightarrow \mathbb{N}$ such that $\forall\ n \in \mathbb{N}:\ q(n) = Q(source(a), n)$, and moreover that:
+\begin{center}
+    $\forall\ n \in \mathbb{N}:$ $q(n) = 1$ if and only if $n = source(q)$ and $0$ otherwise.
+\end{center}
+
+And hence \textbf{CliqueBot} can be defined by mapping $n$ to $C$ when $\ q(n)\ = 1$ and $D$ otherwise.

@@ -20,6 +20,7 @@ module Templates
     tagMatchHtml,
     teachingHtml,
     titleH,
+    noFilter,
     youtube,
     Post (..),
     Posts,
@@ -510,12 +511,12 @@ subtitleH = h5_ [centerText, singleStyle "font-style" "italic"]
 centerText :: Attribute
 centerText = singleStyle "text-align" "center"
 
-youtube :: String -> HTML
-youtube src =
+-- src should just have the video id, e.g.,
+-- 2BmyTu-m0Mk for https://www.youtube.com/watch?v=2BmyTu-m0Mk
+youtube :: String -> Int -> HTML
+youtube videoID startSec =
   iframe_
-    [ Lucid.width_ "560",
-      height_ "315",
-      src_ $ pack src,
+    [ src_ . pack $ embedURL,
       title_ "YouTube video player",
       makeAttribute "frameborder" "0",
       makeAttribute "allow" "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
@@ -523,6 +524,8 @@ youtube src =
       makeAttribute "allowfullscreen" "allowfullscreen"
     ]
     mempty
+  where
+    embedURL = "https://www.youtube.com/embed/" ++ videoID ++ "?start=" ++ (show startSec)
 
 makeFigure :: Text -> Text -> HTML -> HTML
 makeFigure width caption content =
@@ -535,6 +538,9 @@ addMaxWidth element val = with element [style_ $ stylePart ("max-width", val)]
 
 addMaxHeight :: HTML -> Text -> HTML
 addMaxHeight element val = with element [style_ $ stylePart ("max-height", val)]
+
+noFilter :: HTML -> HTML
+noFilter element = with element [style_ $ stylePart ("filter", "none")]
 
 makeImg :: Text -> HTML
 makeImg src = img_ [src_ src]

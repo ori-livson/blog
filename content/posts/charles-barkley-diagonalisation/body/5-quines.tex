@@ -1,0 +1,17 @@
+
+The existence of a Quine $Q$ is surprising because it would appear that a program that prints its own source would need to have the following 3 distinct code snippets:
+
+\begin{itemize}
+\item $S$ for some representation of the source code of $Q$.
+\item $R$ for the code needed to read $S$.
+\item $P$ for the code needed to print $S$.
+\end{itemize}
+So that somehow $S = R + S + P$ is satisfied, which seems paradoxical.
+
+The existence of Quines (in any general purpose programming language or more generally, any Turing complete model of computation) follows form Kleene's Recursion Theorem.
+
+Specifically, let $Q: \mathbb{N} \times \mathbb{N} \rightarrow \mathbb{N}$ be the function defined by mapping $(x, y) \mapsto x$. By Kleene's Recursion Theorem, there exists a program $q$ such that:
+\begin{equation*}
+    \forall\ y \in \mathbb{N}:\ q(y) = Q(source(q), y) = source(q)
+\end{equation*}
+Hence $q$ is a Quine, and importantly, a product of a fixed-point theorem: Kleene's Recursion Theorem.

@@ -1,12 +1,26 @@
 module Utils (getInnerDirs, getInnerFiles, getSectionDir, getStaticDir, getPostDirs, safeCreateDir, getFootnotesDir) where
 
 import Control.Monad (filterM)
-import Data.List (sort)
-import System.Directory (createDirectoryIfMissing, doesDirectoryExist, doesFileExist, listDirectory)
+import Data.List (sort, sortOn)
+import System.Directory (createDirectoryIfMissing, doesDirectoryExist, doesFileExist, getModificationTime, listDirectory)
 import System.FilePath ((</>))
 
 getPostDirs :: IO [FilePath]
-getPostDirs = getInnerDirs $ "content" </> "posts"
+getPostDirs = do
+  paths <- getInnerDirs $ "content" </> "posts"
+  sortM getModificationTime paths
+
+sortM :: (Ord b) => (a -> IO b) -> [a] -> IO [a]
+sortM f xs = do
+  idxVals <- mapM toIdxVal xs
+  let sortedIdxVals = sortOn fst idxVals
+  let sortedVals = map snd sortedIdxVals
+  return sortedVals
+  where
+    -- x -> (f x, x)
+    toIdxVal x = (,x) <$> f x
+
+-- return $ sortM getModificationTime dirs
 
 getSectionDir :: FilePath -> IO FilePath
 getSectionDir postDir = do

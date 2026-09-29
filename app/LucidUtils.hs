@@ -1,4 +1,4 @@
-module LucidUtils (markdownToLucid, renderPathsOrdered, expandPath, HTML, renderPath, latexToLucid) where
+module LucidUtils (markdownToLucid, renderPathsOrdered, expandPath, HTML, renderPath, latexToLucid, renderText) where
 
 import Control.Monad ((<=<))
 import Data.List (sort)
@@ -36,15 +36,17 @@ expandPath path =
 
 renderPath :: FilePath -> IO HTML
 renderPath path = do
-  case takeExtension path of
-    ".md" -> contents >>= markdownToLucid
-    ".html" -> contents >>= htmlToLucid
-    ".svg" -> contents >>= htmlToLucid
-    ".tex" -> contents >>= latexToLucid
-    ".png" -> return . makeImg . pack $ path
-    unknown -> error $ "Missing implementation for " ++ unknown ++ " to HTML"
-  where
-    contents = TIO.readFile path
+  let ext = takeExtension path
+  if ext == ".png"
+    then return (makeImg $ pack path)
+    else TIO.readFile path >>= renderText ext
+
+renderText :: String -> Text -> IO HTML
+renderText ".md"   = markdownToLucid
+renderText ".html" = htmlToLucid
+renderText ".svg"  = htmlToLucid
+renderText ".tex"  = latexToLucid
+renderText ext     = \_ -> error $ "Missing implementation for " ++ ext ++ " to HTML"
 
 -- Markdown Reading through Pandoc
 
@@ -67,8 +69,8 @@ htmlToLucid text = do
   return $ toHtmlRaw text
 
 -- Latex Reading through Pandoc
--- Note: this doesn't work very well
--- I prefer MathJax in markdown, and https://upmath.me/) for things like tikzcd.
+-- Note: it's hard to tell what kind of latex this supports.
+-- The most comprehensive support comes from copying snippets via https://upmath.me/ to .md files
 
 latexToLucid :: Text -> IO HTML
 latexToLucid text = do

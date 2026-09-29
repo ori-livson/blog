@@ -1,0 +1,5 @@
+**Diagonalisation arguments** have revealed many important limitations throughout mathematics, computer science and logic, e.g., the impossibility of creating certain algorithms (Turing), the necessity of true but unprovable statements for any list of consistent axioms of arithmetic (Gödel), the necessity of indescribable words (Grelling), etc. **Fixed-Point Theorems** are the other side of the coin to many diagonalisation arguments<sup>[1](#footnote-1)</sup> and underpin recursion in programming as well as results concerning self-replicating programs, self-referential strategies and self-simulation (more on this later).
+
+As part of my research, I am always looking for new examples of diagonalisation and fixed-point theorems, and new ways to motivate the underlying problems and theory. My favourite example as of late is a **beautiful fixed-point theorem, hidden in a joke by NBA legend Charles Barkley.**
+
+For context, In late 2024, a statue of another NBA legend Dwyane Wade was unveiled that was promptly criticised for looking nothing like the player (see Figure 1 to decide for yourself).
