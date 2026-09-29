@@ -59,9 +59,13 @@ customHeaders:
   - pattern: "/rss.xml"
     headers:
       - key: "Cache-Control"
-        value: "no-cache, no-store, must-revalidate"
+        value: "no-cache, no-store, must-revalidate, max-age=0, s-maxage=0, proxy-revalidate"
+      - key: "Pragma"
+        value: "no-cache"
+      - key: "Expires"
+        value: "0"
       - key: "Content-Type"
-        value: "application/rss+xml"
+        value: "application/rss+xml; charset=utf-8"
 ```
 
 You just need to:

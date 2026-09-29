@@ -28,6 +28,7 @@ import Templates
     tagMatchHtml,
     teachingHtml,
   )
+import Data.Time (getCurrentTime)
 
 data CliArgs = CliArgs
   { devMode :: Bool,
@@ -86,7 +87,8 @@ generateStaticSite Blog {home, about, contact, publications, teaching, posts} = 
   htmlToDir (teachingHtml teaching) $ targetDir </> "teaching"
   _ <- Map.traverseWithKey postToFile posts
   mapM_ tagToFile $ distinctTags posts -- page per tag listing posts with that tag
-  TLIO.writeFile (targetDir </> "rss.xml") (pack $ rss posts)
+  buildTime <- getCurrentTime -- write xml to rss.xml
+  TLIO.writeFile (targetDir </> "rss.xml") (pack $ rss buildTime posts)
   where
     tagToFile tag = htmlToDir (tagMatchHtml posts tag) $ targetDir </> "tags" </> tag
     postToFile endpoint post = createHtmlDir (assemblePost post) (staticPaths post) (targetDir </> "posts" </> endpoint)

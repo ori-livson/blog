@@ -8,19 +8,22 @@ import Templates (Post (..), Posts, sortPosts)
 import Text.RSS
   ( Item,
     ItemElem (Author, Category, Description, Guid, Link, PubDate, Title),
+    ChannelElem (ChannelPubDate, LastBuildDate),
     RSS (RSS),
     rssToXML,
     showXML,
   )
 
-rss :: Posts -> String
-rss posts =
+rss :: UTCTime -> Posts -> String
+rss buildTime posts =
   showXML . rssToXML $
     RSS
       selfTitle -- Channel title
       (fromJust (parseURI selfUrl)) -- Channel link (will crash if invalid)
       selfDescription -- Channel description
-      [] -- Channel extensions
+      [ ChannelPubDate buildTime,
+        LastBuildDate buildTime
+      ]
       (map item $ sortPosts posts) -- Channel items
 
 item :: (String, Post) -> Item
