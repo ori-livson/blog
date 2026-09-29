@@ -56,7 +56,7 @@ loadPosts dev noComments = do
   haskellHTMX <- Map.singleton "lucid-htmx-servant-combo" <$> loadHaskellHTMX noComments
   constructionOfRP2 <- Map.singleton "rp2-from-a-capped-cylinder" <$> loadConstructionOfRP2 noComments
   servingHTMXOnTheBrowser <- Map.singleton "htmx-served-on-the-browser-wasm" <$> loadHTMXOnTheBrowser noComments
-  barkleyDiagonalisation <- Map.singleton "charles-barkley-diagonalisation" <$> loadBarkleyDiagonalisation noComments
+  barkleyDiagonalisation <- Map.singleton "charles-barkley-fixed-point-theorems" <$> loadBarkleyDiagonalisation noComments
   let mainPosts =
         [ arrowAusPost,
           staticSite1,
@@ -562,7 +562,7 @@ loadHTMXOnTheBrowser noComments = do
 
 loadBarkleyDiagonalisation :: Bool -> IO Post
 loadBarkleyDiagonalisation noComments = do
-  let postTitle = "What NBA Legend Charles Barkley Can Teach Us About Diagonalisation and Fixed-Point Theorems"
+  let postTitle = "What NBA Legend Charles Barkley Can Teach Us About Fixed-Point Theorems"
   let subtitle = Just "The link between questionable statues of Dwyane Wade, incompleteness, recursion, self-replication and super-rationality."
 
   intro <- renderAbs "0-intro.md"
@@ -642,7 +642,7 @@ loadBarkleyDiagonalisation noComments = do
             }
       }
   where
-    rootDir = "content/posts/charles-barkley-diagonalisation"
+    rootDir = "content/posts/charles-barkley-fixed-point-theorems"
     bodyDir = rootDir </> "body"
     renderAbs x = renderPath $ bodyDir </> x
 
