@@ -241,6 +241,10 @@ li.all-tags {
 
 /* Post Body */
 
+#post-date {
+  margin-bottom: 1rem;
+}
+
 .content {
   padding-top: 5rem;
 }

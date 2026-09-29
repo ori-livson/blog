@@ -109,12 +109,9 @@ postEntries specs = ul_ [class_ "posts"] $ do
 
 postEntry :: String -> Post -> HTML
 postEntry endpoint Post {title, date, subtitle} = do
-  let dateStr = formatTime defaultTimeLocale "%Y.%m.%d" date
   li_ [class_ "post"] $
     div_ $ do
-      div_ $
-        span_ $
-          toHtml dateStr
+      dateSpan date
       div_ $ do
         a_ [href_ (pack $ "/posts/" ++ endpoint), class_ "post-title"] $ toHtml title
         case subtitle of
@@ -204,11 +201,12 @@ tagMatchHtml posts value = do
 ---------------------------------------------------------------------------------------------------
 
 assemblePost :: Post -> HTML
-assemblePost Post {title, subtitle, tags, body, footnotes, comments, issueId, siteConfig} = do
+assemblePost Post {title, subtitle, date, tags, body, footnotes, comments, issueId, siteConfig} = do
   standardHead siteConfig
   standardBody True $ do
     standardBanner
     postTitle title subtitle
+    with (dateSpan date) [id_ "post-date"]
     mapM_ (uncurry renderSection) $ zip [0 ..] body
     tagsBar tags
     commentSection issueId comments
@@ -449,6 +447,13 @@ bannerHeading = a_ [href_ "/"] $ bannerH (toHtml bannerTitle)
 standardBanner :: HTML
 standardBanner = bannerHead $ do
   bannerHeading
+
+dateSpan :: Day -> HTML
+dateSpan date = do
+  let dateStr = formatTime defaultTimeLocale "%Y.%m.%d" date
+  div_ $
+    span_ $
+      toHtml dateStr
 
 standardTitle :: String -> Maybe String -> HTML
 standardTitle title subtitle = do
