@@ -1,6 +1,6 @@
 In the $19^\text{th}$ and $20^\text{th}$ centuries, many logicians and mathematicians strove to establish an ideal, logical theory of arithmetic, from which, all truths about arithmetic on the natural numbers $\mathbb{N} = \{0,1,2,3,...\}$ could be proven.
 
-To begin, a logical theory simply meant a finite list of axioms (e.g., "for every $n \in \mathbb{N}$: $n = n$") and rules of inference (e.g., if $A$ implies $B$ and $A$ are proven, then so is $B$).
+To begin, a logical theory simply meant a finite list of axioms (e.g., "for every $n \in \mathbb{N}$: $n = n$") and rules of inference (e.g., if $A$ implies $B$ as well as $A$ are proven, then so is $B$).
 
 Moreover, the desired logical theory $\mathcal{T}$ of arithmetic (e.g., Peano Arithmetic) was expected to be both:
 \begin{itemize}
@@ -10,14 +10,14 @@ Moreover, the desired logical theory $\mathcal{T}$ of arithmetic (e.g., Peano Ar
 
 In 1931, Gödel's First Incompleteness Theorem shattered any hope for the existence of such a theory $\mathcal{T}$ of arithmetic. Specifically, he proved that any consistent theory of arithmetic must be incomplete, and that any compete theory of arithmetic must be inconsistent.
 
-Gödel's insight came from devising a "statue maker" for the set $F$ of all formulae of $\mathcal{T}$ (i.e., of arithmetic), where the formulae consist of:
+Gödel's insight came from devising a "statue maker" for the set $F$ of all formulae of $\mathcal{T}$ (i.e., of arithmetic), where formulae consist of:
 \begin{itemize}
     \item \textbf{Propositions} - being non-variable statements about arithmetic, e.g., "$2 > 3$", which may or may not be true.
     \item \textbf{Predicates} - being variable statements about arithmetic, e.g., "$x > 3$", which may nor may not be true depending on the value of $x$.
 \end{itemize}
-And the statue maker is an algorithm ${}^\ulcorner\ - {}^\urcorner: F \rightarrow \mathbb{N}$ that assigns every formula of $\mathcal{T}$ a unique \textbf{Gödel number}, and likewise where every \textbf{Gödel number} can be algorithmically translated back into its formula.\textsuperscript{\href{#footnote-2}{2}}
+And the statue maker is an algorithm ${}^\ulcorner\ - {}^\urcorner: F \rightarrow \mathbb{N}$ called a \textbf{Gödel numbering} that assigns every formula $f$ of $\mathcal{T}$ a unique \textbf{Gödel number} ${}^\ulcorner\ f {}^\urcorner$, and likewise where everyGödel number can be algorithmically translated back into its formula.\textsuperscript{\href{#footnote-2}{2}}
 
-Formula that represent statements \textit{about} Gödel numbers correspond to statements about mathematics... in mathematics. Moreover, proofs can also be assigned unique \textbf{Gödel numbers}, which reveals that $\mathcal{T}$ contains formulae that bear on $\mathcal{T}$'s own consistency or completeness.
+Formula that represent statements \textit{about} Gödel numbers correspond to statements about mathematics - in mathematics. Moreover, proofs can also be assigned unique Gödel numbers, which reveals that $\mathcal{T}$ contains formulae that bear on $\mathcal{T}$'s own consistency or completeness.
 
 As with the Dwyane Wade Fixed-Point Conjecture, Gödel proves the incompatibility of consistency and completeness by finding a fixed-point to the following predicate:
 \begin{center}
@@ -30,6 +30,6 @@ The above is a mouthful to be sure, but the fixed-point $G \in F$ of $\neg Prova
 \end{center}
 In other words, within $\mathcal{T}$: if $G$ is true then it is not provable (i.e., $\mathcal{T}$ is incomplete), and if $G$ is false, then a it, a false statement (i.e., a contradiction) is provable (i.e., $\mathcal{T}$ is inconsistent).\textsuperscript{\href{#footnote-3}{3}}
 
-The resemblance to the Dwyane Wade Fixed-Point Conjecture becomes clearer if we denote for logical equivalence under $\mathcal{T}$ by $\equiv$, as the above $G$ then satisfies $\neg Provable({}^\ulcorner\ G\ {}^\urcorner) \equiv G$. In other words, the role of $depict$ is played by ${}^\ulcorner\ - {}^\urcorner$, and the role of $react$ is played by variable substitution.
+The resemblance of the above to the Dwyane Wade Fixed-Point Conjecture becomes clearer if we denote logical equivalence under $\mathcal{T}$ by $\equiv$, so that we have $\neg Provable({}^\ulcorner\ G\ {}^\urcorner) \equiv G$. In other words, the role of $depict$ is played by ${}^\ulcorner\ - {}^\urcorner$, and the role of $react$ is played by variable substitution.
 
-Moreover, Carnap's Diagonalisation Lemma (1934) shows that \textit{all} predicates $A(x)$ have a fixed-point in the above sense, and this yields many more interesting consequences, e.g., the possibility of doing general purpose programming via recursion (see the Y-Combinator and the Knatter-Tarski Theorem), and Kleene's Recursion Theorems more generally.
+Moreover, Carnap's Diagonalisation Lemma (1934) shows that \textit{all} predicates $A(x)$ have a fixed-point in the above sense. The computational version of Diagonalisation Lemma (Kleene's Second Recursion Theorems) yields many more interesting consequences, e.g., the possibility of doing general purpose programming via recursion (e.g., via the Y-Combinator).

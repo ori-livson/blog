@@ -1,14 +1,14 @@
-In the next two sections, we are going to survey two especially interesting applications of fixed-point theorems of the type of Charles Barkley's. The first are \textbf{Quines}, which are programs that are able to reproduce their own source code. The second are \textbf{self-referential algorithms involved in the classic Prisoner's Dilemma problem}.
+In the next two sections, we will survey two especially interesting applications of fixed-point theorems of the type of Charles Barkley's. The first being \textbf{Quines}, which are programs that are able to reproduce their own source code. The second being \textbf{self-referential algorithms involved in the classic Prisoner's Dilemma problem}.
 
-To formalise these applications, we need a more general fixed-point theorem called \textbf{Kleene's (Second) Recursion Theorem} (on 1 variable). However, Kleene's Recursion Theorem has some unusual notation, which is easier to understand if we first explain a simpler result called \textbf{Roger's Theorem}.
+To formalise these applications, we need a more general fixed-point theorem called \textbf{Kleene's (Second) Recursion Theorem} (on 1 variable). However, Kleene's Recursion Theorem has some tricky notation, which is easier to understand if we first explain a simpler result called \textbf{Roger's Theorem}.
 
 To begin, let $\textbf{Program}$ be the set of all computable (partial) functions on natural numbers implementable by a general purpose programming language (they are more specifically, \href{https://en.wikipedia.org/wiki/General_recursive_function}{Partial Recursive Functions}).
 
-Then, consider any transformation $F$ on programs, i.e., a function $F: \textbf{Program} \rightarrow \textbf{Program}$. For instance $F$ may add extra instructions to programs, replaces existing instructions in a program, etc.
+Then, consider any transformation $F$ on programs, i.e., a function $F: \textbf{Program} \rightarrow \textbf{Program}$. For instance, $F$ may add extra instructions to programs, replaces existing instructions in a program, etc.
 
 Roger's Theorem states that for any transformation $F$, there is always a program $p \in \textbf{Program}$ that is unaffected by it, i.e., $F(p)$ is defined on exactly the same inputs as $p$, and when $p$ is defined on an input $n \in \mathbb{N}$: $p(n) = F(p)(n)$.
 
-However, while $F(p)$ is functionally equivalent to $p$, it does not necessarily have the same source code as $p$ - that's where Kleene's Recursion Theorem comes in.
+However, while $F(p)$ is functionally equivalent to $p$, it does not necessarily have the same source code as $p$ - that is where Kleene's Recursion Theorem comes in.
 
 Let $source$ be a function that maps a program to its source code, say a binary representation of it, so that $source$ is a $\textbf{Program} \rightarrow \mathbb{N}$ function.
 

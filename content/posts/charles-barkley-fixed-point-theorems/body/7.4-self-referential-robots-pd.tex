@@ -1,4 +1,4 @@
-However, \textbf{CliqueBot}'s source code requiring knowledge of its own source code appears paradoxical in the same way Quines seemed to be. In other words, \textbf{CliqueBot}'s source code $S$ appears to need a snippet $C$ that compares \textbf{CliqueBot}'s input to $S$, so that $S = S + C$.
+However, \textbf{CliqueBot}'s source code requiring knowledge of its own source code appears paradoxical in the same way Quines seemed to be. In other words, \textbf{CliqueBot}'s source code $S$ appears to need an additional portion of code $C$ that compares \textbf{CliqueBot}'s input to $S$, so that $S = S + C$.
 
 Yet, once again, by Kleene's Recursion Theorem, this problem can be solved as follows.
 
@@ -6,9 +6,9 @@ Yet, once again, by Kleene's Recursion Theorem, this problem can be solved as fo
 \begin{center}
     $\forall\ n \in \mathbb{N}:$ $Q(source(a), n) = 1$ if and only if $n = source(a)$ and $0$ otherwise.
 \end{center}
-(Where $1$ will be a proxy for Cooperate (C) and $0$ will be a proxy for Defect (D))
+(Note, $1$ will be a proxy for Cooperate (C) and $0$ will be a proxy for Defect (D))
 
-2. By Kleene's Recursion Theorem, there then exists a function $q: \mathbb{N} \rightarrow \mathbb{N}$ such that $\forall\ n \in \mathbb{N}:\ q(n) = Q(source(a), n)$, and moreover that:
+2. By Kleene's Recursion Theorem, there exists a function $q: \mathbb{N} \rightarrow \mathbb{N}$ such that $\forall\ n \in \mathbb{N}:\ q(n) = Q(source(a), n)$, and moreover that:
 \begin{center}
     $\forall\ n \in \mathbb{N}:$ $q(n) = 1$ if and only if $n = source(q)$ and $0$ otherwise.
 \end{center}
