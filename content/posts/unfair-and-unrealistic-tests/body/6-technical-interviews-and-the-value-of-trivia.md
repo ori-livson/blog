@@ -1,0 +1,9 @@
+I first started to think about this concept when I came across the YouTuber [Coding Jesus](https://www.youtube.com/@CodingJesus), who records mock technical interviews for programmers. A common criticism he receives is that he makes the interviewees look unqualified by asking them what are basically "trivia" questions about programming and software.
+
+To the contrary, I find that the brightest candidates in his videos are reliably the ones that get _most_ of the trivia right and otherwise seem interested in the questions that they get wrong (see [Footnote 2](#footnote-2) for an in depth analysis of one interview). The idea is that knowing well-chosen programming trivia can indicate that a candidate has good exposure to reading other people's code; that they have read articles deeply rather than by summaries only; and most importantly, that they have gotten their hands dirty and stumbled upon trivia, likely through troubleshooting problems.
+
+Ultimately, I think our aversion to trivia comes from an obsession with testing being "fair" in the sense that it is "predictable", "free of chance" and free of "serendipity". In other words, the task should be so clear as to guarantee perfect scores given enough mechanical effort.
+
+> **Perhaps the point of testing is not to find the examinees who get every question right.**
+
+On one hand, too much predictability can lead to grade inflation, which arguably makes everyone unhappy. On the other hand, it is often self-defeating. For example, this year I gave an "exam preparation and practice questions" lecture for a web-development course. At the end of the lecture, I was swarmed by students demanding to know more and more about what would be in the exam. Ironically, I told them, the more we tell you about what will be in the exam, the more "tricks" we will have to insert into the exam just to differentiate you.
