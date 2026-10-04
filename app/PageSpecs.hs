@@ -653,7 +653,7 @@ loadBarkleyDiagonalisation noComments = do
 loadUnfairTeaching :: Bool -> IO Post
 loadUnfairTeaching noComments = do
   let postTitle = "Unrealistic Tests Might Be Our Last Hope for Education and Technical Interviews"
-  let subtitle = Just "The surprising value of the closed book, memorisation and trivia."
+  let subtitle = Just "The surprising value of the closed book, artificial tasks and trivia."
 
   intro <- renderAbs "0-intro.md"
   whyRealisticIsImpossible <- renderAbs "1-why-realistic-is-impossible.md"
