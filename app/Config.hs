@@ -10,6 +10,7 @@ module Config
     selfUrl,
     staticSrc,
     targetDir,
+    rssURI
   )
 where
 
@@ -36,6 +37,9 @@ targetDir = "html"
 
 selfUrl :: String
 selfUrl = "https://ori-livson.com"
+
+rssURI :: String
+rssURI = "rss-v2.xml"
 
 selfAuthor :: String
 selfAuthor = "Ori Livson"

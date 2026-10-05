@@ -29,7 +29,7 @@ module Templates
   )
 where
 
-import Config (bannerSubtitle, bannerTitle, defaultTheme, issuesUrl)
+import Config (bannerSubtitle, bannerTitle, defaultTheme, issuesUrl, rssURI)
 import Control.Monad (when)
 import Data.List (nub, sort, sortBy)
 import Data.Map (Map, toList)
@@ -388,7 +388,7 @@ navLink path text = do
 rssLink :: HTML
 rssLink = do
   li_ [class_ "navbar-item nav-toggle"] $ do
-    a_ [id_ "rss-link", class_ "navbar-link", href_ "/rss.xml"] "RSS"
+    a_ [id_ "rss-link", class_ "navbar-link", href_ .pack $ "/" ++ rssURI] "RSS"
 
 rssToast :: HTML
 rssToast = div_ [id_ "rss-toast", class_ "rss-toast", role_ "status"] mempty

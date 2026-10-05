@@ -1,7 +1,7 @@
 module Main (main) where
 
 import Assertions (assertAllStaticRefsExist)
-import Config (staticSrc, targetDir)
+import Config (staticSrc, targetDir, rssURI)
 import Control.Monad (forM_)
 import Data.List (nub)
 import Data.Map as Map (elems, traverseWithKey)
@@ -87,8 +87,8 @@ generateStaticSite Blog {home, about, contact, publications, teaching, posts} = 
   htmlToDir (teachingHtml teaching) $ targetDir </> "teaching"
   _ <- Map.traverseWithKey postToFile posts
   mapM_ tagToFile $ distinctTags posts -- page per tag listing posts with that tag
-  buildTime <- getCurrentTime -- write xml to rss.xml
-  TLIO.writeFile (targetDir </> "rss.xml") (pack $ rss buildTime posts)
+  buildTime <- getCurrentTime
+  TLIO.writeFile (targetDir </> rssURI) (pack $ rss buildTime posts)
   where
     tagToFile tag = htmlToDir (tagMatchHtml posts tag) $ targetDir </> "tags" </> tag
     postToFile endpoint post = createHtmlDir (assemblePost post) (staticPaths post) (targetDir </> "posts" </> endpoint)
