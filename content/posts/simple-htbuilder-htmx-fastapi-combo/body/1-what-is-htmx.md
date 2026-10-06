@@ -25,11 +25,11 @@ What does it do? It makes an ordinary text input like so:
   placeholder="Type to filter rows by name..."
   style="width: 30ch; margin-left: 12px; margin-right: 12px;"
 />
-and filters a table to only contain records whose "name" contains the contents of the input. Specifically, HTMX drives this process with the follwoing attributes:
+and filters a table to only contain records whose "name" contains the contents of the input. Specifically, HTMX drives this process with the following attributes:
 
 1. (`hx-trigger="input changed"`) Every time you edit its contents of the input to `X`, it -
 2. (`hx-get="/table/filter"`) fires an HTTP request `GET /table/filter?name_contains=X` then -
-3. (`hx-swap="outerHTML"`) takes the HTTP response, and uses it to replace the entire HTML element that matches `id=table` (i.e., the table's outerHTML is swapped out). 
+3. (`hx-swap="outerHTML"`) takes the HTTP response, and uses it to replace the entire HTML element that matches `id=table` (i.e., the table's outerHTML is swapped out).
 
 Moreover:
 
@@ -45,7 +45,8 @@ Typically, this functionality would have to be split-up over the following 4 pie
 Yes, a modern JavaScript framework like React could keep part 1 close to the `<input>` tag by bundling them together in a component. The logic of parts 2-3 may also be part of the component (although there would likely be a module providing the functions to do the HTTP request). Likewise, the state needed to drive parts 3 and 4 could be part of the component too. However, driving the refresh of the component according to the state change of 3 requires one to understand the often complicated lifecycle system of the framework. I've certainly worked on projects where setting up an `<input>` like the above could require editing 4 or 5 files, just on the frontend.
 
 So, HTMX can sidestep a lot of the work and failure points, but there are two natural questions:
+
 - What if a single client-side change requires many HTML elements to be changed in response?
 - Are we really going to send HTML between the backend and frontend? Surely, passing JSON back and forth is more efficient.
 
-HTMX has a number of fine-grained solutions for the first question that we will discuss, although just replacing the closest parent of everything that needs to be changed often works fine. Secondly, by sending HTML snippets (AKA partials), there really isn't *that much* text to pass through, it just *looks wrong*. That said, HTML compresses well with standard text compression algorithms, so one can optimise things by adding a gzip or brotli middleware to your server.
+HTMX has a number of fine-grained solutions for the first question that we will discuss, although just replacing the closest parent of everything that needs to be changed often works fine. Secondly, by sending HTML snippets (AKA partials), there really isn't _that much_ text to pass through, it just _looks wrong_. That said, HTML compresses well with standard text compression algorithms, so one can optimise things by adding a gzip or brotli middleware to your server.
