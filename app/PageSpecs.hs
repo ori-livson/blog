@@ -442,7 +442,7 @@ loadConstructionOfRP2 noComments = do
   proof1Fig <-
     makeFigure
       "50%"
-      "Figure 6: equivalence (i.e., homeomorphism) between a capped cylinder and a sphere (ref: our [paper](https://arxiv.org/abs/2601.07283))."
+      "Figure 6: equivalence (i.e., homeomorphism) between a capped cylinder and a sphere (ref: our <a href=\"https://www.mdpi.com/2227-7390/14/12/2127\">paper</a>)."
       <$> renderPath ("static" </> "proof-1.png")
 
   proof2 <- renderAbs "proof2.md"
@@ -451,7 +451,7 @@ loadConstructionOfRP2 noComments = do
     makeFigure
       "50%"
       ( "Figure 7: equivalence between orientation reversing identification of the caps of the closed disk, "
-          <> "and identification of antipodal points on a sphere (ref: our [paper](https://arxiv.org/abs/2601.07283))."
+          <> "and identification of antipodal points on a sphere (ref: our <a href=\"https://www.mdpi.com/2227-7390/14/12/2127\">paper</a>)."
       )
       <$> renderPath ("static" </> "proof-2.png")
 
