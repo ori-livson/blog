@@ -3,7 +3,7 @@ Next, we'll survey the Lucid HTML generation of the above endpoints, noting some
 To begin, we need to implement our initial homepage request, i.e., our `GET /`, endpoint, which taking is simply.
 
 ```haskell
-type HTML = Html () -- shorthand for redability
+type HTML = Html () -- shorthand for readability
 
 renderHomepage :: HTML
 renderHomepage = do
@@ -43,7 +43,7 @@ submitButton = button_ [type_ "submit"] "Finalise"
 
 We already see our first HTMX endpoint setup in `POST /finish`, the rest are part of `writableBlock :: HTML`. See [Footnote 3](#footnote-3) for more information on HTMX Attribute bindings in Lucid, and see [Footnote 4](#footnote-4) for more info on the helper functions like `idAttr` and `toIdSelector`.
 
-We can also create *base elements* / *element builders*, e.g.,
+We can also create _base elements_ / _element builders_, e.g.,
 
 ```haskell
 baseTextArea :: [Attributes] -> HTML -> HTML

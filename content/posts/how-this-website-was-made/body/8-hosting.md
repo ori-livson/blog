@@ -14,7 +14,7 @@ mkdir -p published-versions
 
 export AWS_PROFILE=update-amplify
 
-# Check AWS Profie
+# Check AWS Profile
 # aws sts get-caller-identity | cat
 # Get Amplify App details
 # aws amplify list-apps | cat
