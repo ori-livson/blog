@@ -154,10 +154,10 @@ contactHtml contents = do
 
 publicationsHtml :: HTML -> HTML
 publicationsHtml contents = do
-  standardHead $ plainSite "Publications"
+  standardHead $ plainSite "Publications / Preprints"
   standardBody True $ do
     standardBanner
-    standardTitle "Publications" Nothing
+    standardTitle "Publications / Preprints" Nothing
     contents
 
 ---------------------------------------------------------------------------------------------------
