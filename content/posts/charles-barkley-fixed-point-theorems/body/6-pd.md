@@ -11,6 +11,6 @@ The possible outcomes are as follows:
 
 1. If **one prisoner cooperates and the other defects**, the defector receives the shortest possible (prison) sentence, and the cooperator receives the longest possible sentence.
 2. If **both prisoner's cooperate**, they both receive an equal, relatively short sentence (but not as short as being the defector in outcome 1).
-3. If **both prisoner's defect**, they both receive an equal, moderately long sentence (but not as long as being hte cooperator in outcome 1).
+3. If **both prisoner's defect**, they both receive an equal, moderately long sentence (but not as long as being the cooperator in outcome 1).
 
 All 4 possible combinations of prisoner choices (i.e., (C,C), (C,D), (D,C), (D,D)) can be tabulated in a "payoff matrix", where the cell values are the prisoners' sentences - see Figure 3 below for example sentencing values.<sup>[4](#footnote-4)</sup>
