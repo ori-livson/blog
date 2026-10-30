@@ -1,6 +1,8 @@
 - Prokopenko, M., Ay, N., Breviario, A., Crocker, R.M., Davies, P.C., Davies, P.C., Dougan, D., Fletcher, R., Harr'e, M., Heisler, M.G., Kuncic, Z., Lewis, G.F., **Livson, O.**, Reiner, V., & Serra, J. **(2026)**. [Algorithmic bottlenecks in evolution: Genetic code, symbolic language, and the Great Filter hypothesis.](https://doi.org/10.1016/j.plrev.2026.09.001) Physics of Life Reviews (also on [arXiv](<(https://arxiv.org/abs/2605.04498)>)).
 
-- **Livson, O.**, Pritam, S., & Prokopenko, M. **(2026)**. [The Non-Orientable Topology of Condorcet’s Paradox. Mathematics, 14(12), 2127.](https://doi.org/10.3390/math14122127), part of Special Issue Geometry, Topology, Manifolds and Their Applications (also on [arXiv](https://arxiv.org/abs/2601.07283))
+- **Livson, O.**, Pritam, S., & Prokopenko, M. **(2026)**. [The Non-Orientable Topology of Condorcet’s Paradox. Mathematics, 14(12), 2127.](https://doi.org/10.3390/math14122127), part of Special Issue on Geometry, Topology, Manifolds and Their Applications (also on [arXiv](https://arxiv.org/abs/2601.07283))
+
+  Featured in Quanta Magazine's [How Voting Is Like a Klein Bottle](https://www.quantamagazine.org/how-voting-is-like-a-klein-bottle-20261026/) (26.10.2026)
 
 - Nawaz, U., Deng, N., **Livson, O.**, Mayoh C., Lau, LMS., Reddel, RR., Padhye B., Poulos, RC. **(2026)**. [OnCorr: A pan-cancer mRNA-protein correlation tool for precision oncology.](https://doi.org/10.1038/s41698-026-01323-2) npj Precis. Onc. 10, 128 (also on [bioRxiv](https://www.biorxiv.org/content/10.1101/2025.06.12.659426v1)).
 
